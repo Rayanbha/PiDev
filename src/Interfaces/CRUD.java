@@ -9,4 +9,5 @@ public interface CRUD <T> {
     public void delete(T t);
     public List<T> read();
     public void update(T t,String nom);
+
 }

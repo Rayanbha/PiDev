@@ -63,7 +63,6 @@ public class UserService implements CRUD<user> {
         }
         return users;
     }
-
     @Override
     public void update(user user,String nom) {
         try {
@@ -78,4 +77,6 @@ public class UserService implements CRUD<user> {
         }
 
     }
+
+
 }
