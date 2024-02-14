@@ -1,7 +1,8 @@
-package service;
+package tn.koolart.esprit.service;
 
-import Entité.Product;
-import Interfaces.IProductInterface;
+import tn.koolart.esprit.models.Product;
+import tn.koolart.esprit.Interfaces.IProductInterface;
+import tn.koolart.esprit.utils.Connexion_database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

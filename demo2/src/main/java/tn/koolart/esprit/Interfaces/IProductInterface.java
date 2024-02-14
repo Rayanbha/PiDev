@@ -1,6 +1,6 @@
-package Interfaces;
+package tn.koolart.esprit.Interfaces;
 
-import Entité.Product;
+import tn.koolart.esprit.models.Product;
 
 import java.util.List;
 

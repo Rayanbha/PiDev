@@ -1,6 +1,6 @@
-package Interfaces;
+package tn.koolart.esprit.Interfaces;
 
-import Entité.Restaurant;
+import tn.koolart.esprit.models.Restaurant;
 
 import java.util.List;
 

@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package tn.koolart.esprit.service;
 
-import Entité.Restaurant;
-import Interfaces.IRestaurantInterface;
+import tn.koolart.esprit.models.Restaurant;
+import tn.koolart.esprit.Interfaces.IRestaurantInterface;
+import tn.koolart.esprit.utils.Connexion_database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

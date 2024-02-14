@@ -1,4 +1,4 @@
-package Entité;
+package tn.koolart.esprit.models;
 
 public class Product {
     private int productId;

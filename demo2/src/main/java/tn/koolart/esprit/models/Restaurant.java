@@ -3,12 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entité;
+package tn.koolart.esprit.models;
 
-/**
- *
- * @author user
- */
 public class Restaurant {
     private int restaurantId;
     private String name;
