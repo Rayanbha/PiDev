@@ -50,6 +50,8 @@ public class UserService implements CRUD<user> {
             while(res.next())
             {
                 user s=new user();
+                s.setId(res.getInt("id"));
+                s.setRole(res.getString("role"));
                 s.setNom(res.getString("nom"));
                 s.setPrenom(res.getString("prenom"));
                 s.setCin(res.getInt("cin"));
@@ -77,6 +79,30 @@ public class UserService implements CRUD<user> {
             throw new RuntimeException(e);
         }
 
+    }
+    public user findemail(String email)
+    {
+        user s=new user();
+        try {
+            String req="SELECT * FROM `user` WHERE `email`='"+email+"'";
+            Statement stat=cnx.createStatement();
+            ResultSet res=stat.executeQuery(req);
+            while(res.next())
+            {
+                s.setId(res.getInt("id"));
+                s.setRole(res.getString("role"));
+            s.setNom(res.getString("nom"));
+            s.setPrenom(res.getString("prenom"));
+            s.setCin(res.getInt("cin"));
+            s.setEmail(res.getString("email"));
+            s.setPwd(res.getString("pwd"));
+            System.out.println("Found");
+            System.out.println(s);}
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return s;
     }
 
 
