@@ -15,7 +15,7 @@ public class UserService implements CRUD<user> {
     @Override
     public void add(user user ) {
 
-        String req="INSERT INTO `user`(`prenom`, `nom`, `email`, `cin`, `pwd`) VALUES ('"+user.getPrenom()+"','"+user.getNom()+"','"+user.getEmail()+"','"+user.getCin()+"','"+user.getCin()+"')";
+        String req="INSERT INTO `user`(`role`,`prenom`, `nom`, `email`, `cin`, `pwd`) VALUES ('"+user.getRole() +"','"+user.getPrenom()+"','"+user.getNom()+"','"+user.getEmail()+"','"+user.getCin()+"','"+user.getCin()+"')";
         try {
             Statement st=cnx.createStatement();
             st.executeUpdate(req);
@@ -64,9 +64,10 @@ public class UserService implements CRUD<user> {
         return users;
     }
     @Override
-    public void update(user user,String nom) {
+    public void update(user user)
+    {
         try {
-            String req="UPDATE `user` SET `prenom`='"+nom+"',`nom`='"+user.getNom()+"',`email`='"+user.getEmail()+"',`cin`='"+user.getCin()+"',`pwd`='"+user.getPwd()+"' WHERE `cin`='"+user.getCin()+"'";
+            String req="UPDATE `user` SET `prenom`='"+user.getPrenom()+"',`nom`='"+user.getNom()+"',`email`='"+user.getEmail()+"',`cin`='"+user.getCin()+"',`pwd`='"+user.getPwd()+"' WHERE `cin`='"+user.getCin()+"'";
           /*  Statement state=cnx.createStatement();
             state.executeUpdate(req);*/
             PreparedStatement ps=cnx.prepareStatement(req);

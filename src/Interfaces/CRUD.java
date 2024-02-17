@@ -8,6 +8,6 @@ public interface CRUD <T> {
     public void add(T t);
     public void delete(T t);
     public List<T> read();
-    public void update(T t,String nom);
+    public void update(T t);
 
 }

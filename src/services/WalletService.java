@@ -28,7 +28,7 @@ public class WalletService implements CRUD<Wallet> {
     @Override
     public void delete(Wallet wallet) {
         try {
-            String req="DELETE FROM `wallet` WHERE `idwallet`= '" +wallet.getId()+ "';";
+            String req="DELETE FROM `wallet` WHERE `balance`= '" +wallet.getBalance()+ "';";
             Statement stat=cnx.createStatement();
             stat.executeUpdate(req);
             System.out.println("DELETED WALLET");
@@ -64,9 +64,9 @@ public class WalletService implements CRUD<Wallet> {
     }
 
     @Override
-    public void update(Wallet wallet, String transaction)
+    public void update(Wallet wallet)
     {
-     String req="UPDATE `wallet` SET `idwallet`='"+wallet.getId()+"',`balance`='"+wallet.getBalance()+"',`transactions`='"+transaction+"' WHERE `idwallet`='"+wallet.getId()+"'";
+     String req="UPDATE `wallet` SET `idwallet`='"+wallet.getId()+"',`balance`='"+wallet.getBalance()+"',`transactions`='"+wallet.getTransactions()+"' WHERE `balance`='"+wallet.getBalance()+"'";
         try {
             Statement stat= cnx.createStatement();
             stat.executeUpdate(req);

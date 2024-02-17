@@ -3,6 +3,7 @@ package models;
 public class user {
 
     private int id;
+    private String role;
     private String Prenom;
     private String nom;
     private String email;
@@ -12,8 +13,9 @@ public class user {
     public user() {
     }
 
-    public user(int id, String prenom, String nom, String email, int cin, String pwd) {
+    public user(int id,String role, String prenom, String nom, String email, int cin, String pwd) {
         this.id = id;
+        this.role=role;
         Prenom = prenom;
         this.nom = nom;
         this.email = email;
@@ -21,7 +23,8 @@ public class user {
         this.pwd = pwd;
     }
 
-    public user(String prenom, String nom, String email, int cin, String pwd) {
+    public user(String role,String prenom, String nom, String email, int cin, String pwd) {
+        this.role=role;
         Prenom = prenom;
         this.nom = nom;
         this.email = email;
@@ -31,6 +34,14 @@ public class user {
 
     public int getId() {
         return id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setId(int id) {
@@ -81,6 +92,7 @@ public class user {
     public String toString() {
         return "user{" +
                 "id=" + id +
+                ", role='" + role + '\'' +
                 ", Prenom='" + Prenom + '\'' +
                 ", nom='" + nom + '\'' +
                 ", email='" + email + '\'' +
