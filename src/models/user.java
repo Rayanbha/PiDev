@@ -90,15 +90,7 @@ public class user {
 
     @Override
     public String toString() {
-        return "user{" +
-                "id=" + id +
-                ", role='" + role + '\'' +
-                ", Prenom='" + Prenom + '\'' +
-                ", nom='" + nom + '\'' +
-                ", email='" + email + '\'' +
-                ", cin=" + cin +
-                ", pwd='" + pwd + '\'' +
-                '}';
+        return  id + " ," + role + "  ," + Prenom +  " ," + nom + " ," + email + " ," + cin + " ," + pwd  ;
     }
 }
 

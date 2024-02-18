@@ -2,7 +2,6 @@ package services;
 
 import Interfaces.CRUD;
 import models.Wallet;
-import models.user;
 import util.MyConnection;
 
 import java.sql.*;
@@ -64,7 +63,7 @@ public class WalletService implements CRUD<Wallet> {
     }
 
     @Override
-    public void update(Wallet wallet)
+    public boolean update(Wallet wallet)
     {
      String req="UPDATE `wallet` SET `idwallet`='"+wallet.getId()+"',`balance`='"+wallet.getBalance()+"',`transactions`='"+wallet.getTransactions()+"' WHERE `balance`='"+wallet.getBalance()+"'";
         try {
@@ -74,6 +73,7 @@ public class WalletService implements CRUD<Wallet> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return false;
     }
 
 

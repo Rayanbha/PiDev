@@ -22,7 +22,7 @@
                         <Font size="13.0" />
                     </font>
                 </Hyperlink>
-                <Text fill="#ffde59" layoutX="119.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se Connecter" textAlignment="CENTER">
+                <Text fill="#ffde59" layoutX="118.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se Connecter" textAlignment="CENTER">
                     <font>
                         <Font size="22.0" />
                     </font>

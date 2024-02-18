@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterPersonne">
+<AnchorPane fx:id="in" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterPersonne">
    <children>
       <Group layoutX="191.0" layoutY="33.0">
          <children>
@@ -22,7 +22,7 @@
             <Label layoutX="156.0" layoutY="43.0" text="Se Connecter" textAlignment="CENTER" underline="true" />
          </children>
       </Group>
-      <TextField fx:id="PrenomTF" alignment="CENTER" layoutX="100.0" layoutY="121.0" prefHeight="32.0" prefWidth="149.0" promptText="Prenom" style="-fx-background-color: transparent; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" text="fgfdsgfg" />
+      <TextField fx:id="PrenomTF" alignment="CENTER" layoutX="100.0" layoutY="121.0" prefHeight="32.0" prefWidth="149.0" promptText="Prenom" style="-fx-background-color: transparent; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
       <TextField fx:id="NomTF" alignment="CENTER" layoutX="100.0" layoutY="189.0" prefHeight="32.0" prefWidth="149.0" promptText="Nom" style="-fx-background-color: transparent; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
       <TextField fx:id="EmailTF" alignment="CENTER" layoutX="100.0" layoutY="262.0" prefHeight="30.0" prefWidth="149.0" promptText="Email" style="-fx-background-color: trans; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
       <TextField fx:id="cinTF" alignment="CENTER" layoutX="370.0" layoutY="121.0" prefHeight="32.0" prefWidth="149.0" promptText="Cin" style="-fx-background-color: trans; -fx-border-color: FFDE59; -fx-border-width: 0 0 2 0;" />
@@ -31,7 +31,7 @@
             <Image url="@../../../../Downloads/422538747_1530196224445183_7394585416044135593_n.png" />
          </image>
       </ImageView>
-      <Button alignment="TOP_CENTER" layoutX="257.0" layoutY="322.0" mnemonicParsing="false" onAction="#AjouterUser" prefHeight="30.0" prefWidth="105.0" style="-fx-background-color: FFDE59;" text="S'inscrire" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+      <Button fx:id="inscrire" alignment="TOP_CENTER" layoutX="257.0" layoutY="322.0" mnemonicParsing="false" onAction="#AjouterUser" prefHeight="30.0" prefWidth="105.0" style="-fx-background-color: FFDE59;" text="S'inscrire" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font size="14.0" />
          </font>
