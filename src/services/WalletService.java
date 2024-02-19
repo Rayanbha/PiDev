@@ -65,7 +65,7 @@ public class WalletService implements CRUD<Wallet> {
     @Override
     public boolean update(Wallet wallet)
     {
-     String req="UPDATE `wallet` SET `idwallet`='"+wallet.getId()+"',`balance`='"+wallet.getBalance()+"',`transactions`='"+wallet.getIduser()+"' WHERE `idwallet`='"+wallet.getId()+"'";
+     String req="UPDATE `wallet` SET `balance`='"+wallet.getBalance()+"' WHERE `idwallet`='"+wallet.getId()+"'";
         try {
             Statement stat= cnx.createStatement();
             stat.executeUpdate(req);
@@ -76,7 +76,7 @@ public class WalletService implements CRUD<Wallet> {
         return false;
     }
 
-    public Wallet find(int id)
+    public List<Wallet> find(int id)
     {
 
         try {
@@ -84,14 +84,16 @@ public class WalletService implements CRUD<Wallet> {
             String req = "SELECT * FROM `wallet` WHERE `iduser`='" + id + "'";
             Statement stat = cnx.createStatement();
             ResultSet set= stat.executeQuery(req);
-                Wallet w=new Wallet();
+            List<Wallet> wallets = new ArrayList<>();
                 while(set.next()) {
+                    Wallet w=new Wallet();
                     w.setId(set.getInt("idwallet"));
                     w.setBalance(set.getInt("balance"));
                     w.setIduser(set.getInt("iduser"));
+                    wallets.add(w);
                     System.out.println(w);
                 }
-                    return w;
+                    return wallets;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

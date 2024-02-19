@@ -104,7 +104,7 @@ public class UpdateUser {
     public void Updateuser(ActionEvent actionEvent) {
         if (pwdTF.getText().equals(cpwdTF.getText()))
         {
-        userService.update(new user("Client", PrenomTF.getText(), NomTF.getText(), EmailTF.getText(), Integer.parseInt(cinTF.getText()), pwdTF.getText()));
+        userService.update(new user(userToUpdate.getId(),"Client", PrenomTF.getText(), NomTF.getText(), EmailTF.getText(), Integer.parseInt(cinTF.getText()), pwdTF.getText()));
             Stage stage=(Stage)updateuser.getScene().getWindow();
             stage.close();
             Stage primaryStage=new Stage();

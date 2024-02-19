@@ -21,10 +21,13 @@
                 <Font size="42.0" />
             </font>
         </Label>
-        <TextField fx:id="balanceTF" alignment="CENTER" editable="false" layoutX="234.0" layoutY="151.0" promptText="Balance" />
+        <TextField fx:id="balanceTF" alignment="CENTER" editable="false" layoutX="234.0" layoutY="151.0" prefHeight="25.0" prefWidth="133.0" promptText="Balance" />
         <Label layoutX="234.0" layoutY="124.0" prefHeight="17.0" prefWidth="57.0" text="Balance" />
         <ListView fx:id="transactionLV" layoutX="200.0" layoutY="224.0" prefHeight="200.0" prefWidth="388.0" />
       <Button fx:id="AddWallet" layoutX="477.0" layoutY="67.0" mnemonicParsing="false" onAction="#AddWallet" text="Ajouter Wallet" />
       <ChoiceBox fx:id="Walletnumber" layoutX="419.0" layoutY="151.0" prefWidth="150.0" />
+      <Button fx:id="ChangeBal" layoutX="419.0" layoutY="189.0" mnemonicParsing="false" onAction="#ChangeBal" prefHeight="25.0" prefWidth="150.0" text="Changer Balance" />
+      <TextField fx:id="newBalTF" alignment="CENTER" layoutX="234.0" layoutY="189.0" prefHeight="25.0" prefWidth="133.0" promptText="Montant a Ajouter" />
+      <Button fx:id="DeleteWallet" layoutX="477.0" layoutY="112.0" mnemonicParsing="false" onAction="#DeleteWallet" prefHeight="25.0" prefWidth="92.0" text="Button" />
     </children>
 </AnchorPane>
