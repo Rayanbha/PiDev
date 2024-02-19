@@ -3,16 +3,27 @@ package Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import models.Wallet;
 import models.user;
 import services.UserService;
+import services.WalletService;
+import javafx.scene.Node;
+
 
 import java.io.IOException;
+
 
 public class UpdateUser {
 
@@ -35,7 +46,12 @@ public class UpdateUser {
     private user userToUpdate;
     @FXML
     private Button updateuser;
+
+    @FXML
+    private Circle circle;
     private UserService userService = new UserService();
+    
+
 
     public void initData(user user) {
         this.userToUpdate = user;
@@ -94,7 +110,7 @@ public class UpdateUser {
             Stage primaryStage=new Stage();
             Parent root= null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/AffichageUser.fxml"));
+                root = FXMLLoader.load(getClass().getResource("/UI/AffichageUser.fxml"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -108,6 +124,42 @@ public class UpdateUser {
             alert.setContentText("PASSWORD INCORRECT");
             alert.showAndWait();
         }
+
+    }
+    private WalletService walletser=new WalletService();
+    @FXML
+    void ajoutwallet(ActionEvent event) {
+        int id=userToUpdate.getId();
+        Wallet wallet=new Wallet(0,id);
+        walletser.add(wallet);
+    }
+
+    @FXML
+    private Label wallet;
+
+    WalletService walletService=new WalletService();
+
+    @FXML
+    void wallet(MouseEvent event) {
+
+
+        try {
+            Stage currentStage=(Stage)wallet.getScene().getWindow();
+            currentStage.close();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/WalletMenu.fxml"));
+            Parent root = loader.load();
+            WalletMenu walletc=loader.getController();
+            walletc.initWallet(userToUpdate.getId());
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
 
     }
 }

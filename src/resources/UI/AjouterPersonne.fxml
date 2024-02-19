@@ -28,7 +28,7 @@
       <TextField fx:id="cinTF" alignment="CENTER" layoutX="370.0" layoutY="121.0" prefHeight="32.0" prefWidth="149.0" promptText="Cin" style="-fx-background-color: trans; -fx-border-color: FFDE59; -fx-border-width: 0 0 2 0;" />
       <ImageView fitHeight="114.0" fitWidth="130.0" layoutX="533.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Downloads/422538747_1530196224445183_7394585416044135593_n.png" />
+            <Image url="@../../../../../Downloads/422538747_1530196224445183_7394585416044135593_n.png" />
          </image>
       </ImageView>
       <Button fx:id="inscrire" alignment="TOP_CENTER" layoutX="257.0" layoutY="322.0" mnemonicParsing="false" onAction="#AjouterUser" prefHeight="30.0" prefWidth="105.0" style="-fx-background-color: FFDE59;" text="S'inscrire" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">

@@ -1,7 +1,5 @@
 package Controllers;
 
-import javafx.beans.Observable;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,9 +42,11 @@ public class AffichageUser {
         user selecteduser=Listview.getSelectionModel().getSelectedItem();
         if(selecteduser != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateUser.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UpdateUser.fxml"));
                 Parent root = loader.load();
                 UpdateUser updateController = loader.getController();
+                Stage stage1=(Stage)Update.getScene().getWindow();
+                stage1.close();
                 updateController.initData(selecteduser);
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();

@@ -15,7 +15,7 @@ public class WalletService implements CRUD<Wallet> {
     @Override
     public void add(Wallet wallet) {
         try {
-            String req="INSERT INTO `wallet`(`balance`,`transactions`) VALUES ('"+wallet.getBalance()+"','"+wallet.getTransactions()+"')";
+            String req="INSERT INTO `wallet`(`balance`,`iduser`) VALUES ('"+wallet.getBalance()+"','"+wallet.getIduser()+"')";
             Statement stat=cnx.createStatement();
             stat.executeUpdate(req);
             System.out.println("ADDED WALLET");
@@ -27,7 +27,7 @@ public class WalletService implements CRUD<Wallet> {
     @Override
     public void delete(Wallet wallet) {
         try {
-            String req="DELETE FROM `wallet` WHERE `balance`= '" +wallet.getBalance()+ "';";
+            String req="DELETE FROM `wallet` WHERE `idwallet`= '" +wallet.getIdwallet()+ "';";
             Statement stat=cnx.createStatement();
             stat.executeUpdate(req);
             System.out.println("DELETED WALLET");
@@ -49,7 +49,7 @@ public class WalletService implements CRUD<Wallet> {
             Wallet w=new Wallet();
             w.setId(set.getInt("idwallet"));
             w.setBalance(set.getInt("balance"));
-            w.setTransactions(set.getString("transactions"));
+            w.setIduser(set.getInt("iduser"));
             wallets.add(w);
             System.out.println(wallets) ;
         }
@@ -65,7 +65,7 @@ public class WalletService implements CRUD<Wallet> {
     @Override
     public boolean update(Wallet wallet)
     {
-     String req="UPDATE `wallet` SET `idwallet`='"+wallet.getId()+"',`balance`='"+wallet.getBalance()+"',`transactions`='"+wallet.getTransactions()+"' WHERE `balance`='"+wallet.getBalance()+"'";
+     String req="UPDATE `wallet` SET `idwallet`='"+wallet.getId()+"',`balance`='"+wallet.getBalance()+"',`transactions`='"+wallet.getIduser()+"' WHERE `idwallet`='"+wallet.getId()+"'";
         try {
             Statement stat= cnx.createStatement();
             stat.executeUpdate(req);
@@ -75,6 +75,50 @@ public class WalletService implements CRUD<Wallet> {
         }
         return false;
     }
+
+    public Wallet find(int id)
+    {
+
+        try {
+
+            String req = "SELECT * FROM `wallet` WHERE `iduser`='" + id + "'";
+            Statement stat = cnx.createStatement();
+            ResultSet set= stat.executeQuery(req);
+                Wallet w=new Wallet();
+                while(set.next()) {
+                    w.setId(set.getInt("idwallet"));
+                    w.setBalance(set.getInt("balance"));
+                    w.setIduser(set.getInt("iduser"));
+                    System.out.println(w);
+                }
+                    return w;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public int count(int id)
+    {   int s = 0;
+
+        try {
+            String req="SELECT COUNT(*) AS count FROM `wallet` WHERE `iduser`='" + id + "'";
+
+            Statement stat= cnx.createStatement();
+            ResultSet res= stat.executeQuery(req);
+            while(res.next())
+            {
+                s=res.getInt("count");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return s;
+    }
+
 
 
 }

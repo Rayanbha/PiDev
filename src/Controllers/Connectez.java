@@ -8,14 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.user;
 import services.UserService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Connectez {
 
@@ -42,7 +39,7 @@ public class Connectez {
                     Stage stage=(Stage)connectezBut.getScene().getWindow();
                     stage.close();
                     Stage primaryStage=new Stage();
-                    Parent root=FXMLLoader.load(getClass().getResource("/AjouterPersonne.fxml"));
+                    Parent root=FXMLLoader.load(getClass().getResource("/UI/AjouterPersonne.fxml"));
                     primaryStage.setTitle("Add");
                     primaryStage.setScene(new Scene(root));
                     primaryStage.show();

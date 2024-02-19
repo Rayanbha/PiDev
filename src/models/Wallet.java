@@ -1,30 +1,30 @@
 package models;
 
 public  class Wallet {
-    private int id;
+    private int idwallet;
     private float balance;
-    private String transactions;
+    private  int iduser;
 
-    public Wallet(int id, float balance,String Transactions) {
-        this.id = id;
+    public Wallet(int id, float balance,int iduser) {
+        this.idwallet = id;
         this.balance = balance;
-        this.transactions=Transactions;
+        this.iduser=iduser;
     }
 
-    public Wallet(float balance,String transactions) {
+    public Wallet(float balance,int iduser ) {
         this.balance = balance;
-        this.transactions=transactions;
+        this.iduser=iduser;
     }
 
     public Wallet() {
     }
 
     public int getId() {
-        return id;
+        return idwallet;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idwallet = id;
     }
 
     public float getBalance() {
@@ -35,21 +35,28 @@ public  class Wallet {
         this.balance = balance;
     }
 
-    public String getTransactions() {
-        return transactions;
+    public int getIdwallet() {
+        return idwallet;
     }
 
-    public void setTransactions(String transactions) {
-        this.transactions = transactions;
+    public void setIdwallet(int idwallet) {
+        this.idwallet = idwallet;
+    }
+
+    public int getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(int iduser) {
+        this.iduser = iduser;
     }
 
     @Override
     public String toString() {
         return "Wallet{" +
-                "id=" + id +
+                "idwallet=" + idwallet +
                 ", balance=" + balance +
-                ", transactions='" + transactions + '\'' +
+                ", iduser=" + iduser +
                 '}';
     }
-
 }
