@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AjouterReview">
+   <children>
+      <AnchorPane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="677.0">
+         <children>
+            <AnchorPane layoutX="-10.0" layoutY="-11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="102.0" prefWidth="592.0" style="-fx-background-color: #FFDE59;" />
+            <Label layoutX="200.0" layoutY="97.0" prefHeight="70.0" prefWidth="287.0" text="   Ajouter Avis" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="38.0" />
+               </font>
+            </Label>
+            <Rating fx:id="rate" layoutX="251.0" layoutY="168.0" prefHeight="25.0" prefWidth="171.0" />
+            <Label layoutX="294.0" layoutY="216.0" prefHeight="32.0" prefWidth="100.0" text="  Commentaire">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="com" layoutX="236.0" layoutY="248.0" prefHeight="63.0" prefWidth="205.0" promptText="Plat simple et succulent" />
+            <Label layoutX="294.0" layoutY="322.0" prefHeight="32.0" prefWidth="100.0" text=" Joindre Image">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="ajout" layoutX="289.0" layoutY="405.0" mnemonicParsing="false" onAction="#ajouterAvis" prefHeight="38.0" prefWidth="99.0" style="-fx-background-color: #FFDE59;" text="Ajouter" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="logo2" fitHeight="216.0" fitWidth="113.0" layoutX="582.0" layoutY="-68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/ben turkia/Downloads/logojava.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="ajouti" layoutX="390.0" layoutY="360.0" mnemonicParsing="false" onAction="#Browse" text="Image">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField fx:id="affichei" layoutX="236.0" layoutY="360.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
