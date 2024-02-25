@@ -2,13 +2,12 @@ package services;
 
 import Interfaces.CRUD;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
+
 import models.transaction;
 import util.MyConnection;
 
-import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionService implements CRUD<transaction> {
@@ -31,16 +30,62 @@ public class TransactionService implements CRUD<transaction> {
 
     @Override
     public void delete(transaction transaction) {
+        String req="DELETE FROM `transaction` WHERE `idtransaction`='"+transaction.getIdtransaction()+"';";
+        try {
+            Statement stat=cnx.createStatement();
+            stat.executeUpdate(req);
+            System.out.println("Deleted");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 
     @Override
     public List<transaction> read() {
-        return null;
+        List<transaction> transaction=new ArrayList<>();
+        try {
+            String req="SELECT * FROM `transaction`";
+
+            Statement stat=cnx.createStatement();
+            ResultSet res= stat.executeQuery(req);
+            while(res.next())
+            {
+                transaction s=new transaction();
+                s.setDatetime(res.getTimestamp("date"));
+                s.setIdwallet(res.getInt("idwallet"));
+                s.setMontant(res.getFloat("montant"));
+                s.setIddestinataire(res.getInt("iddestinataire"));
+                s.setIdcurrent(res.getInt("idcurrent"));
+                transaction.add(s);
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return transaction;
     }
 
     @Override
     public boolean update(transaction transaction) {
+        String req="UPDATE `transaction` SET " +
+                "`idwallet`='"+transaction.getIdwallet()+"'," +
+                "`date`='"+transaction.getDatetime() +"'," +
+                "`montant`='"+transaction.getMontant()+"'," +
+                "`iddestinataire`='"+transaction.getIddestinataire()+"'," +
+                "`idcurrent`='"+transaction.getIdcurrent()+"'" +
+                " WHERE `idtransaction`='"+transaction.getIdtransaction()+"'";
+        try {
+            Statement stat=cnx.createStatement();
+            stat.executeUpdate(req);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         return false;
     }
 }

@@ -62,11 +62,11 @@ public class UserService implements CRUD<user> {
 
 
                 users.add(s);
-                System.out.println(s);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         return users;
     }
     @Override

@@ -20,7 +20,7 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
 
-        
+
 
         TransactionService ts=new TransactionService();
         long currentTimeMillis = System.currentTimeMillis();
@@ -31,10 +31,15 @@ public class main {
         Wallet w=new Wallet();
 
 
+//
+//        transaction t=new transaction(1,currentTimestamp,800,5,3);
+//        ts.add(t);
+//        transaction t1=new transaction(2,currentTimestamp,800,5,3);
+//        ts.add(t1);
+//        transaction t2=new transaction(3,currentTimestamp,800,5,3);
+//        ts.add(t2);
 
-        transaction t=new transaction(1,currentTimestamp,800,5,3);
-        ts.add(t);
-
+        ts.read();
 
 
 
