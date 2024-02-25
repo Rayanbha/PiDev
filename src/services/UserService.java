@@ -73,7 +73,7 @@ public class UserService implements CRUD<user> {
     public boolean update(user user)
     {
         try {
-            String req="UPDATE `user` SET `prenom`='"+user.getPrenom()+"',`nom`='"+user.getNom()+"',`email`='"+user.getEmail()+"',`cin`='"+user.getCin()+"',`pwd`='"+user.getPwd()+"',`hashedpwd` ='"+user.getHashedpwd()+"','"+user.getSalt()+"' WHERE `cin`='"+user.getCin()+"'";
+            String req="UPDATE `user` SET `prenom`='"+user.getPrenom()+"',`nom`='"+user.getNom()+"',`email`='"+user.getEmail()+"',`cin`='"+user.getCin()+"',`pwd`='"+user.getPwd()+"',`hashedpwd` ='"+user.getHashedpwd()+"',`salt`='"+user.getSalt()+"' WHERE `cin`='"+user.getCin()+"'";
           /*  Statement state=cnx.createStatement();
             state.executeUpdate(req);*/
             PreparedStatement ps=cnx.prepareStatement(req);

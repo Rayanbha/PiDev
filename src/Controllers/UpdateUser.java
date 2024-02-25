@@ -17,6 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import models.Wallet;
 import models.user;
+import org.mindrot.jbcrypt.BCrypt;
 import services.UserService;
 import services.WalletService;
 import javafx.scene.Node;
@@ -46,6 +47,7 @@ public class UpdateUser {
     private user userToUpdate;
     @FXML
     private Button updateuser;
+    private String oldpwd;
 
     @FXML
     private Circle circle;
@@ -56,9 +58,11 @@ public class UpdateUser {
     public void initData(user user) {
         this.userToUpdate = user;
         populateFields();
+        System.out.println(userToUpdate.getHashedpwd()+"/"+userToUpdate.getSalt());
     }
 
     private void populateFields() {
+        oldpwd=userToUpdate.getPwd();
         NomTF.setText(userToUpdate.getNom());
         PrenomTF.setText(userToUpdate.getPrenom());
         cinTF.setText(String.valueOf(userToUpdate.getCin())); // Convert to String for TextField
@@ -102,6 +106,9 @@ public class UpdateUser {
     }
 
     public void Updateuser(ActionEvent actionEvent) {
+
+
+
         if (!isEmailValid(EmailTF.getText())) {
             showAlert("Error", "Invalid email address!");
             return;
@@ -113,7 +120,17 @@ public class UpdateUser {
         }
         if (pwdTF.getText().equals(cpwdTF.getText()))
         {
-        userService.update(new user(userToUpdate.getId(),"Client", PrenomTF.getText(), NomTF.getText(), EmailTF.getText(), Integer.parseInt(cinTF.getText()), pwdTF.getText(),userToUpdate.getHashedpwd(), userToUpdate.getSalt()));
+            if(!oldpwd.equals(userToUpdate))
+            {
+                String salt = BCrypt.gensalt();
+                System.out.println(salt);
+
+                // Hash the password using the generated salt
+                String hashedPassword = BCrypt.hashpw(pwdTF.getText(), salt);
+                userService.update(new user(userToUpdate.getId(),"Client", PrenomTF.getText(), NomTF.getText(), EmailTF.getText(), Integer.parseInt(cinTF.getText()), pwdTF.getText(),hashedPassword, salt));
+
+            }else {
+        userService.update(new user(userToUpdate.getId(),"Client", PrenomTF.getText(), NomTF.getText(), EmailTF.getText(), Integer.parseInt(cinTF.getText()), pwdTF.getText(),userToUpdate.getHashedpwd(), userToUpdate.getSalt()));}
             Stage stage=(Stage)updateuser.getScene().getWindow();
             stage.close();
             Stage primaryStage=new Stage();
