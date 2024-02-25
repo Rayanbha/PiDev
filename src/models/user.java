@@ -9,10 +9,34 @@ public class user {
     private String email;
     private int cin;
     private String pwd;
+    private String hashedpwd;
+    private String salt;
 
     public user() {
     }
 
+    public user(int id,String role, String prenom, String nom, String email, int cin, String pwd,String hashedpwd,String salt) {
+        this.id = id;
+        this.role=role;
+        Prenom = prenom;
+        this.nom = nom;
+        this.email = email;
+        this.cin = cin;
+        this.pwd = pwd;
+        this.hashedpwd=hashedpwd;
+        this.salt=salt;
+    }
+
+    public user(String role,String prenom, String nom, String email, int cin, String pwd,String hashedpwd,String salt) {
+        this.role=role;
+        Prenom = prenom;
+        this.nom = nom;
+        this.email = email;
+        this.cin = cin;
+        this.pwd = pwd;
+        this.hashedpwd=hashedpwd;
+        this.salt=salt;
+    }
     public user(int id,String role, String prenom, String nom, String email, int cin, String pwd) {
         this.id = id;
         this.role=role;
@@ -30,6 +54,7 @@ public class user {
         this.email = email;
         this.cin = cin;
         this.pwd = pwd;
+        this.hashedpwd=hashedpwd;
     }
 
     public int getId() {
@@ -88,9 +113,25 @@ public class user {
         this.pwd = pwd;
     }
 
+    public String getHashedpwd() {
+        return hashedpwd;
+    }
+
+    public void setHashedpwd(String hashedpwd) {
+        this.hashedpwd = hashedpwd;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
     @Override
     public String toString() {
-        return  id + " ," + role + "  ," + Prenom +  " ," + nom + " ," + email + " ," + cin + " ," + pwd  ;
+        return  id + " ," + role + "  ," + Prenom +  " ," + nom + " ," + email + " ," + cin + " ," + pwd+"," +hashedpwd;
     }
 }
 

@@ -102,9 +102,18 @@ public class UpdateUser {
     }
 
     public void Updateuser(ActionEvent actionEvent) {
+        if (!isEmailValid(EmailTF.getText())) {
+            showAlert("Error", "Invalid email address!");
+            return;
+
+        }
+        if (!isCinValid(cinTF.getText())) {
+            showAlert("Error", "CIN must be 8 digits long!");
+            return;
+        }
         if (pwdTF.getText().equals(cpwdTF.getText()))
         {
-        userService.update(new user(userToUpdate.getId(),"Client", PrenomTF.getText(), NomTF.getText(), EmailTF.getText(), Integer.parseInt(cinTF.getText()), pwdTF.getText()));
+        userService.update(new user(userToUpdate.getId(),"Client", PrenomTF.getText(), NomTF.getText(), EmailTF.getText(), Integer.parseInt(cinTF.getText()), pwdTF.getText(),userToUpdate.getHashedpwd(), userToUpdate.getSalt()));
             Stage stage=(Stage)updateuser.getScene().getWindow();
             stage.close();
             Stage primaryStage=new Stage();
@@ -127,29 +136,23 @@ public class UpdateUser {
 
     }
     private WalletService walletser=new WalletService();
-    @FXML
-    void ajoutwallet(ActionEvent event) {
-        int id=userToUpdate.getId();
-        Wallet wallet=new Wallet(0,id);
-        walletser.add(wallet);
-    }
 
     @FXML
     private Label wallet;
 
     WalletService walletService=new WalletService();
 
+
     @FXML
     void wallet(MouseEvent event) {
-
-
         try {
             Stage currentStage=(Stage)wallet.getScene().getWindow();
             currentStage.close();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/WalletMenu.fxml"));
             Parent root = loader.load();
             WalletMenu walletc=loader.getController();
-            walletc.initWallet(userToUpdate.getId());
+            int id=userToUpdate.getId();
+            walletc.initWallet(userToUpdate, userToUpdate.getId());
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -158,8 +161,14 @@ public class UpdateUser {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    private boolean isEmailValid(String email) {
+        // Regular expression to validate email format
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(emailRegex);
+    }
 
-
-
+    private boolean isCinValid(String cin) {
+        return cin.length() == 8 && cin.matches("\\d+");
     }
 }

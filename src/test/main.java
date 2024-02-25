@@ -4,6 +4,7 @@ import Controllers.WalletMenu;
 import models.Wallet;
 import models.transaction;
 import models.user;
+import services.EmailService;
 import services.UserService;
 
 import java.util.ArrayList;
@@ -16,8 +17,10 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
 
-        transaction trans=new transaction(new Date("2024/9/9"),53288);
-        transaction trans1=new transaction(new Date("2022/10/2"),102);
+        EmailService email=new EmailService();
+        email.sendEmail("rhadjalouane@gmail.com","papi","lol");
+
+
 
 
 

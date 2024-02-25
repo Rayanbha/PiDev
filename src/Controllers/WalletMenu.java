@@ -10,8 +10,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.Wallet;
+import models.user;
 import services.UserService;
 import services.WalletService;
 
@@ -23,7 +25,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class WalletMenu  {
+
+public class WalletMenu {
     private int id;
     private List<Wallet> wallets = new ArrayList<>();
     private Wallet w=new Wallet();
@@ -34,11 +37,12 @@ public class WalletMenu  {
 
     @FXML
     private TextField balanceTF;
+    private user user;
 
-    public void initWallet(int id)
+    public void initWallet(user user1,int id)
     {
-
-        this.id=id;
+        this.user=user1;
+        this.id=user1.getId();
         wallets=walletService.find(id);
         System.out.println(wallets);
 
@@ -105,7 +109,7 @@ public class WalletMenu  {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/WalletMenu.fxml"));
             Parent root = loader.load();
             WalletMenu walletc=loader.getController();
-            walletc.initWallet(id);
+            walletc.initWallet(user,id);
             Scene scene = new Scene(root);
 
             Stage stage = new Stage();
@@ -141,7 +145,7 @@ public class WalletMenu  {
             throw new RuntimeException(e);
         }
         WalletMenu walletc=loader.getController();
-        walletc.initWallet(id);
+        walletc.initWallet(user,id);
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Wallet");
@@ -178,7 +182,7 @@ public class WalletMenu  {
                     throw new RuntimeException(e);
                 }
                 WalletMenu walletc=loader.getController();
-                walletc.initWallet(id);
+                walletc.initWallet(user,id);
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setTitle("Wallet");
@@ -193,6 +197,32 @@ public class WalletMenu  {
             alert.showAndWait();
         }
 
+    }
+
+    @FXML
+    private Label Compte;
+    @FXML
+    void Compte(MouseEvent event) {
+        try {
+            Stage currentStage=(Stage)Compte.getScene().getWindow();
+            currentStage.close();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UpdateUser.fxml"));
+            Parent root = loader.load();
+            UpdateUser userToUpdate=loader.getController();
+            userToUpdate.initData(user);
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void wallet(MouseEvent mouseEvent) {
     }
 
 

@@ -21,22 +21,17 @@
         </ImageView>
       <Pane layoutX="-9.0" prefHeight="498.0" prefWidth="180.0" style="-fx-background-color: FFDE59;">
          <children>
-            <Label layoutX="55.0" layoutY="71.0" prefHeight="17.0" prefWidth="71.0" text="Compte">
+            <Label fx:id="Compte" layoutX="55.0" layoutY="71.0" prefHeight="32.0" prefWidth="82.0" text="Compte" textFill="WHITE">
                <font>
-                  <Font size="17.0" />
+                  <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="55.0" layoutY="121.0" text="b">
+            <Label layoutX="49.0" layoutY="164.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-                <Label contentDisplay="TOP" layoutX="35.0" layoutY="228.0" text="Mise a jour" textAlignment="CENTER" textOverrun="CLIP">
-                    <font>
-                        <Font name="Arial Black" size="24.0" />
-                    </font>
-                </Label>
-            <Label fx:id="wallet" layoutX="47.0" layoutY="314.0" onMouseClicked="#wallet" text="Wallet">
+            <Label fx:id="wallet" layoutX="59.0" layoutY="122.0" onMouseClicked="#wallet" text="Wallet" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -59,6 +54,10 @@
             </font>
         </Button>
       <Circle fx:id="circle" fill="#bfbfbf" layoutX="398.0" layoutY="65.0" radius="49.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
-      <Button fx:id="ajoutwalleer" layoutX="200.0" layoutY="459.0" mnemonicParsing="false" onAction="#ajoutwallet" text="Ajouter Wallet" />
+          <Label contentDisplay="TOP" layoutX="197.0" layoutY="29.0" text="Mise a jour" textAlignment="CENTER" textOverrun="CLIP">
+              <font>
+                  <Font name="Arial Black" size="24.0" />
+              </font>
+          </Label>
     </children>
 </AnchorPane>

@@ -15,7 +15,7 @@ public class UserService implements CRUD<user> {
     @Override
     public void add(user user ) {
 
-        String req="INSERT INTO `user`(`role`,`prenom`, `nom`, `email`, `cin`, `pwd`) VALUES ('"+user.getRole() +"','"+user.getPrenom()+"','"+user.getNom()+"','"+user.getEmail()+"','"+user.getCin()+"','"+user.getPwd()+"')";
+        String req="INSERT INTO `user`(`role`,`prenom`, `nom`, `email`, `cin`, `pwd`,`hashedpwd`,`salt`) VALUES ('"+user.getRole() +"','"+user.getPrenom()+"','"+user.getNom()+"','"+user.getEmail()+"','"+user.getCin()+"','"+user.getPwd()+"','"+user.getHashedpwd()+"','"+user.getSalt()+"')";
         try {
             Statement st=cnx.createStatement();
             st.executeUpdate(req);
@@ -57,6 +57,10 @@ public class UserService implements CRUD<user> {
                 s.setCin(res.getInt("cin"));
                 s.setEmail(res.getString("email"));
                 s.setPwd(res.getString("pwd"));
+                s.setHashedpwd(res.getString("hashedpwd"));
+                s.setSalt(res.getString("salt"));
+
+
                 users.add(s);
                 System.out.println(s);
             }
@@ -69,7 +73,7 @@ public class UserService implements CRUD<user> {
     public boolean update(user user)
     {
         try {
-            String req="UPDATE `user` SET `prenom`='"+user.getPrenom()+"',`nom`='"+user.getNom()+"',`email`='"+user.getEmail()+"',`cin`='"+user.getCin()+"',`pwd`='"+user.getPwd()+"' WHERE `cin`='"+user.getCin()+"'";
+            String req="UPDATE `user` SET `prenom`='"+user.getPrenom()+"',`nom`='"+user.getNom()+"',`email`='"+user.getEmail()+"',`cin`='"+user.getCin()+"',`pwd`='"+user.getPwd()+"',`hashedpwd` ='"+user.getHashedpwd()+"','"+user.getSalt()+"' WHERE `cin`='"+user.getCin()+"'";
           /*  Statement state=cnx.createStatement();
             state.executeUpdate(req);*/
             PreparedStatement ps=cnx.prepareStatement(req);
@@ -90,14 +94,19 @@ public class UserService implements CRUD<user> {
             ResultSet res=stat.executeQuery(req);
             while(res.next())
             {
+
                 s.setId(res.getInt("id"));
                 s.setRole(res.getString("role"));
-            s.setNom(res.getString("nom"));
-            s.setPrenom(res.getString("prenom"));
-            s.setCin(res.getInt("cin"));
-            s.setEmail(res.getString("email"));
-            s.setPwd(res.getString("pwd"));
-            System.out.println("Found");
+                s.setNom(res.getString("nom"));
+                s.setPrenom(res.getString("prenom"));
+                s.setCin(res.getInt("cin"));
+                s.setEmail(res.getString("email"));
+                s.setPwd(res.getString("pwd"));
+                s.setHashedpwd(res.getString("hashedpwd"));
+                s.setSalt(res.getString("salt"));
+
+
+                System.out.println("Found");
             System.out.println(s);}
         } catch (SQLException e) {
             throw new RuntimeException(e);
