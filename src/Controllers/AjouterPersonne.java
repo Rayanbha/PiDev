@@ -74,10 +74,10 @@ public class AjouterPersonne {
 
                 us.add(user);
 
-                Stage stage=(Stage)inscrire.getScene().getWindow();
+                Stage stage = (Stage) inscrire.getScene().getWindow();
                 stage.close();
-                Stage primaryStage=new Stage();
-                Parent root= FXMLLoader.load(getClass().getResource("/UI/Connectez.fxml"));
+                Stage primaryStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("/UI/Connectez.fxml"));
                 primaryStage.setTitle("Add");
                 primaryStage.setScene(new Scene(root));
                 primaryStage.show();

@@ -5,10 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.user;
 import org.mindrot.jbcrypt.BCrypt;
@@ -23,6 +21,9 @@ public class Connectez {
 
     @FXML
     private TextField EmailTF;
+
+    @FXML
+    private Label forgetz;
 
     @FXML
     private PasswordField pwdTF;
@@ -94,6 +95,25 @@ public class Connectez {
         }
 
     }
+    @FXML
+    void forgetpwd(MouseEvent event) {
 
+
+        try {
+            Stage stage=(Stage)forgetz.getScene().getWindow();
+            stage.close();
+            Stage primaryStage=new Stage();
+            Parent root= null;
+            root = FXMLLoader.load(getClass().getResource("/UI/putEmail.fxml"));
+            primaryStage.setTitle("Email");
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
 
 }
