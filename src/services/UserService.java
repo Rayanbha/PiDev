@@ -115,6 +115,37 @@ public class UserService implements CRUD<user> {
         return s;
     }
 
+    public user findcin(int cin)
+    {
+        user s=new user();
+        try {
+            String req="SELECT * FROM `user` WHERE `cin`='"+cin+"'";
+            Statement stat=cnx.createStatement();
+            ResultSet res=stat.executeQuery(req);
+            while(res.next())
+            {
+
+                s.setId(res.getInt("id"));
+                s.setRole(res.getString("role"));
+                s.setNom(res.getString("nom"));
+                s.setPrenom(res.getString("prenom"));
+                s.setCin(res.getInt("cin"));
+                s.setEmail(res.getString("email"));
+                s.setPwd(res.getString("pwd"));
+                s.setHashedpwd(res.getString("hashedpwd"));
+                s.setSalt(res.getString("salt"));
+
+
+                System.out.println("Found");
+                System.out.println(s);}
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return s;
+    }
+
+
 
 
 }

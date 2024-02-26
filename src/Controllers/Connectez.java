@@ -12,6 +12,7 @@ import models.user;
 import org.mindrot.jbcrypt.BCrypt;
 import services.UserService;
 
+
 import java.io.IOException;
 
 public class Connectez {
@@ -31,7 +32,17 @@ public class Connectez {
     private Button connectezBut;
 
     @FXML
+    private void hover(MouseEvent event) {
+        forgetz.getStyleClass().add("label");
+    }
+
+    @FXML
+    private void hovere(MouseEvent event) {
+        forgetz.getStyleClass().remove("label");
+    }
+    @FXML
     void Login(ActionEvent event) {
+
 
         UserService us=new UserService();
         user u=us.findemail(EmailTF.getText());
@@ -68,7 +79,10 @@ public class Connectez {
                     Stage stage=(Stage)connectezBut.getScene().getWindow();
                     stage.close();
                     Stage primaryStage=new Stage();
-                    Parent root=FXMLLoader.load(getClass().getResource("/UI/UpdateUser.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/CompteUser.fxml"));
+                    Parent root = loader.load();
+                    CompteUser compte=loader.getController();
+                    compte.initData(u);
                     primaryStage.setTitle("Add");
                     primaryStage.setScene(new Scene(root));
                     primaryStage.show();

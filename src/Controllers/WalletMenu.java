@@ -1,5 +1,8 @@
 package Controllers;
 
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Charge;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,14 +23,13 @@ import services.WalletService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class WalletMenu {
     private int id;
+    @FXML
+    private Button transaction;
     private List<Wallet> wallets = new ArrayList<>();
     private Wallet w=new Wallet();
 
@@ -224,6 +226,45 @@ public class WalletMenu {
 
     public void wallet(MouseEvent mouseEvent) {
     }
+
+    @FXML
+    void transaction(ActionEvent event)
+    {
+
+    if(Walletnumber.getValue()==null)
+    {
+        showAlert("Error","Selectionner Wallet");
+    }
+    else
+    {
+
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Transaction.fxml"));
+            Parent root = null;
+            root = loader.load();
+            Transaction userToUpdate=loader.getController();
+            userToUpdate.initData(user,w);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
 
 }

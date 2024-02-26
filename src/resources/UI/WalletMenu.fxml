@@ -43,5 +43,6 @@
             </Label>
          </children>
       </Pane>
+      <Button fx:id="transaction" layoutX="497.0" layoutY="434.0" mnemonicParsing="false" onAction="#transaction" prefHeight="25.0" prefWidth="92.0" text="Transaction" />
     </children>
 </AnchorPane>
