@@ -6,4 +6,5 @@ module tn.koolart.esprit.demo2 {
 
     opens tn.koolart.esprit.demo2 to javafx.fxml;
     exports tn.koolart.esprit.demo2;
+
 }

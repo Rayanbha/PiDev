@@ -99,14 +99,18 @@ public class RestaurantService implements IRestaurantInterface {
     }
 
     @Override
-    public void Delete(int R) {
+    public void Delete(int id) {
         try {
-            PreparedStatement statement = connection.prepareStatement(
+            PreparedStatement deleteProductsStatement = connection.prepareStatement(
+                    "DELETE FROM Product WHERE restaurantid = ?"
+            );
+            deleteProductsStatement.setInt(1, id);
+            deleteProductsStatement.executeUpdate();
+            PreparedStatement deleteRestaurantStatement = connection.prepareStatement(
                     "DELETE FROM Restaurant WHERE restaurantid = ?"
             );
-            statement.setInt(1, R);
-
-            statement.executeUpdate();
+            deleteRestaurantStatement.setInt(1, id);
+            deleteRestaurantStatement.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e);
         }
