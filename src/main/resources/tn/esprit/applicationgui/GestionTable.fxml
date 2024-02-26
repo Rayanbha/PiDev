@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicationgui.controllers.GestionTable">
+   <children>
+      <TabPane layoutY="-4.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Gestion Table">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="supprimerbuttton_TF" disable="true" layoutX="118.0" layoutY="14.0" mnemonicParsing="false" onAction="#deletecours" text="Supprimer" />
+                        <ListView fx:id="listviewTables" layoutX="22.0" layoutY="67.0" prefHeight="258.0" prefWidth="531.0" />
+                        <Button fx:id="modifierButton_TF" disable="true" layoutX="207.0" layoutY="14.0" mnemonicParsing="false" onAction="#naviguezVersmodifiertable" text="Modifier" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
