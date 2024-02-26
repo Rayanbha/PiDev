@@ -2,6 +2,9 @@ package org.example.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -11,6 +14,7 @@ import org.example.models.review;
 import org.example.services.reviewService;
 
 import java.io.File;
+import java.io.IOException;
 
 public class AjouterReview {
 
@@ -62,6 +66,21 @@ public class AjouterReview {
         } else {
             System.out.println("Erreur lors de l'ajout de l'avis dans la base de données.");
         }
+    }
+
+    @FXML
+    void hezni(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AffichageReview.fxml"));
+            Parent root = loader.load();
+            Scene scene = rate.getScene();
+            Stage stage = (Stage) scene.getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
 }

@@ -1,31 +1,19 @@
 package org.example.models;
 
-import javafx.scene.image.Image;
-
 public class recipe {
-private int idrecp;
-private String name;
-
+    private int idrecp;
+    private String name;
     private String imageUrl;
+    private String ingrs;
+    private String instrs;
 
-    public String getImageUrl() {
-        return imageUrl;
+    public recipe() {
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-private String ingrs;
-private String instrs;
-
-public recipe(){
-
-}
     public recipe(String name, String ingrs, String instrs) {
         this.name = name;
         this.ingrs = ingrs;
         this.instrs = instrs;
-
     }
 
     public recipe(int idrecp, String name, String ingrs, String instrs) {
@@ -33,7 +21,6 @@ public recipe(){
         this.name = name;
         this.ingrs = ingrs;
         this.instrs = instrs;
-
     }
 
     public int getIdrecp() {
@@ -52,11 +39,11 @@ public recipe(){
         this.name = name;
     }
 
-    public String getImage() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImage(Image image) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
@@ -81,9 +68,9 @@ public recipe(){
         return "recipe{" +
                 "idrecp=" + idrecp +
                 ", name='" + name + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", ingrs='" + ingrs + '\'' +
                 ", instrs='" + instrs + '\'' +
                 '}';
     }
-
 }

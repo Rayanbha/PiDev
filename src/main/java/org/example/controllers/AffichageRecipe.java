@@ -17,8 +17,6 @@ public class AffichageRecipe {
     @FXML
     private ListView<recipe> nomtLV;
 
-
-
     @FXML
     private ListView<recipe> phototLV;
 
@@ -43,7 +41,6 @@ public class AffichageRecipe {
             ingtLV.setItems(observableList);
             instLV.setItems(observableList);
 
-
             nomtLV.setCellFactory(param -> new ListCell<recipe>() {
                 @Override
                 protected void updateItem(recipe item, boolean empty) {
@@ -63,7 +60,7 @@ public class AffichageRecipe {
                     if (empty || item == null) {
                         setText(null);
                     } else {
-                        ImageView imageView = new ImageView(item.getImage());
+                        ImageView imageView = new ImageView(item.getImageUrl());
                         imageView.setFitWidth(80);
                         imageView.setFitHeight(80);
                         setGraphic(imageView);

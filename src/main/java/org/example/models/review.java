@@ -4,6 +4,7 @@ public class review {
     private int idrevw;
     private String rating;
     private String com;
+    private String imageUrl; // URL of the image associated with the review
 
     public review(){
     }
@@ -43,12 +44,21 @@ public class review {
         this.com = com;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
         return "review{" +
                 "idrevw=" + idrevw +
                 ", rating='" + rating + '\'' +
                 ", com='" + com + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }
