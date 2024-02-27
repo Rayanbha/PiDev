@@ -60,30 +60,41 @@ public class AjouterPost {
 
 
 @FXML
-    public void IMPOST(ActionEvent event) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListLesPosts.fxml"));
-//        Parent root = loader.load();
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.show();
-//
-//    }
+public void IMPOST(ActionEvent event) throws IOException {
+    try {
+        ForumpostService fps = new ForumpostService();
+        String t = malek.getText().replace("%20", " ");
+        t = t.replace("file:/", "").replace("/", "\\\\");
+        String titre = titTF.getText();
 
-       try {
-           ForumpostService fps =new ForumpostService() ;
-           String t=malek.getText().replace("%20", " ");
-           t=t.replace("file:/", "").replace("/", "\\\\");
-           forumpost forumpost=new forumpost(
-                   titTF.getText(), t);
-           System.out.println(t);
-
-           fps.ajouter(forumpost);
-       } catch (SQLException e) {
+        if (!estTitreValide(titre)) {
+            // Titre invalide, afficher un message d'erreur
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("error");
-            alert.setContentText(e.getMessage());
-           alert.showAndWait();
-       }}
+            alert.setTitle("Erreur");
+            alert.setContentText("Le titre contient des caractères non autorisés.");
+            alert.showAndWait();
+            return; // Sortir de la méthode IMPOST
+        }
+
+        forumpost forumpost = new forumpost(titre, t);
+        System.out.println(t);
+
+        fps.ajouter(forumpost);
+    } catch (SQLException e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setContentText(e.getMessage());
+        alert.showAndWait();
+    }
+}
+
+    public boolean estTitreValide(String titre) {
+        // Définir l'expression régulière autorisée
+        String regex = "^[a-zA-Z0-9\\s\\p{Punct}&&[^/\\\\]]+$";
+        // Vérifier si le titre correspond à l'expression régulière
+        return titre.matches(regex);
+    }
+
 
 
    // @FXML
