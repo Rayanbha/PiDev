@@ -15,11 +15,12 @@ public class recipeService implements IService<recipe> {
     }
 
     @Override
-    public boolean ajouter(recipe recipe) {
+    public boolean ajouter(recipe recipe) throws SQLException {
         try {
             String req = "INSERT INTO `recipe`(`name`, `ingrs`, `instrs`) VALUES (?,?,?)";
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setString(1, recipe.getName());
+            ps.setString(3,recipe.getImageUrl());
             ps.setString(2, recipe.getIngrs());
             ps.setString(3, recipe.getInstrs());
             ps.executeUpdate();
@@ -69,8 +70,9 @@ public class recipeService implements IService<recipe> {
                 recipe r = new recipe();
                 r.setIdrecp(rs.getInt(1));
                 r.setName(rs.getString(2));
-                r.setIngrs(rs.getString(3));
-                r.setInstrs(rs.getString(4));
+                r.setImageUrl(rs.getString(3));
+                r.setIngrs(rs.getString(4));
+                r.setInstrs(rs.getString(5));
 
                 recipes.add(r);
             }
@@ -91,8 +93,9 @@ public class recipeService implements IService<recipe> {
                 recipe r = new recipe();
                 r.setIdrecp(rs.getInt(1));
                 r.setName(rs.getString(2));
-                r.setInstrs(rs.getString(3));
-                r.setIngrs(rs.getString(4));
+                r.setImageUrl(rs.getString(3));
+                r.setInstrs(rs.getString(4));
+                r.setIngrs(rs.getString(5));
                 recipes.add(r);
             }
         } catch (SQLException ex) {
@@ -112,8 +115,9 @@ public class recipeService implements IService<recipe> {
                 recipe r = new recipe();
                 r.setIdrecp(rs.getInt(1));
                 r.setName(rs.getString(2));
-                r.setIngrs(rs.getString(3));
+                r.setImageUrl(rs.getString(3));
                 r.setIngrs(rs.getString(4));
+                r.setIngrs(rs.getString(5));
                 recipes.add(r);
             }
         } catch (SQLException ex) {

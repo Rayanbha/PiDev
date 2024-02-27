@@ -27,13 +27,13 @@ public class AffichageRecipe {
     private ListView<recipe> instLV;
 
 
-
-
     private final recipeService rc = new recipeService();
 
     @FXML
     void initialize() {
+
         try {
+
             List<recipe> recipeList = rc.fetch();
             ObservableList<recipe> observableList = FXCollections.observableList(recipeList);
             nomtLV.setItems(observableList);
@@ -96,6 +96,8 @@ public class AffichageRecipe {
             e.printStackTrace();
         }
     }
+
+
     public void Delete(ActionEvent actionEvent) {
         recipe selectedRecipe = nomtLV.getSelectionModel().getSelectedItem();
         if (selectedRecipe != null) {
@@ -105,6 +107,11 @@ public class AffichageRecipe {
             System.out.println("Veuillez sélectionner une recette à supprimer.");
         }
     }
+
+
+
+
+
     public void Update(ActionEvent actionEvent) {
         recipe selectedRecipe = nomtLV.getSelectionModel().getSelectedItem();
         if (selectedRecipe != null) {

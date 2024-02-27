@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="464.0" prefWidth="677.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AjouterRecipe">
+<AnchorPane prefHeight="464.0" prefWidth="677.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AjouterRecipe">
    <children>
       <AnchorPane prefHeight="74.0" prefWidth="573.0" style="-fx-background-color: #FFDE59;" />
       <Label layoutX="159.0" layoutY="101.0" prefHeight="52.0" prefWidth="358.0" text="        Ajout Recette" textAlignment="CENTER">

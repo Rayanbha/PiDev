@@ -5,11 +5,12 @@ import org.example.models.review;
 import org.example.services.recipeService;
 import org.example.services.reviewService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         recipeService recipeService = new recipeService();
         reviewService reviewService = new reviewService();
         review rev = new review(1, "25", "non");

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AffichageReview">
+<AnchorPane prefHeight="600.0" prefWidth="751.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AffichageReview">
     <children>
         <ListView fx:id="notea" layoutX="238.0" layoutY="214.0" prefHeight="200.0" prefWidth="138.0" />
         <ListView fx:id="coma" layoutX="389.0" layoutY="214.0" prefHeight="200.0" prefWidth="138.0" />

@@ -23,6 +23,13 @@ public class recipe {
         this.instrs = instrs;
     }
 
+    public recipe(String name, String imageUrl, String ingrs, String instrs) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.ingrs = ingrs;
+        this.instrs = instrs;
+    }
+
     public int getIdrecp() {
         return idrecp;
     }
