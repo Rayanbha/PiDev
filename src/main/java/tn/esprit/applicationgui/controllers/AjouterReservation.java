@@ -53,7 +53,13 @@ public class AjouterReservation {
 
     @FXML
     void afficherReservation(ActionEvent event) {
-        // Code pour afficher la réservation
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicationgui/AfficherReservation.fxml"));
+            Parent root = loader.load();
+            ID_tableTF.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.out.println("Error"+ e.getMessage());
+        }
     }
 
     @FXML

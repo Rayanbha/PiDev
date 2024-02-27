@@ -36,16 +36,25 @@ public class GestionTable {
             showErrorAlert("Error", e.getMessage());
         }
     }
-    @Deprecated
+    @FXML
     void navigateToModifyTable(ActionEvent event) {
         if (selectedTable != null) {
-            loadFXML("/ModifierTable.fxml");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicationgui/ModifierTable.fxml"));
+            Parent root = null;
+            try {
+                root = loader.load();
+                ModifierTable controller=loader.getController();
+                controller.setTable(selectedTable);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            listviewTables.getScene().setRoot(root);
         } else {
             showErrorAlert("Error", "No item selected");
         }
     }
 
-    @Deprecated
+    @FXML
     void deleteTable(ActionEvent event) {
         if (selectedTable != null) {
             try {
@@ -90,11 +99,5 @@ public class GestionTable {
         alert.showAndWait();
     }
 
-    @FXML
-    public void deletecours(ActionEvent actionEvent) {
-    }
 
-    @FXML
-    public void naviguezVersmodifiertable(ActionEvent actionEvent) {
-    }
 }

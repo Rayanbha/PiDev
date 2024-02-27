@@ -14,9 +14,9 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="supprimerbuttton_TF" disable="true" layoutX="118.0" layoutY="14.0" mnemonicParsing="false" onAction="#deletecours" text="Supprimer" />
+                        <Button fx:id="supprimerbuttton_TF" disable="true" layoutX="118.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteTable" text="Supprimer" />
                         <ListView fx:id="listviewTables" layoutX="22.0" layoutY="67.0" prefHeight="258.0" prefWidth="531.0" />
-                        <Button fx:id="modifierButton_TF" disable="true" layoutX="207.0" layoutY="14.0" mnemonicParsing="false" onAction="#naviguezVersmodifiertable" text="Modifier" />
+                        <Button fx:id="modifierButton_TF" disable="true" layoutX="207.0" layoutY="14.0" mnemonicParsing="false" onAction="#navigateToModifyTable" text="Modifier" />
                      </children>
                   </AnchorPane>
                </content>

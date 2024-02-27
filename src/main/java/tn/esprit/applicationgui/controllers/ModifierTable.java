@@ -56,7 +56,7 @@ public class ModifierTable {
             // (vous devez adapter ce code selon votre application)
             // Ici, nous supposons que vous avez un fichier FXML nommé "Affichercour.fxml"
             // qui représente la vue d'affichage des tables.
-            Parent root = FXMLLoader.load(getClass().getResource("/AfficherTable.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/applicationgui/GestionTable.fxml"));
             Modifier.getScene().setRoot(root);
         } catch (IOException e) {
             System.err.println(e.getMessage());
