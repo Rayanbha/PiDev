@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="180.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.koolart.controllers.SingleEvent">
+   <children>
+      <VBox prefHeight="180.0" prefWidth="797.0" spacing="30.0">
+         <children>
+            <Label fx:id="date" />
+            <Label fx:id="description" />
+            <Button fx:id="actionbutton" mnemonicParsing="false" onAction="#partFunction" text="Participer" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
