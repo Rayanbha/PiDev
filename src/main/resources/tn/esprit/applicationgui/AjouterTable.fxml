@@ -11,24 +11,24 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicationgui.controllers.AjouterTable">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: WHITE;">
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFF5EC;">
          <children>
             <Label layoutX="171.0" layoutY="74.0" prefHeight="55.0" prefWidth="408.0" text="Ajouter Table">
                <font>
                   <Font name="System Bold" size="38.0" />
                </font>
             </Label>
-            <Button fx:id="ajouter" layoutX="418.0" layoutY="334.0" mnemonicParsing="false" onAction="#ajouterTable" text="Ajouter" />
+            <Button fx:id="ajouter" layoutX="418.0" layoutY="334.0" mnemonicParsing="false" onAction="#ajouterTable" style="-fx-background-color: #FFDE59;" text="Ajouter" />
             <ButtonBar layoutX="246.0" layoutY="151.0" prefHeight="40.0" prefWidth="200.0" />
-            <TextField fx:id="Type_tableTF" layoutX="163.0" layoutY="227.0" promptText="Type table" />
+            <TextField fx:id="Type_tableTF" layoutX="163.0" layoutY="227.0" promptText="Type table" style="-fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent; -fx-border-color: FFDE59;" />
             <AnchorPane layoutX="-4.0" prefHeight="62.0" prefWidth="530.0" style="-fx-background-color: #FFDE59;" />
             <ImageView fitHeight="201.0" fitWidth="102.0" layoutX="523.0" layoutY="-71.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="file:/C:/Users/DELL/Downloads/logo.jpg" />
                </image>
             </ImageView>
-            <TextField fx:id="DescriptionTF" layoutX="163.0" layoutY="288.0" promptText="Description" />
-            <TextField fx:id="Num_tableTF" focusTraversable="false" layoutX="163.0" layoutY="159.0" promptText="Num table" />
+            <TextField fx:id="DescriptionTF" layoutX="163.0" layoutY="288.0" promptText="Description" style="-fx-background-color: transparent; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="Num_tableTF" focusTraversable="false" layoutX="163.0" layoutY="159.0" promptText="Num table" style="-fx-background-color: transparent; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
          </children>
       </AnchorPane>
    </children>

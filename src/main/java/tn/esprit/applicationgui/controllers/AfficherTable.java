@@ -60,5 +60,7 @@ public class AfficherTable implements Initializable {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+
+
     }
 }

@@ -6,20 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="424.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicationgui.controllers.AfficherReservation">
+<AnchorPane prefHeight="470.0" prefWidth="759.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicationgui.controllers.AfficherReservation">
     <children>
-        <Label layoutX="97.0" layoutY="33.0" prefHeight="59.0" prefWidth="321.0" text="Liste des reservations">
+        <Label layoutX="219.0" layoutY="26.0" prefHeight="59.0" prefWidth="321.0" text="Liste des reservations">
             <font>
                 <Font size="31.0" />
             </font>
         </Label>
-        <ListView fx:id="listView" layoutX="31.0" layoutY="99.0" prefHeight="266.0" prefWidth="453.0" styleClass="text-field" />
-        <Button fx:id="deleteButton" disable="true" layoutX="270.0" layoutY="369.0" mnemonicParsing="false" onAction="#SupprimerButton" prefHeight="14.0" prefWidth="95.0" styleClass="label2" stylesheets="@../../../../../GestionService/src/main/resources/service.css" text="Supprimer" textFill="WHITE">
+        <ListView fx:id="listView" layoutX="13.0" layoutY="99.0" prefHeight="266.0" prefWidth="733.0" styleClass="text-field" />
+        <Button fx:id="deleteButton" disable="true" layoutX="262.0" layoutY="368.0" mnemonicParsing="false" onAction="#SupprimerButton" prefHeight="14.0" prefWidth="95.0" style="-fx-background-color: FFDE59;" styleClass="label2" stylesheets="@../../../../../GestionService/src/main/resources/service.css" text="Supprimer" textFill="WHITE">
             <font>
                 <Font size="16.0" />
             </font>
         </Button>
-      <Button layoutX="441.0" layoutY="374.0" mnemonicParsing="false" onAction="#navigerGestionTable" text="Gestion table" />
+      <Button layoutX="441.0" layoutY="374.0" mnemonicParsing="false" onAction="#navigerGestionTable" style="-fx-background-color: FFDE59;" text="Gestion table" textFill="WHITE" />
 
     </children>
 </AnchorPane>
