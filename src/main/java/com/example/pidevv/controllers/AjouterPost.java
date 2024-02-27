@@ -67,13 +67,23 @@ public void IMPOST(ActionEvent event) throws IOException {
         t = t.replace("file:/", "").replace("/", "\\\\");
         String titre = titTF.getText();
 
+        if (titre.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Veuillez entrer un titre.");
+            alert.showAndWait();
+            return;
+        }
+
+
+
         if (!estTitreValide(titre)) {
             // Titre invalide, afficher un message d'erreur
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setContentText("Le titre contient des caractères non autorisés.");
             alert.showAndWait();
-            return; // Sortir de la méthode IMPOST
+            return;
         }
 
         forumpost forumpost = new forumpost(titre, t);
