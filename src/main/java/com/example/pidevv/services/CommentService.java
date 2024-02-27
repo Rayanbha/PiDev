@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentService implements IService<comment>{
-    private Connection connection;
+    private  Connection connection;
     public CommentService() {
         connection = MyDatabase.getInstance().getConnexion();
     }
@@ -52,6 +52,23 @@ public class CommentService implements IService<comment>{
 
 
 
+    }
+
+    public List<comment> getCommentsByPostId(int postId) throws SQLException {
+        List<comment> comments = new ArrayList<>();
+        String req = "SELECT * FROM comment WHERE postId = ?";
+        PreparedStatement ps = connection.prepareStatement(req);
+        ps.setInt(1, postId);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            comment comment = new comment();
+            comment.setPostId(rs.getInt("postId"));
+            comment.setCommentId(rs.getInt("commentId"));
+            comment.setCommentContent(rs.getString("commentContent"));
+            comments.add(comment);
+        }
+        return comments;
     }
 
     @Override

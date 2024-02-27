@@ -17,30 +17,32 @@ public class Main {
         // System.out.println(db);
         //System.out.println(db2);
 //ajouter post
-       /* ForumpostService fs = new ForumpostService();
+       /*ForumpostService fs = new ForumpostService();
         try {
-          fs.ajouter(new forumpost("photo", "un plat"));
-            fs.ajouter(new forumpost("video", "escalope"));
-            fs.ajouter(new forumpost("image", "pasta"));
-            fs.ajouter(new forumpost("photo", "lasagne"));
-            fs.supprimer(2);
+            //fs.ajouter(new forumpost("photo", "lablebi"));
+            //fs.ajouter(new forumpost("video", "escalope"));
+            //fs.ajouter(new forumpost("image", "pasta"));
+            //fs.ajouter(new forumpost("photo", "lasagne"));
+           //fs.modifier(new forumpost(27,"un plat","lablebi"));
+            fs.supprimer(27);
             System.out.println((fs.recuperer()));
         } catch (SQLException e) {
             System.err.println((e.getMessage()));
+*/
 
-            */
 //ajouter comment
-       CommentService cs = new CommentService();
+          CommentService cs = new CommentService();
             try {
 
-                cs.ajouter(new comment( 1,6,"ababababab"));
-                cs.ajouter(new comment( 15,17,"jaime pas"));
-                cs.ajouter(new comment( 15,15,"c'est tres delicieuuuuse"));
+                cs.ajouter(new comment(1, 28, "jai pas aimé "));
+                //cs.ajouter(new comment(15, 17, "jaime pas"));
+                //cs.ajouter(new comment(15, 15, "c'est tres delicieuuuuse"));
                 //fs.supprimer(2);
                 //System.out.println((fs.recuperer()));
             } catch (SQLException e) {
                 System.err.println((e.getMessage()));
-            }}
+            }
+        }
 
 
 //modif post
@@ -99,4 +101,4 @@ public class Main {
     }
     */
 
-}
+        }

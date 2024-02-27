@@ -2,6 +2,8 @@ package com.example.pidevv.services;
 
 import com.example.pidevv.models.forumpost;
 import com.example.pidevv.utils.MyDatabase;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,10 +22,28 @@ public class ForumpostService implements IService<forumpost> {
         //String req = "INSERT INTO forumpost (titre , contenu ) VALUES ('" +forumpost.getTitle()+"','" +forumpost.getContent()+")";
         //Statement st= connection.createStatement();
         //st.executeUpdate(req);
-        String req = "INSERT INTO forumpost (title, content) VALUES ('" + forumpost.getTitle() + "','" + forumpost.getContent() + "')";
+       /* String req = "INSERT INTO forumpost (title, content) VALUES ('" + forumpost.getTitle() + "','" + forumpost.getContent() + "')";
         Statement st = connection.createStatement();
         st.executeUpdate(req);
-
+*/
+        try {
+            // Vérifiez si la connexion est null avant d'utiliser createStatement()
+            if (connection != null) {
+                String req = "INSERT INTO forumpost (title, content) VALUES (?, ?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(req);
+                // Remplacez les placeholders (?) par les valeurs réelles
+                preparedStatement.setString(1, forumpost.getTitle());
+                preparedStatement.setString(2, forumpost.getContent());
+                // Exécutez la requête préparée
+                preparedStatement.executeUpdate();
+                System.out.println("Post ajouté avec succès !");
+            } else {
+                System.err.println("La connexion à la base de données n'a pas été initialisée correctement.");
+            }
+        } catch (SQLException e) {
+            // Gérez les exceptions SQL ici
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -55,21 +75,33 @@ public class ForumpostService implements IService<forumpost> {
     }
 
     @Override
-    public List<forumpost> recuperer() throws SQLException{
-        List<forumpost> forumposts = new ArrayList<>();
+    public ObservableList<forumpost> recuperer() {
+        ObservableList<forumpost> forumposts = FXCollections.observableArrayList();
         String req = "SELECT * FROM forumpost";
-        Statement st = connection.createStatement();
-        ResultSet rs =st.executeQuery(req);
 
-        while (rs.next()){
-            forumpost forumpost = new forumpost();
-            forumpost.setPostId(rs.getInt("postId"));
-            forumpost.setTitle(rs.getString("title"));
-            forumpost.setContent((rs.getString("content")));
-            forumposts.add(forumpost);
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = null;
+            rs = st.executeQuery(req);
+
+            while (rs.next()){
+                forumpost forumpost = new forumpost();
+                forumpost.setPostId(rs.getInt("postId"));
+                forumpost.setTitle(rs.getString("title"));
+                forumpost.setContent((rs.getString("content")));
+                forumposts.add(forumpost);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+
+
 
 
         return forumposts;
     }
+
+
+
+
 }

@@ -1,13 +1,26 @@
 package com.example.pidevv.models;
 
 import javax.swing.text.AbstractDocument;
+import javax.xml.stream.events.Comment;
+import java.util.List;
 
 public class forumpost {
     private int postId ;
     private String title ;
     private String content;
+    private List<comment> comments;
 
-    public forumpost(){};
+    public forumpost(){
+
+
+    };
+    public List<comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<comment> comments) {
+        this.comments = comments;
+    }
 
     public forumpost(int postId, String title, String content) {
         this.postId = postId;
@@ -21,6 +34,10 @@ public class forumpost {
         this.content = content;
     }
 
+
+    public forumpost(String title) {
+        this.title = title;
+    }
     public int getPostId() {
         return postId;
     }
@@ -40,6 +57,9 @@ public class forumpost {
     public String getContent() {
         return content;
     }
+
+
+
 
     public void setContent(String content) {
         this.content = content;

@@ -12,8 +12,6 @@ public class MyDatabase {
     private static MyDatabase instance;
     private MyDatabase (){
         try {
-
-
         connection = DriverManager.getConnection(URL, USER , PASSWORD);
         System.out.println("Connection established");
         }catch(SQLException e){
