@@ -4,19 +4,29 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 import tn.esprit.applicationgui.models.Reservation;
 import tn.esprit.applicationgui.models.Table;
 import tn.esprit.applicationgui.services.ReservationService;
 import tn.esprit.applicationgui.services.TableService;
 import tn.esprit.applicationgui.test.HelloApplication;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class AjouterReservation {
 
@@ -64,22 +74,60 @@ public class AjouterReservation {
 
     @FXML
     void ajouterReservation(ActionEvent event) {
+        String heureReservation = heure_reservationTF.getText();
+        String nombrePersonnesText = Nombre_personnesTF.getText();
+        LocalDate dateReservation = date_reservationTF.getValue();
+        String idTableText = ID_tableTF.getText();
+        String etatReservation = etat_reservationTF.getText();
         Reservation reservation = new Reservation();
+        if (heureReservation.isEmpty() || nombrePersonnesText.isEmpty() || dateReservation == null || idTableText.isEmpty() || etatReservation.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez remplir tous les champs.");
+            return;
+        }
+
+        int nombrePersonnes;
+        try {
+            nombrePersonnes = Integer.parseInt(nombrePersonnesText);
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Nombre de personnes et ID de table doivent être des nombres entiers.");
+            return;
+        }
+
+        // Validate the format of heureReservation (HH:MM)
+        if (!validateTimeFormat(heureReservation)) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Format de l'heure invalide. Utilisez le format HH:MM.");
+            return;
+        }
         reservation.setHeure_reservation(heure_reservationTF.getText());
         reservation.setNombre_personnes(Integer.parseInt(Nombre_personnesTF.getText()));
         reservation.setDate_reservation(Date.valueOf(date_reservationTF.getValue()));
         reservation.setID_table(Integer.parseInt(ID_tableTF.getText()));
         reservation.setEtat_reservation(etat_reservationTF.getText());
+
         try {
             reservationService.ajouter(reservation);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Succès");
-            alert.setContentText("Réservation ajoutée");
-            alert.showAndWait();
+
+            showAlert(Alert.AlertType.CONFIRMATION,"Succès","Réservation ajoutée");
+
             TableService ts=new TableService();
             Table t=ts.ReadById(Integer.valueOf(ID_tableTF.getText()));
             t.setisReserver(true);
             ts.modifier(t);
+            String ValueQrCode = "Heure Reservation: " + reservation.getHeure_reservation() + "\n" +
+                    "Nombre Personnes: " + reservation.getNombre_personnes() + "\n" +
+                    "Date Reservation: " + reservation.getDate_reservation() + "\n" +
+                    "Table : " + reservation.getID_table() + "\n" ;
+                    FXMLLoader Windowloader = new FXMLLoader(getClass().getResource("/tn/esprit/applicationgui/QrcodeScan.fxml"));
+            Parent rootWindow = Windowloader.load();
+
+            Stage newStage = new Stage();
+            newStage.initModality(Modality.APPLICATION_MODAL);
+            newStage.setTitle("Scan Me");
+            newStage.setScene(new Scene(rootWindow));
+
+            QrcodeScan controller = Windowloader.getController();
+            controller.SetImageQR(ValueQrCode);
+            newStage.showAndWait();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/tn/esprit/applicationgui/AfficherTable.fxml"));
             Parent root = null;
             try {
@@ -90,10 +138,24 @@ public class AjouterReservation {
 
             etat_reservationTF.getScene().setRoot(root);
         } catch (SQLException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            showAlert(Alert.AlertType.ERROR,"Erreur",e.getMessage());
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+    }
+    private boolean validateTimeFormat(String time) {
+        try {
+            java.time.LocalTime.parse(time);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

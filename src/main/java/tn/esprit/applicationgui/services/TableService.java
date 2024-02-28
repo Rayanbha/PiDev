@@ -18,18 +18,17 @@ public class TableService implements IService<Table> {
     ///////////////////Ajouter////////////////////////////////////////////////////////////
     @Override
     public void ajouter(Table table) {
-        String req = "INSERT INTO table (type_table, emplacement, etat_table, description, ID_restaurant) VALUES (?, ?, ?, ?, ?)";
+        String req = "INSERT INTO `table` (`ID_table`, `Type_table`, `Description`) VALUES (?, ?, ?)";
 
         try {
             // Prepare the statement
             PreparedStatement preparedStatement = connection.prepareStatement(req);
 
             // Set the parameters
-            preparedStatement.setString(1, table.getType_table());
-            preparedStatement.setString(2, table.getEmplacement());
-            preparedStatement.setString(3, table.getEtat_table());
-            preparedStatement.setString(4, table.getDescription());
-            preparedStatement.setInt(5, table.getID_restaurant());
+            preparedStatement.setInt(1, table.getID_table());
+
+            preparedStatement.setString(2, table.getType_table());
+            preparedStatement.setString(3, table.getDescription());
 
             // Execute the update
             preparedStatement.executeUpdate();
