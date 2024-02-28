@@ -6,15 +6,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane prefHeight="595.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicationgui.controllers.AfficherTable">
-   <children>
-      <ScrollPane layoutX="31.0" layoutY="45.0" prefHeight="513.0" prefWidth="871.0">
-         <content>
-            <GridPane fx:id="gridTable" prefHeight="0.0" prefWidth="0.0">
-                <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                </rowConstraints>
-            </GridPane>
-         </content>
-      </ScrollPane>
-   </children>
+    <children>
+        <ScrollPane layoutX="31.0" layoutY="45.0" prefHeight="513.0" prefWidth="871.0">
+            <content>
+                <GridPane fx:id="gridTable" prefHeight="0.0" prefWidth="0.0">
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                    </rowConstraints>
+                </GridPane>
+            </content>
+        </ScrollPane>
+    </children>
 </AnchorPane>
