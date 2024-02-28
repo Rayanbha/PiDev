@@ -1,19 +1,11 @@
 package org.example.services;
-
 import org.example.models.review;
 import org.example.utils.MyDatabase;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-public class reviewService implements IService<review> {
-
-
-
-
+public  class reviewService implements IService<review> {
        Connection connection = MyDatabase.getInstance().getConnection();
-
-
     @Override
     public boolean ajouter(review r) {
 
@@ -30,19 +22,25 @@ public class reviewService implements IService<review> {
     }
 
     @Override
-    public void modifier(review r, String a) {
+    public void modifier(review review, String a) {
+
+    }
+
+
+    public void modifier(review r, String newComment, double newRating) {
         try {
-            String req = "UPDATE `Review` SET `com`= ? WHERE idrevw = ?";
+            String req = "UPDATE `Review` SET `com`= ?, `rating`= ? WHERE idrevw = ?";
             PreparedStatement ps = connection.prepareStatement(req);
-            ps.setString(1, a);
-            ps.setInt(2, r.getIdrevw());
+            ps.setString(1, newComment);
+            ps.setDouble(2, newRating);
+            ps.setInt(3, r.getIdrevw());
             ps.executeUpdate();
             System.out.println("Review updated successfully!");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
+
 
     @Override
     public void supprimer(int a) {

@@ -10,9 +10,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="751.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AffichageReview">
     <children>
-        <ListView fx:id="notea" layoutX="238.0" layoutY="214.0" prefHeight="200.0" prefWidth="138.0" />
-        <ListView fx:id="coma" layoutX="389.0" layoutY="214.0" prefHeight="200.0" prefWidth="138.0" />
-        <ListView fx:id="pha" layoutX="539.0" layoutY="214.0" prefHeight="200.0" prefWidth="138.0" />
+        <ListView fx:id="reviewListView" layoutX="238.0" layoutY="214.0" prefHeight="200.0" prefWidth="439.0" />
         <Label fx:id="idr" layoutX="280.0" layoutY="186.0" text="Rating">
             <font>
                 <Font name="System Bold Italic" size="17.0" />
@@ -31,11 +29,13 @@
         <Button fx:id="sup" layoutX="483.0" layoutY="464.0" mnemonicParsing="false" onAction="#Delete" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #FFDE59;" text="Delete" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="14.0" />
-            </font></Button>
+            </font>
+        </Button>
         <Button fx:id="maj" layoutX="320.0" layoutY="464.0" mnemonicParsing="false" onAction="#Update" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #FFDE59;" text="Update" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="14.0" />
-            </font></Button>
+            </font>
+        </Button>
         <AnchorPane prefHeight="82.0" prefWidth="806.0" style="-fx-background-color: #FFDE59;" />
         <ImageView fitHeight="237.0" fitWidth="111.0" layoutX="806.0" layoutY="-77.0" pickOnBounds="true" preserveRatio="true">
             <image>

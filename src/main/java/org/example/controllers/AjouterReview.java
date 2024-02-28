@@ -1,5 +1,4 @@
 package org.example.controllers;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,7 +55,6 @@ public class AjouterReview {
         review r = new review();
         r.setCom(commentaire);
         r.setRating(String.valueOf(ratingValue));
-        // Assurez-vous de définir d'autres attributs de la classe review si nécessaire
 
         boolean ajoutReussi = rs.ajouter(r);
         if (ajoutReussi) {

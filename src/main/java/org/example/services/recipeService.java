@@ -1,8 +1,6 @@
 package org.example.services;
-
 import org.example.models.recipe;
 import org.example.utils.MyDatabase;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +13,14 @@ public class recipeService implements IService<recipe> {
     }
 
     @Override
-    public boolean ajouter(recipe recipe) throws SQLException {
+    public boolean ajouter(recipe recipe) {
         try {
-            String req = "INSERT INTO `recipe`(`name`, `ingrs`, `instrs`) VALUES (?,?,?)";
+            String req = "INSERT INTO `recipe`(`name`,`ImageURL`, `ingrs`, `instrs`) VALUES (?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setString(1, recipe.getName());
-            ps.setString(3,recipe.getImageUrl());
-            ps.setString(2, recipe.getIngrs());
-            ps.setString(3, recipe.getInstrs());
+            ps.setString(2,recipe.getImageUrl());
+            ps.setString(3, recipe.getIngrs());
+            ps.setString(4, recipe.getInstrs());
             ps.executeUpdate();
             System.out.println("Recipe Added successfully!");
         } catch (SQLException ex) {
@@ -32,18 +30,26 @@ public class recipeService implements IService<recipe> {
     }
 
     @Override
-    public void modifier(recipe r, String a) {
+    public void modifier(recipe recipe, String a) {
+
+    }
+
+
+    public void modifier(recipe r) {
         try {
-            String req = "UPDATE `Recipe` SET `instrs`= ? WHERE name = ?";
+            String req = "UPDATE `Recipe` SET `name`= ?, `ingrs`= ?, `instrs`= ? WHERE idrecp = ?";
             PreparedStatement ps = connection.prepareStatement(req);
-            ps.setString(1, a);
-            ps.setString(2, r.getName());
+            ps.setString(1, r.getName());
+            ps.setString(2, r.getIngrs());
+            ps.setString(3, r.getInstrs());
+            ps.setInt(4, r.getIdrecp());
             ps.executeUpdate();
             System.out.println("Recipe updated successfully!");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
+
 
     @Override
     public void supprimer(int a) {
@@ -68,11 +74,11 @@ public class recipeService implements IService<recipe> {
 
             while (rs.next()) {
                 recipe r = new recipe();
-                r.setIdrecp(rs.getInt(1));
-                r.setName(rs.getString(2));
-                r.setImageUrl(rs.getString(3));
-                r.setIngrs(rs.getString(4));
-                r.setInstrs(rs.getString(5));
+                r.setIdrecp(rs.getInt("idrecp"));
+                r.setName(rs.getString("name"));
+                r.setImageUrl(rs.getString("ImageURL"));
+                r.setIngrs(rs.getString("ingrs"));
+                r.setInstrs(rs.getString("instrs"));
 
                 recipes.add(r);
             }
