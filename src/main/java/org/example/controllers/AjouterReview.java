@@ -50,9 +50,11 @@ public class AjouterReview {
         String commentaire = com.getText();
         String image = affichei.getText();
         double ratingValue = rate.getRating();
+
         review r = new review();
         r.setCom(commentaire);
         r.setRating(String.valueOf(ratingValue));
+
         boolean ajoutReussi = rs.ajouter(r);
         if (ajoutReussi) {
             com.clear();
@@ -62,6 +64,7 @@ public class AjouterReview {
             System.out.println("Erreur lors de l'ajout de l'avis dans la base de données.");
         }
     }
+
     @FXML
     void handleEmojiButton(ActionEvent event) {
         emojiContainer.getChildren().clear(); // Clear existing emojis

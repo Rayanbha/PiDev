@@ -8,18 +8,20 @@ public  class reviewService implements IService<review> {
        Connection connection = MyDatabase.getInstance().getConnection();
     @Override
     public boolean ajouter(review r) {
-
         try {
-            String req = "INSERT INTO `review`(`rating`, `com`) VALUES ('"+ r.getRating() + "','" + r.getCom() + "')";
-            Statement st = connection.createStatement();
-            st.executeUpdate(req);
-            System.out.println("review Added successfully!");
+            String req = "INSERT INTO review (rating, com) VALUES (?, ?)";
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setString(1, r.getRating());
+            ps.setString(2, r.getCom());
+            ps.executeUpdate();
+            System.out.println("Review Added successfully!");
+            return true; // Indique que l'ajout a réussi
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-        return false;
+        return false; // Indique que l'ajout a échoué
     }
+
 
     @Override
     public void modifier(review review, String a) {
