@@ -1,21 +1,17 @@
 package org.example.controllers;
-
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.example.models.recipe;
 import org.example.services.recipeService;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -24,15 +20,28 @@ public class AffichageRecipe {
 
     @FXML
     private ListView<recipe> recipeLV;
-
+    @FXML
+    private TextField searchField;
     private final recipeService rc = new recipeService();
-
+    private ObservableList<recipe> recipesObservableList;
 
     void initialize() {
-        try {
-            refreshDisplay();
-        } catch (Exception e) {
-            e.printStackTrace();
+        refreshDisplay();
+    }
+
+    @FXML
+    void handleSearch() {
+        String searchText = searchField.getText().trim().toLowerCase();
+        if (searchText.isEmpty()) {
+            recipeLV.setItems(recipesObservableList);
+        } else {
+            ObservableList<recipe> filteredRecipes = FXCollections.observableArrayList();
+            for (recipe recipe : recipesObservableList) {
+                if (recipe.getName().toLowerCase().contains(searchText)) {
+                    filteredRecipes.add(recipe);
+                }
+            }
+            recipeLV.setItems(filteredRecipes);
         }
     }
 
@@ -90,7 +99,8 @@ public class AffichageRecipe {
     void refreshDisplay() {
         try {
             List<recipe> recipeList = rc.fetch();
-            recipeLV.setItems(FXCollections.observableList(recipeList));
+            recipesObservableList = FXCollections.observableArrayList(recipeList);
+            recipeLV.setItems(recipesObservableList);
             recipeLV.setCellFactory(param -> new ListCell<recipe>() {
                 @Override
                 protected void updateItem(recipe item, boolean empty) {

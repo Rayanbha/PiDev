@@ -1,5 +1,4 @@
 package org.example.controllers;
-
 import com.vdurmont.emoji.Emoji;
 import com.vdurmont.emoji.EmojiManager;
 import javafx.event.ActionEvent;
@@ -15,7 +14,6 @@ import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 import org.example.models.review;
 import org.example.services.reviewService;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -47,7 +45,6 @@ public class AjouterReview {
             affichei.setText(fileUrl);
         }
     }
-
     @FXML
     public void ajouterAvis() {
         String commentaire = com.getText();
@@ -65,7 +62,6 @@ public class AjouterReview {
             System.out.println("Erreur lors de l'ajout de l'avis dans la base de données.");
         }
     }
-
     @FXML
     void handleEmojiButton(ActionEvent event) {
         emojiContainer.getChildren().clear(); // Clear existing emojis
@@ -80,7 +76,6 @@ public class AjouterReview {
             }
         }
     }
-
     private boolean isHeartOrFaceRelated(Emoji emoji) {
         String[] keywords = {"heart", "face"};
         for (String keyword : keywords) {
@@ -90,7 +85,6 @@ public class AjouterReview {
         }
         return false;
     }
-
     @FXML
     void hezni(ActionEvent event) {
         try {
