@@ -1,4 +1,5 @@
 package org.example.controllers;
+
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,31 +30,12 @@ public class AffichageRecipe {
 
     void initialize() {
         try {
-            List<recipe> recipeList = rc.fetch();
-            recipeLV.setItems(FXCollections.observableList(recipeList));
-            recipeLV.setCellFactory(param -> new ListCell<recipe>() {
-                @Override
-                protected void updateItem(recipe item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                        setGraphic(null);
-                    } else {
-                        setText(item.getName() + " - " + item.getIngrs() + " - " + item.getInstrs());
-
-                        if (item.getImageUrl() != null && !item.getImageUrl().isEmpty()) {
-                            ImageView imageView = new ImageView(new Image(item.getImageUrl()));
-                            imageView.setFitWidth(100);
-                            imageView.setPreserveRatio(true);
-                            setGraphic(imageView);
-                        }
-                    }
-                }
-            });
+            refreshDisplay();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     void Delete(ActionEvent event) {
         recipe selectedRecipe = recipeLV.getSelectionModel().getSelectedItem();
@@ -62,7 +44,6 @@ public class AffichageRecipe {
             alert.setTitle("Confirmation");
             alert.setHeaderText("Supprimer la recette");
             alert.setContentText("Voulez-vous vraiment supprimer cette recette ?");
-
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 recipeLV.getItems().remove(selectedRecipe);
@@ -90,20 +71,45 @@ public class AffichageRecipe {
             alert.showAndWait();
         }
     }
+
     private void showUpdateRecipeUI(recipe selectedRecipe) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateRecipe.fxml"));
             Parent root = loader.load();
-
             UpdateRecipeController controller = loader.getController();
-
-            controller.initData(selectedRecipe);
-
+            controller.initData(selectedRecipe, this); // Pass reference to AffichageRecipe
             Stage stage = new Stage();
             stage.setTitle("Mise à jour de la recette");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void refreshDisplay() {
+        try {
+            List<recipe> recipeList = rc.fetch();
+            recipeLV.setItems(FXCollections.observableList(recipeList));
+            recipeLV.setCellFactory(param -> new ListCell<recipe>() {
+                @Override
+                protected void updateItem(recipe item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        setText(item.getName() + " - " + item.getIngrs() + " - " + item.getInstrs());
+                        if (item.getImageUrl() != null && !item.getImageUrl().isEmpty()) {
+                            ImageView imageView = new ImageView(new Image(item.getImageUrl()));
+                            imageView.setFitWidth(100);
+                            imageView.setPreserveRatio(true);
+                            setGraphic(imageView);
+                        }
+                    }
+                }
+            });
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

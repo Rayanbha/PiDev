@@ -48,12 +48,9 @@ public class AjouterRecipe {
     @FXML
     public void Browse(ActionEvent event) {
         Stage primaryStage = new Stage();
-
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a File");
-
         File selectedFile = fileChooser.showOpenDialog(primaryStage);
-
         if (selectedFile != null) {
             String fileUrl = selectedFile.toURI().toString();
             imagemt.setText(fileUrl);
@@ -88,14 +85,12 @@ public class AjouterRecipe {
         String image= imagemt.getText();
         String ingredients = txting.getText();
         String instructions = txtrect.getText();
-
         if (!nomRecette.isEmpty() && !ingredients.isEmpty() && !instructions.isEmpty()) {
             ps.ajouter(new recipe(nomRecette, ingredients, instructions));
             txtin.clear();
             imagemt.clear();
             txting.clear();
             txtrect.clear();
-
         } else {
             System.out.println("Veuillez remplir tous les champs.");
         }
@@ -139,6 +134,4 @@ public class AjouterRecipe {
         txting.clear();
         txtrect.clear();
     }
-
-
 }

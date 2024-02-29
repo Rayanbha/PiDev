@@ -36,6 +36,10 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Button>
+        <Button fx:id="sortButton" layoutX="412.0" layoutY="526.0" mnemonicParsing="false" onAction="#sortReviewsByRating" style="-fx-background-color: #FFDE59;" text="Sort by Rating" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
         <AnchorPane prefHeight="82.0" prefWidth="806.0" style="-fx-background-color: #FFDE59;" />
         <ImageView fitHeight="237.0" fitWidth="111.0" layoutX="806.0" layoutY="-77.0" pickOnBounds="true" preserveRatio="true">
             <image>

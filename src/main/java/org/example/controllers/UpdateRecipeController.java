@@ -10,20 +10,17 @@ public class UpdateRecipeController {
 
     @FXML
     private TextField nameField;
-
     @FXML
     private TextField ingredientsField;
-
     @FXML
     private TextField instructionsField;
-
     private recipe selectedRecipe;
-
     private final recipeService rc = new recipeService();
+    private AffichageRecipe affichageRecipeController; // Add reference
 
-    // Méthode pour initialiser les données de la recette sélectionnée
-    public void initData(recipe selectedRecipe) {
+    public void initData(recipe selectedRecipe, AffichageRecipe affichageRecipeController) {
         this.selectedRecipe = selectedRecipe;
+        this.affichageRecipeController = affichageRecipeController; // Set reference
         nameField.setText(selectedRecipe.getName());
         ingredientsField.setText(selectedRecipe.getIngrs());
         instructionsField.setText(selectedRecipe.getInstrs());
@@ -36,8 +33,8 @@ public class UpdateRecipeController {
             selectedRecipe.setIngrs(ingredientsField.getText());
             selectedRecipe.setInstrs(instructionsField.getText());
             rc.modifier(selectedRecipe);
+            affichageRecipeController.refreshDisplay(); // Call refresh method
             nameField.getScene().getWindow().hide();
         }
     }
-
 }

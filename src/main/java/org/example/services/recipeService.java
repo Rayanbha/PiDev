@@ -7,7 +7,6 @@ import java.util.List;
 
 public class recipeService implements IService<recipe> {
     private Connection connection;
-
     public recipeService() {
         connection = MyDatabase.getInstance().getConnection();
     }
