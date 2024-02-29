@@ -83,9 +83,8 @@ public class AjouterReview {
     }
     @FXML
     void handleEmojiButton(ActionEvent event) {
-        emojiContainer.getChildren().clear(); // Clear existing emojis
+        emojiContainer.getChildren().clear();
 
-        // Add heart-related and face-related emojis to the HBox
         List<Emoji> emojis = (List<Emoji>) EmojiManager.getAll();
         for (Emoji emoji : emojis) {
             if (isHeartOrFaceRelated(emoji)) {

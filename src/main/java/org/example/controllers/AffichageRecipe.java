@@ -86,7 +86,7 @@ public class AffichageRecipe {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateRecipe.fxml"));
             Parent root = loader.load();
             UpdateRecipeController controller = loader.getController();
-            controller.initData(selectedRecipe, this); // Pass reference to AffichageRecipe
+            controller.initData(selectedRecipe, this);
             Stage stage = new Stage();
             stage.setTitle("Mise à jour de la recette");
             stage.setScene(new Scene(root));

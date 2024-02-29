@@ -15,6 +15,7 @@
             <Font name="Arial Nova Cond Bold" size="41.0" />
          </font>
       </Label>
+
       <TextField fx:id="txtin" layoutX="46.0" layoutY="192.0" promptText="Exp : Lablebi" />
       <TextField fx:id="txting" layoutX="45.0" layoutY="315.0" promptText="Exp : 100gr Farine / 50gr Fromage" />
       <TextField fx:id="txtrect" alignment="TOP_LEFT" layoutX="271.0" layoutY="206.0" prefHeight="124.0" prefWidth="322.0" promptText="Chauffer le four à 150C" />

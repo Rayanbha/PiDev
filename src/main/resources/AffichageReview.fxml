@@ -11,17 +11,7 @@
 <AnchorPane prefHeight="600.0" prefWidth="751.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AffichageReview">
     <children>
         <ListView fx:id="reviewListView" layoutX="238.0" layoutY="214.0" prefHeight="200.0" prefWidth="439.0" />
-        <Label fx:id="idr" layoutX="280.0" layoutY="186.0" text="Rating">
-            <font>
-                <Font name="System Bold Italic" size="17.0" />
-            </font>
-        </Label>
-        <Label fx:id="idcom" layoutX="404.0" layoutY="186.0" text="Commentaire">
-            <font>
-                <Font name="System Bold Italic" size="17.0" />
-            </font>
-        </Label>
-        <Label fx:id="idpic" layoutX="584.0" layoutY="186.0" text="Photo">
+        <Label fx:id="idr" layoutX="431.0" layoutY="173.0" text="Rating">
             <font>
                 <Font name="System Bold Italic" size="17.0" />
             </font>

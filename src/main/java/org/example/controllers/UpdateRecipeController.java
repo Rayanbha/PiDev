@@ -16,11 +16,11 @@ public class UpdateRecipeController {
     private TextField instructionsField;
     private recipe selectedRecipe;
     private final recipeService rc = new recipeService();
-    private AffichageRecipe affichageRecipeController; // Add reference
+    private AffichageRecipe affichageRecipeController;
 
     public void initData(recipe selectedRecipe, AffichageRecipe affichageRecipeController) {
         this.selectedRecipe = selectedRecipe;
-        this.affichageRecipeController = affichageRecipeController; // Set reference
+        this.affichageRecipeController = affichageRecipeController;
         nameField.setText(selectedRecipe.getName());
         ingredientsField.setText(selectedRecipe.getIngrs());
         instructionsField.setText(selectedRecipe.getInstrs());
@@ -33,7 +33,7 @@ public class UpdateRecipeController {
             selectedRecipe.setIngrs(ingredientsField.getText());
             selectedRecipe.setInstrs(instructionsField.getText());
             rc.modifier(selectedRecipe);
-            affichageRecipeController.refreshDisplay(); // Call refresh method
+            affichageRecipeController.refreshDisplay();
             nameField.getScene().getWindow().hide();
         }
     }

@@ -4,7 +4,7 @@ public class review {
     private int idrevw;
     private String rating;
     private String com;
-    private String imageUrl; // URL of the image associated with the review
+    private String imageUrl;
 
     public review(){
     }

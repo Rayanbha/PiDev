@@ -15,11 +15,11 @@ public  class reviewService implements IService<review> {
             ps.setString(2, r.getCom());
             ps.executeUpdate();
             System.out.println("Review Added successfully!");
-            return true; // Indique que l'ajout a réussi
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return false; // Indique que l'ajout a échoué
+        return false;
     }
 
 

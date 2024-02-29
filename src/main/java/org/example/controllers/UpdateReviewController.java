@@ -24,11 +24,11 @@ public class UpdateReviewController {
     private Rating rate;
     private final reviewService rs = new reviewService();
     private review selectedReview;
-    private AffichageReview affichageReviewController; // Add reference
+    private AffichageReview affichageReviewController;
 
     public void initData(review selectedReview, AffichageReview affichageReviewController) {
         this.selectedReview = selectedReview;
-        this.affichageReviewController = affichageReviewController; // Set reference
+        this.affichageReviewController = affichageReviewController;
         commentTextField.setText(selectedReview.getCom());
         if (selectedReview != null) {
             try {
@@ -52,7 +52,7 @@ public class UpdateReviewController {
             selectedReview.setCom(newComment);
             rs.modifier(selectedReview, newComment, newRating);
             System.out.println("Revue mise à jour avec succès : " + selectedReview.getIdrevw());
-            affichageReviewController.refreshDisplay(); // Call refresh method
+            affichageReviewController.refreshDisplay();
             closeUpdateWindow();
         } else {
             System.out.println("Erreur lors de la mise à jour de la revue.");
