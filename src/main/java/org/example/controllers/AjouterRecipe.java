@@ -63,13 +63,10 @@ public class AjouterRecipe {
         String image = imagemt.getText();
         String ingredients = txting.getText();
         String instructions = txtrect.getText();
-
         if (containsBannedWords(nomRecette) || containsBannedWords(ingredients) || containsBannedWords(instructions)) {
-
             showAlert("Veuillez ne pas utiliser de langage inapproprié.");
             return;
         }
-
         if (!nomRecette.isEmpty() && !ingredients.isEmpty() && !instructions.isEmpty()) {
             ps.ajouter(new recipe(nomRecette, ingredients, instructions));
             showAlert("Recette ajoutée avec succès!");
