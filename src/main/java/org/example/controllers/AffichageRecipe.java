@@ -55,7 +55,7 @@ public class AffichageRecipe {
             alert.setContentText("Voulez-vous vraiment supprimer cette recette ?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                recipeLV.getItems().remove(selectedRecipe);
+                recipesObservableList.remove(selectedRecipe);
                 rc.supprimer(selectedRecipe.getIdrecp());
             }
         } else {
