@@ -1,5 +1,7 @@
 package com.example.pidevv.controllers;
 
+
+
 import com.example.pidevv.models.comment;
 import com.example.pidevv.models.forumpost;
 import com.example.pidevv.services.CommentService;
@@ -12,18 +14,27 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.scene.control.Button;
 
+import javafx.stage.Stage;
+import com.vdurmont.emoji.Emoji;
+import com.vdurmont.emoji.EmojiManager;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class AfficherDetails extends comment {
 
     @FXML
     private Label selectedItemLabel;
+@FXML
+    private TextArea com;
 
     @FXML
     private ImageView imv;
@@ -35,6 +46,9 @@ public class AfficherDetails extends comment {
 
     @FXML
     private VBox commentsContainer;
+
+    @FXML
+    private HBox emojiContainer;
 
 
     @FXML
@@ -50,6 +64,8 @@ public class AfficherDetails extends comment {
 
 
     }
+
+
 
 
     @FXML
@@ -85,7 +101,34 @@ public class AfficherDetails extends comment {
             e.printStackTrace();
         }
     }
+@FXML
+    public void handleEmojiButton(javafx.event.ActionEvent event) {
+
+        emojiContainer.getChildren().clear();
+
+        List<Emoji> emojis = (List<Emoji>) EmojiManager.getAll();
+        for (Emoji emoji : emojis) {
+            if (isHeartOrFaceRelated(emoji)) {
+                Button emojiButton = new Button(emoji.getUnicode());
+                emojiButton.setOnAction(e -> {
+                    commentTextArea.appendText(emoji.getUnicode());
+                });
+                emojiContainer.getChildren().add(emojiButton);
+            }
+        }
+    }
+
+
+    private boolean isHeartOrFaceRelated(Emoji emoji) {
+        // Définir un motif de recherche contenant les mots-clés "heart" ou "face"
+        Pattern pattern = Pattern.compile("(heart|face)", Pattern.CASE_INSENSITIVE);
+
+        // Vérifier si la description de l'emoji correspond au motif
+        return pattern.matcher(emoji.getDescription()).find();
+    }
+
 }
+
 
 
 

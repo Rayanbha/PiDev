@@ -267,7 +267,7 @@ public class AfficherLesPosts extends forumpost implements Initializable {
 //            }
 
 
-    
+
 
 //    @FXML
 //
@@ -300,36 +300,7 @@ public class AfficherLesPosts extends forumpost implements Initializable {
 
 
 
-    @FXML
-    public void detail (ActionEvent event) {
-        ObservableList<forumpost> forumposts = listView.getSelectionModel().getSelectedItems();
 
-        // Assurez-vous qu'il y a au moins un élément sélectionné
-        if (!forumposts.isEmpty()) {
-            forumpost selectedItem = forumposts.get(0);
-            String selectedItemContent = selectedItem.getContent(); // Supposons que selectedItem.getContent() retourne l'URL de l'image sous forme de chaîne
-
-// Créer une instance de Image en utilisant l'URL de l'image en tant que chaîne
-            Image image = new Image(selectedItemContent);
-
-            // Chargez l'interface AfficherDetail
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherDetails.fxml"));
-                Parent root = loader.load();
-
-                // Passez les données à l'interface AfficherDetails
-                AfficherDetails af = loader.getController();
-                af.initData(selectedItem.getTitle(), image,selectedItem.getPostId());
-
-                // Affichez la nouvelle interface utilisateur
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        }
 
 
     public void editItem(ActionEvent event) {
@@ -349,6 +320,12 @@ public class AfficherLesPosts extends forumpost implements Initializable {
                 selectedPost.setTitle(newTitle);
                 // Rafraîchir la cellule de la ListView pour refléter les changements
                 listView.refresh();
+                // Afficher un message pour indiquer que la modification est terminée
+                Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
+                confirmationAlert.setTitle("Modification terminée");
+                confirmationAlert.setHeaderText(null);
+                confirmationAlert.setContentText("Le titre du post a été modifié avec succès.");
+                confirmationAlert.showAndWait();
             });
         }
     }
@@ -356,11 +333,61 @@ public class AfficherLesPosts extends forumpost implements Initializable {
     public void deleteItem(ActionEvent event) {
         forumpost selectedPost = listView.getSelectionModel().getSelectedItem();
         if (selectedPost != null) {
-            // Supprimer selectedPost de la liste et rafraîchir la ListView
-            listView.getItems().remove(selectedPost);
+            // Afficher une boîte de dialogue de confirmation
+            Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationDialog.setTitle("Confirmation de la suppression");
+            confirmationDialog.setHeaderText(null);
+            confirmationDialog.setContentText("Êtes-vous sûr de vouloir supprimer ce post ?");
+
+            // Obtenir la réponse de l'utilisateur
+            Optional<ButtonType> result = confirmationDialog.showAndWait();
+
+            // Supprimer le post si l'utilisateur confirme la suppression
+            result.ifPresent(buttonType -> {
+                if (buttonType == ButtonType.OK) {
+                    listView.getItems().remove(selectedPost);
+                    // Afficher un message pour indiquer que la suppression est terminée
+                    Alert deletionAlert = new Alert(Alert.AlertType.INFORMATION);
+                    deletionAlert.setTitle("Suppression terminée");
+                    deletionAlert.setHeaderText(null);
+                    deletionAlert.setContentText("Le post a été supprimé avec succès.");
+                    deletionAlert.showAndWait();
+                }
+            });
         }
     }
-}
+
+
+    @FXML
+    public void detail (ActionEvent event) {
+        ObservableList<forumpost> forumposts = listView.getSelectionModel().getSelectedItems();
+
+        // Assurez-vous qu'il y a au moins un élément sélectionné
+        if (!forumposts.isEmpty()) {
+            forumpost selectedItem = forumposts.get(0);
+            String selectedItemContent = selectedItem.getContent(); // Supposons que selectedItem.getContent() retourne l'URL de l'image sous forme de chaîne
+
+// Créer une instance de Image en utilisant l'URL de l'image en tant que chaîne
+            Image image = new Image(selectedItemContent);
+
+            // Chargez l'interface AfficherDetail
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherDetails.fxml"));
+                Parent root = loader.load();
+
+                // Passez les données à l'interface AfficherDetails
+                AfficherDetails af = loader.getController();
+                af.initData(selectedItem.getTitle(), image, selectedItem.getPostId());
+
+                // Affichez la nouvelle interface utilisateur
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }}
 
 
 

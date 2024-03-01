@@ -1,34 +1,34 @@
 /* Style pour le conteneur des éléments */
 /* Style pour la colonne sélectionnée */
 .list-cell:selected {
-    -fx-background-color: #FFDE59; /* Couleur de fond jaune */
+    -fx-background-color: #FFDE59; /* Couleur de fond jaune pour l'élément sélectionné */
     -fx-text-fill: #121748; /* Couleur du texte */
 }
 
 /* Style pour le survol de la colonne */
 .list-cell:hover {
-    -fx-background-color: #FFDE59; /* Couleur de fond jaune */
+    -fx-background-color: #E0E0E0; /* Couleur de fond gris clair lors du survol */
     -fx-text-fill: #121748; /* Couleur du texte */
 }
 
 /* Style pour le bouton */
 .button {
-    -fx-background-color: #121748; /* Couleur de fond bleu foncé */
+    -fx-background-color: #121748; /* Couleur de fond bleu foncé pour les boutons */
     -fx-text-fill: #ffffff; /* Couleur du texte jaune */
 }
 
 /* Style pour le bouton au survol */
 .button:hover {
-    -fx-background-color: #FFDE59; /* Couleur de fond jaune */
-    -fx-text-fill: #121748; /* Couleur du texte bleu foncé */
-
-
+    -fx-background-color: #FFDE59; /* Couleur de fond jaune lors du survol */
+    -fx-text-fill: #121748; /* Couleur du texte */
 }
+
 .image-view {
     -fx-fit-height: 168px; /* Hauteur de l'image */
     -fx-fit-width: 80px; /* Largeur de l'image */
 }
+
 .button-custom:hover {
-    -fx-background-color: #FFDE59; /* Couleur de fond jaune */
-    -fx-text-fill: #121748; /* Couleur du texte bleu foncé */
+    -fx-background-color: #FFDE59; /* Couleur de fond jaune pour les boutons personnalisés */
+    -fx-text-fill: #121748; /* Couleur du texte */
 }

@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -48,6 +49,7 @@
          </font>
       </Label>
       <TextField fx:id="malek" layoutX="364.0" layoutY="279.0" promptText="ay esm " />
+      <Pane fx:id="panee" layoutX="51.0" layoutY="412.0" prefHeight="47.0" prefWidth="290.0" />
 
    </children>
 </AnchorPane>
