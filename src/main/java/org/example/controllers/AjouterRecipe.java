@@ -83,7 +83,7 @@ public class AjouterRecipe {
         String ingredients = txting.getText();
         String instructions = txtrect.getText();
         if (!nomRecette.isEmpty() && !ingredients.isEmpty() && !instructions.isEmpty()) {
-            ps.ajouter(new recipe(nomRecette, ingredients, instructions));
+            ps.ajouter(new recipe(nomRecette, image, ingredients, instructions));
             txtin.clear();
             imagemt.clear();
             txting.clear();

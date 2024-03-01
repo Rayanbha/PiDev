@@ -65,6 +65,7 @@ public class AjouterReview {
             review r = new review();
             r.setCom(commentaire);
             r.setRating(String.valueOf(ratingValue));
+            r.setImageUrl(image);
             boolean ajoutReussi = rs.ajouter(r);
             if (ajoutReussi) {
                 com.clear();

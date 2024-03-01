@@ -9,10 +9,11 @@ public  class reviewService implements IService<review> {
     @Override
     public boolean ajouter(review r) {
         try {
-            String req = "INSERT INTO review (rating, com) VALUES (?, ?)";
+            String req = "INSERT INTO review (rating, com, photo) VALUES (?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setString(1, r.getRating());
             ps.setString(2, r.getCom());
+            ps.setString(3, r.getImageUrl());
             ps.executeUpdate();
             System.out.println("Review Added successfully!");
             return true;
@@ -75,6 +76,7 @@ public  class reviewService implements IService<review> {
                 r.setIdrevw(rs.getInt(1));
                 r.setRating(rs.getString(2));
                 r.setCom(rs.getString(3));
+                r.setImageUrl(rs.getString(4));
 
 
                 reviews.add(r);

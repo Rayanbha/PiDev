@@ -1,7 +1,9 @@
 package org.example.controllers;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,9 +11,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.models.recipe;
 import org.example.services.recipeService;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -101,6 +107,34 @@ public class AffichageRecipe {
             List<recipe> recipeList = rc.fetch();
             recipesObservableList = FXCollections.observableArrayList(recipeList);
             recipeLV.setItems(recipesObservableList);
+            recipeLV.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("clicked on " + recipeLV.getSelectionModel().getSelectedItem());
+                    recipe selectedItem = recipeLV.getSelectionModel().getSelectedItem();
+
+                    if (selectedItem.getImageUrl() != null) {
+                        Image image = new Image(selectedItem.getImageUrl());
+                        ImageView imageView = new ImageView(image);
+
+                        imageView.setPreserveRatio(true);
+                        imageView.isResizable();
+
+
+                        final Stage dialog = new Stage();
+                        dialog.initModality(Modality.APPLICATION_MODAL);
+                        VBox dialogVbox = new VBox(20);
+                        dialogVbox.getChildren().add(imageView);
+                        imageView.fitWidthProperty().bind(dialogVbox.widthProperty());
+                        imageView.fitHeightProperty().bind(dialogVbox.heightProperty());
+                        Scene dialogScene = new Scene(dialogVbox, 400, 300);
+                        dialog.setScene(dialogScene);
+                        dialog.showAndWait();
+
+                    }
+
+                }
+            });
             recipeLV.setCellFactory(param -> new ListCell<recipe>() {
                 @Override
                 protected void updateItem(recipe item, boolean empty) {

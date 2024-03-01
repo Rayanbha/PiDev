@@ -1,15 +1,23 @@
 package org.example.controllers;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.models.review;
 import org.example.services.reviewService;
+
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
@@ -78,6 +86,33 @@ public class AffichageReview {
             List<review> reviewList = rs.fetch();
             ObservableList<review> observableList = FXCollections.observableList(reviewList);
             reviewListView.setItems(observableList);
+            reviewListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("clicked on " + reviewListView.getSelectionModel().getSelectedItem());
+                    review selectedItem = reviewListView.getSelectionModel().getSelectedItem();
+
+                   if (selectedItem.getImageUrl() != null) {
+                       Image image = new Image(selectedItem.getImageUrl());
+                       ImageView imageView = new ImageView(image);
+
+                       imageView.setPreserveRatio(true);
+                       imageView.isResizable();
+
+
+                       final Stage dialog = new Stage();
+                       dialog.initModality(Modality.APPLICATION_MODAL);
+                       VBox dialogVbox = new VBox(20);
+                       dialogVbox.getChildren().add(imageView);
+                       imageView.fitWidthProperty().bind(dialogVbox.widthProperty());
+                       imageView.fitHeightProperty().bind(dialogVbox.heightProperty());
+                       Scene dialogScene = new Scene(dialogVbox, 400, 300);
+                       dialog.setScene(dialogScene);
+                       dialog.showAndWait();
+                   }
+
+                }
+            });
             reviewListView.setCellFactory(param -> new ListCell<review>() {
                 @Override
                 protected void updateItem(review item, boolean empty) {
@@ -85,7 +120,16 @@ public class AffichageReview {
                     if (empty || item == null) {
                         setText(null);
                     } else {
-                        setText(" - " + item.getRating() + " - " + item.getCom() + " - " + item.getImageUrl());
+                        if (item.getImageUrl() != null && !item.getImageUrl().isEmpty()) {
+                            ImageView imageView = new ImageView(new Image(item.getImageUrl()));
+                            imageView.setFitWidth(100);
+                            imageView.setPreserveRatio(true);
+                            setGraphic(imageView);
+                            ///////
+
+
+                        }
+                        setText(" - " + item.getRating() + " - " + item.getCom());
                         double rating = Double.parseDouble(item.getRating());
                         if (rating == 5.0) {
                             setStyle("-fx-background-color: #00FF00;");
@@ -99,6 +143,7 @@ public class AffichageReview {
                     }
                 }
             });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
