@@ -25,7 +25,6 @@ public class ReservationService implements IService<Reservation> {
                 + reservation.getID_user() + ", '"
                 + reservation.getDate_reservation() + "', '"
                 + reservation.getNombre_personnes() + "', '"
-                + reservation.getEtat_reservation() + "', '"
                 + reservation.getID_table() + "', '"
                 + reservation.getID_restaurant() + "', '"
                 + reservation.getHeure_reservation() + "')";
@@ -37,16 +36,15 @@ public class ReservationService implements IService<Reservation> {
     ///MODIFIER////////////////////////////////////////////////////////////////////////////
     @Override
     public void modifier(Reservation reservation) throws SQLException {
-        String req = "UPDATE `reservation` SET ID_user=?,Date_reservation=?, Nombre_personnes=?, Etat_reservation=?, ID_table=?,  ID_restaurant =?,Heure_reservation=? WHERE ID_reservation=?";
+        String req = "UPDATE `reservation` SET ID_user=?,Date_reservation=?, Nombre_personnes=?, ID_table=?,  ID_restaurant =?,Heure_reservation=? WHERE ID_reservation=?";
         PreparedStatement tb = connection.prepareStatement(req);
         tb.setInt(1, reservation.getID_user());
         tb.setDate(2, reservation.getDate_reservation()); // Correction ici
         tb.setInt(3, reservation.getNombre_personnes());
-        tb.setString(4, reservation.getEtat_reservation());
-        tb.setInt(5, reservation.getID_table());
-        tb.setInt(6, reservation.getID_restaurant());
-        tb.setString(7, reservation.getHeure_reservation());
-        tb.setInt(8, reservation.getID_reservation());
+        tb.setInt(4, reservation.getID_table());
+        tb.setInt(5, reservation.getID_restaurant());
+        tb.setString(6, reservation.getHeure_reservation());
+        tb.setInt(7, reservation.getID_reservation());
         tb.executeUpdate();
     }
 
@@ -72,7 +70,6 @@ public class ReservationService implements IService<Reservation> {
             reservation.setID_user(rs.getInt("ID_user"));
             reservation.setDate_reservation(rs.getDate("Date_reservation"));
             reservation.setNombre_personnes(rs.getInt("Nombre_personnes"));
-            reservation.setEtat_reservation(rs.getString("Etat_reservation"));
             reservation.setID_table(rs.getInt("ID_table"));
             reservation.setID_restaurant(rs.getInt("ID_restaurant"));
             reservation.setHeure_reservation(rs.getString("Heure_reservation"));

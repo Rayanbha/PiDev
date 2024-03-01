@@ -5,10 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -43,10 +40,9 @@ public class AjouterReservation {
     @FXML
     private TextField ID_tableTF;
 
-    @FXML
-    private TextField etat_reservationTF;
-
     private ReservationService reservationService;
+    @FXML
+    private Button ajout;
 
     public AjouterReservation() {
         try {
@@ -78,9 +74,8 @@ public class AjouterReservation {
         String nombrePersonnesText = Nombre_personnesTF.getText();
         LocalDate dateReservation = date_reservationTF.getValue();
         String idTableText = ID_tableTF.getText();
-        String etatReservation = etat_reservationTF.getText();
         Reservation reservation = new Reservation();
-        if (heureReservation.isEmpty() || nombrePersonnesText.isEmpty() || dateReservation == null || idTableText.isEmpty() || etatReservation.isEmpty()) {
+        if (heureReservation.isEmpty() || nombrePersonnesText.isEmpty() || dateReservation == null || idTableText.isEmpty() ) {
             showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez remplir tous les champs.");
             return;
         }
@@ -102,7 +97,6 @@ public class AjouterReservation {
         reservation.setNombre_personnes(Integer.parseInt(Nombre_personnesTF.getText()));
         reservation.setDate_reservation(Date.valueOf(date_reservationTF.getValue()));
         reservation.setID_table(Integer.parseInt(ID_tableTF.getText()));
-        reservation.setEtat_reservation(etat_reservationTF.getText());
 
         try {
             reservationService.ajouter(reservation);
@@ -136,7 +130,6 @@ public class AjouterReservation {
                 throw new RuntimeException(e);
             }
 
-            etat_reservationTF.getScene().setRoot(root);
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR,"Erreur",e.getMessage());
 

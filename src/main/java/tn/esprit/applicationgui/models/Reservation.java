@@ -49,9 +49,6 @@ public class Reservation {
         return ID_restaurant;
     }
 
-    public String getEtat_reservation() {
-        return Etat_reservation;
-    }
     public Date getDate_reservation() {
         return Date_reservation;
     }
@@ -75,9 +72,6 @@ public class Reservation {
     public void setID_restaurant(int ID_restaurant) {
         this.ID_restaurant = ID_restaurant;
     }
-    public void setEtat_reservation(String etat_reservation) {
-        Etat_reservation = etat_reservation;
-    }
     public void setDate_reservation(Date date_reservation) {
         Date_reservation = date_reservation;
     }
@@ -86,19 +80,15 @@ public class Reservation {
     }
 
     @Override
-
     public String toString() {
         return "Reservation{" +
                 "ID_reservation=" + ID_reservation +
                 ", ID_user=" + ID_user +
-                ", Date_reservation=" + Date_reservation +
                 ", Nombre_personnes=" + Nombre_personnes +
-                ", Etat_reservation='" + Etat_reservation + '\'' +
                 ", ID_table=" + ID_table +
                 ", ID_restaurant=" + ID_restaurant +
+                ", Date_reservation=" + Date_reservation +
                 ", Heure_reservation='" + Heure_reservation + '\'' +
                 '}';
     }
-
-
 }
