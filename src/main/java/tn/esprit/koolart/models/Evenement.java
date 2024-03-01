@@ -4,8 +4,8 @@ import java.sql.Timestamp;
 
 public class Evenement {private int id ; private int id_user;
     private Timestamp date ; private String evenement_type; private String description ; private String location ; private String status;
-
-    public Evenement(int id, int id_user, Timestamp date, String evenement_type, String description, String location, String status) {
+private String imageURL;
+    public Evenement(int id, int id_user, Timestamp date, String evenement_type, String description, String location, String status,String imageURL) {
         this.id = id;
         this.id_user = id_user;
         this.date = date;
@@ -13,14 +13,24 @@ public class Evenement {private int id ; private int id_user;
         this.description = description;
         this.location = location;
         this.status = status;
+        this.imageURL= imageURL;
     }
-    public Evenement(int id_user, Timestamp date, String evenement_type, String description, String location, String status) {
+    public Evenement(int id_user, Timestamp date, String evenement_type, String description, String location, String status,String imageURL) {
         this.id_user = id_user;
         this.date = date;
         this.evenement_type = evenement_type;
         this.description = description;
         this.location = location;
         this.status = status;
+        this.imageURL=imageURL;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public int getId() {

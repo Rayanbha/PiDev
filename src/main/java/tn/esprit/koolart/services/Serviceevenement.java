@@ -16,7 +16,7 @@ import java.util.List;
 public class Serviceevenement implements Interfaceevenement<Evenement> {
     Connection cnx = Connexion.getInstance().getCnx();
     @Override
-    public void addEvenement(Evenement evenement) {final String INSERT = "INSERT INTO evenement(id_user, date, evenement_type,  description,location, status) VALUES (?, ?, ?, ?,?, ?)";
+    public void addEvenement(Evenement evenement) {final String INSERT = "INSERT INTO evenement(id_user, date, evenement_type,  description,location, status,imageURL) VALUES (?, ?, ?, ?,?, ?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(INSERT);
             ps.setInt(1,  evenement.getId_user());
@@ -25,6 +25,7 @@ public class Serviceevenement implements Interfaceevenement<Evenement> {
             ps.setString(4, evenement.getDescription());
             ps.setString(5, evenement.getLocation());
             ps.setString(6, evenement.getStatus());
+            ps.setString(7,evenement.getImageURL());
             int rowsInserted = ps.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("A new event has been created successfully.");
@@ -36,7 +37,7 @@ public class Serviceevenement implements Interfaceevenement<Evenement> {
 
     @Override
     public void updateEvenement(Evenement evenement) {
-        final String UPDATE = "UPDATE evenement SET  date = ?, evenement_type = ?, description = ?, location = ?,status =?  WHERE id = ?";
+        final String UPDATE = "UPDATE evenement SET  date = ?, evenement_type = ?, description = ?, location = ?,status =? , imageURL=?  WHERE id = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(UPDATE);
             ps.setTimestamp(1,evenement.getDate());
@@ -44,7 +45,9 @@ public class Serviceevenement implements Interfaceevenement<Evenement> {
             ps.setString(3,evenement.getDescription());
             ps.setString(4,evenement.getLocation());
             ps.setString(5, evenement.getStatus());
-            ps.setInt(6,evenement.getId());
+            ps.setString(6, evenement.getImageURL());
+            ps.setInt(7,evenement.getId());
+
             int rowInserted = ps.executeUpdate();
             if (rowInserted > 0 ){
                 System.out.println("Evenement with ID " + evenement.getId() + " has been updated successfully.");
@@ -88,7 +91,9 @@ public class Serviceevenement implements Interfaceevenement<Evenement> {
                         result.getString("evenement_type"),
                         result.getString("description"),
                         result.getString("location"),
-                        result.getString("status")
+                        result.getString("status"),
+                        result.getString("imageURL")
+
                 );
                 evenementList.add(e);
             }
@@ -96,5 +101,83 @@ public class Serviceevenement implements Interfaceevenement<Evenement> {
             throw new RuntimeException(ex);
         }
         return evenementList; // Retourner directement l'ObservableList
+    }
+    public Float getRatingByEvent(int eventId ){
+        String sql="SELECT eventId, COUNT(*) as numberOfVote ,sum(note) TotalVote FROM ratingsystem  where eventId=? GROUP BY eventId";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(sql);
+            ps.setInt(1,eventId);
+            ResultSet result = ps.executeQuery();
+            while (result.next()){
+                int numberOfVote=result.getInt("numberOfVote");
+                int sumTotal=result.getInt("TotalVote");
+                return (float) sumTotal / numberOfVote; // Calculate and return the average
+
+
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return  0.0f;
+    }
+
+    public int getRatingByUserAndEvent(int userId, int eventId) {
+        String sql="SELECT note FROM ratingsystem  where userId=? And eventId=?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(sql);
+            ps.setInt(1,userId);
+            ps.setInt(2,eventId);
+
+            ResultSet result = ps.executeQuery();
+            while (result.next()){
+                int note=result.getInt("note");
+               return note;
+
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return 0;
+    }
+
+    public void updateRating(int userId, int eventId, int note) {
+        final String UPDATE = "UPDATE ratingsystem SET  note = ?  where userId=? And eventId=?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(UPDATE);
+            ps.setInt(1,note);
+            ps.setInt(2,userId);
+            ps.setInt(3,eventId);
+
+
+            int rowInserted = ps.executeUpdate();
+            if (rowInserted > 0 ){
+                System.out.println("NOTE UPDATED ! ");
+            }else {
+                System.out.println("PROBLEM");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+    public void addRatingValue(int userId, int eventId, int note) {
+        final String UPDATE = "INSERT INTO  ratingsystem (note,userId,eventId) VALUES (?,?,?)";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(UPDATE);
+            ps.setInt(1,note);
+            ps.setInt(2,userId);
+            ps.setInt(3,eventId);
+
+            int rowInserted = ps.executeUpdate();
+            if (rowInserted > 0 ){
+                System.out.println("NOTE ADDED ! ");
+            }else {
+                System.out.println("PROBLEM");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
     }
 }

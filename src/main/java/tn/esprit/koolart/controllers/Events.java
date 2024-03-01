@@ -5,15 +5,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import tn.esprit.koolart.models.Evenement;
 import tn.esprit.koolart.services.Serviceevenement;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class Events implements Initializable {
 
@@ -78,6 +86,34 @@ public class Events implements Initializable {
         fetchData();
 
     }
+   private String imagePath ;
+    public void choisirImage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.jpeg", "*.png", "*.gif");
+        fileChooser.getExtensionFilters().add(filter);
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile != null) {
+            try {
+                // Generate a unique file name
+                String uniqueFileName = UUID.randomUUID().toString() + getFileExtension(selectedFile.getName());
+
+                // Define the upload directory
+
+                // Create the uploads directory if it doesn't exist
+
+                // Copy the selected file to the uploads directory with the unique file name
+               // Files.copy(selectedFile.toPath(), Paths.get(uploadDir + uniqueFileName), StandardCopyOption.REPLACE_EXISTING);
+
+                // Set the imagePath to the path of the uploaded image
+                imagePath = uniqueFileName;
+
+                System.out.println("Fichier sélectionné : " + imagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public void fetchData(){
         eventTable.setItems(se.showEvenement());
         eventTable.refresh();
@@ -104,6 +140,8 @@ public class Events implements Initializable {
             LocalDate localDate = date_input.getValue();
             String type = evenement_type_input.getValue();
             String status = evenement_status_input.getValue();
+            String imageURL= imagePath;
+
             if (description.isEmpty() || location.isEmpty() || localDate == null || type == null || status == null) {
 
                 // Afficher un message d'erreur si un champ est vide
@@ -117,11 +155,11 @@ public class Events implements Initializable {
                 Instant instant = localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
                 Timestamp timestamp = Timestamp.from(instant);
                 if(formState.equals("Add")){
-                    Evenement e = new  Evenement(1,  timestamp,  type,  description,  location,  status);
+                    Evenement e = new  Evenement(1,  timestamp,  type,  description,  location,  status,imageURL);
                     se.addEvenement(e);
                     fetchData();
                 }else{
-                    Evenement e = new  Evenement(SelectedEvent.getId(),1,  timestamp,  type,  description,  location,  status);
+                    Evenement e = new  Evenement(SelectedEvent.getId(),1,  timestamp,  type,  description,  location,  status,imageURL);
 
                     se.updateEvenement(e);
                     fetchData();
@@ -161,5 +199,9 @@ public class Events implements Initializable {
             evenement_status_input.setValue(SelectedEvent.getStatus());
             formState="Edit";
         }
+    }
+    private static String getFileExtension(String fileName) {
+        int dotIndex = fileName.lastIndexOf('.');
+        return (dotIndex == -1) ? "" : fileName.substring(dotIndex);
     }
 }

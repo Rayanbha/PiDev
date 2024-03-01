@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="454.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.koolart.controllers.Participations">
+<AnchorPane prefHeight="454.0" prefWidth="628.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.koolart.controllers.Participations">
    <children>
       <Label layoutX="197.0" layoutY="89.0" prefHeight="35.0" prefWidth="247.0" text="Ajouter Participation">
          <font>

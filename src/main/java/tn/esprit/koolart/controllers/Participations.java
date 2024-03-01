@@ -15,6 +15,7 @@ import tn.esprit.koolart.models.Evenement;
 import tn.esprit.koolart.models.Participation;
 import tn.esprit.koolart.services.Serviceparticipation;
 import tn.esprit.koolart.utils.CodeGenerator;
+import tn.esprit.koolart.utils.SmSSender;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,11 +35,12 @@ public class Participations implements Initializable {
     @FXML
     private TextField eventname;
     private Evenement event;
+    private int idUser;
     @FXML
     public void ajouterP(ActionEvent actionEvent) {
         Serviceparticipation serviceparticipation = new Serviceparticipation();
         Participation participation = new Participation();
-        participation.setUser_id(1);
+        participation.setUser_id(idUser);
         participation.setEvent_id(event.getId());
         participation.setParticipation_status("In");
         LocalDateTime localDateTime = particip_date.getValue().atStartOfDay();
@@ -85,6 +87,7 @@ public class Participations implements Initializable {
             VerifPhone verificationController = loader.getController();
             String code= CodeGenerator.generateCode(4);
             System.out.println(code);
+            SmSSender.SendSms(numero.getText(),"Votre Code de verification "+code);
             verificationController.setCodeValue(code);
             // Create a new stage
             Stage stage = new Stage();
@@ -111,9 +114,10 @@ public class Participations implements Initializable {
     }
 
 
-    public void setEvent(Evenement event) {
+    public void setEvent(Evenement event,int idUser) {
 
         this.event = event;
         this.eventname.setText(event.getDescription());
+        this.idUser=idUser;
     }
 }
