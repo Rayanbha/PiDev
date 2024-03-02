@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="779.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.koolart.controllers.Events">
+<AnchorPane prefHeight="458.0" prefWidth="786.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.koolart.controllers.Events">
    <children>
-      <TextField fx:id="location_input" layoutX="50.0" layoutY="232.0" prefHeight="26.0" prefWidth="175.0" promptText="location" />
-      <DatePicker fx:id="date_input" layoutX="50.0" layoutY="23.0" />
-      <ComboBox fx:id="evenement_type_input" layoutX="50.0" layoutY="67.0" prefHeight="26.0" prefWidth="175.0" promptText="type Event" style="-fx-background-color: FFDE59;" />
-      <TextArea fx:id="description_input" layoutX="50.0" layoutY="107.0" prefHeight="107.0" prefWidth="175.0" promptText="description" />
-      <ComboBox fx:id="evenement_status_input" layoutX="50.0" layoutY="276.0" prefHeight="26.0" prefWidth="175.0" promptText="statuss" style="-fx-background-color: FFDE59;" />
-      <Button layoutX="50.0" layoutY="318.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: FFDE59;" text="Save" />
-      <TableView fx:id="eventTable" layoutX="271.0" layoutY="106.0" prefHeight="258.0" prefWidth="414.0">
+      <TableView fx:id="eventTable" layoutX="58.0" layoutY="106.0" prefHeight="258.0" prefWidth="627.0">
         <columns>
           <TableColumn fx:id="date_col" prefWidth="75.0" style="-fx-background-color: FFDE59;" text="date" />
           <TableColumn fx:id="eventTypeCol" prefWidth="116.79998779296875" style="-fx-background-color: FFDE59;" text="evenement type " />
@@ -30,14 +20,14 @@
             <TableColumn fx:id="id_col" prefWidth="75.0" text="id" visible="false" />
         </columns>
       </TableView>
-      <Button fx:id="editButton" disable="true" layoutX="271.0" layoutY="49.0" mnemonicParsing="false" onAction="#editButtonAction" text="modifier" />
-      <Button fx:id="deleteButton" disable="true" layoutX="346.0" layoutY="49.0" mnemonicParsing="false" onAction="#deleteEvent" text="supprimer" />
+      <Button fx:id="editButton" disable="true" layoutX="58.0" layoutY="55.0" mnemonicParsing="false" onAction="#editButtonAction" text="modifier" />
+      <Button fx:id="deleteButton" disable="true" layoutX="138.0" layoutY="55.0" mnemonicParsing="false" onAction="#deleteEvent" text="supprimer" />
       <Label fx:id="error" layoutX="50.0" layoutY="356.0" prefHeight="18.0" prefWidth="175.0" textFill="RED" />
       <ImageView fitHeight="202.0" fitWidth="112.0" layoutX="692.0" layoutY="-65.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/DELL/Downloads/422538747_1530196224445183_7394585416044135593_n.png" />
          </image>
       </ImageView>
-      <Button layoutX="523.0" layoutY="55.0" mnemonicParsing="false" onAction="#choisirImage" text="selectioné image " />
+      <Button layoutX="232.0" layoutY="55.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="26.0" prefWidth="453.0" style="-fx-background-color: FFDE59;" text="+ Ajouter" />
    </children>
 </AnchorPane>

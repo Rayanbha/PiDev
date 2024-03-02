@@ -76,7 +76,7 @@ public class SingleEvent  implements Initializable {
             Image image1 = new Image(inputStream);
             image.setImage(image1);
         } catch (Exception e) {
-            e.printStackTrace();
+          System.out.println("event without image");
 
         }
         Participation p=sp.isAlreadyInEvent(userId,eventData.getId());
