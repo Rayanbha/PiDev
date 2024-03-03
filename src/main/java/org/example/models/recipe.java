@@ -1,19 +1,25 @@
 package org.example.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class recipe {
     private int idrecp;
     private String name;
     private String imageUrl;
     private String ingrs;
     private String instrs;
+    private List<review> reviews; // Collection of reviews associated with the recipe
 
     public recipe() {
+        this.reviews = new ArrayList<>();
     }
 
     public recipe(String name, String ingrs, String instrs) {
         this.name = name;
         this.ingrs = ingrs;
         this.instrs = instrs;
+        this.reviews = new ArrayList<>();
     }
 
     public recipe(int idrecp, String name, String ingrs, String instrs) {
@@ -21,6 +27,7 @@ public class recipe {
         this.name = name;
         this.ingrs = ingrs;
         this.instrs = instrs;
+        this.reviews = new ArrayList<>();
     }
 
     public recipe(String name, String imageUrl, String ingrs, String instrs) {
@@ -28,6 +35,7 @@ public class recipe {
         this.imageUrl = imageUrl;
         this.ingrs = ingrs;
         this.instrs = instrs;
+        this.reviews = new ArrayList<>();
     }
 
     public int getIdrecp() {
@@ -68,6 +76,14 @@ public class recipe {
 
     public void setInstrs(String instrs) {
         this.instrs = instrs;
+    }
+
+    public List<review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<review> reviews) {
+        this.reviews = reviews;
     }
 
     @Override

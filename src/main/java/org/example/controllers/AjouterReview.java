@@ -9,11 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
+import org.example.models.recipe;
 import org.example.models.review;
 import org.example.services.reviewService;
 
@@ -33,23 +35,38 @@ public class AjouterReview {
     private Rating rate;
 
     @FXML
+    private Label recipeNameLabel;
+
+    @FXML
     private HBox emojiContainer;
 
+    private recipe selectedRecipe;
+
     private final reviewService rs = new reviewService();
+    public void initialize() {
+        if (selectedRecipe != null) {
+            recipeNameLabel.setText(selectedRecipe.getName());
+        }
+    }
+
+    public void initData(recipe selectedRecipe) {
+        this.selectedRecipe = selectedRecipe;
+    }
 
     @FXML
     public void Browse(ActionEvent actionEvent) {
-        Stage primaryStage = new Stage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a File");
-        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+        File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             String fileUrl = selectedFile.toURI().toString();
             affichei.setText(fileUrl);
         }
     }
+
     @FXML
     public void ajouterAvis() {
+
         String commentaire = com.getText().toLowerCase();
         String image = affichei.getText();
         double ratingValue = rate.getRating();
@@ -66,13 +83,20 @@ public class AjouterReview {
             r.setCom(commentaire);
             r.setRating(String.valueOf(ratingValue));
             r.setImageUrl(image);
-            boolean ajoutReussi = rs.ajouter(r);
-            if (ajoutReussi) {
-                com.clear();
-                affichei.clear();
-                rate.setRating(0);
+
+            // Associate the review with the selected recipe
+            if (selectedRecipe != null) {
+                selectedRecipe.getReviews().add(r);
+                boolean ajoutReussi = rs.ajouter(r);
+                if (ajoutReussi) {
+                    com.clear();
+                    affichei.clear();
+                    rate.setRating(0);
+                } else {
+                    System.out.println("Erreur lors de l'ajout de l'avis dans la base de données.");
+                }
             } else {
-                System.out.println("Erreur lors de l'ajout de l'avis dans la base de données.");
+                System.out.println("Aucune recette sélectionnée pour ajouter la critique.");
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -82,6 +106,7 @@ public class AjouterReview {
             alert.showAndWait();
         }
     }
+
     @FXML
     void handleEmojiButton(ActionEvent event) {
         emojiContainer.getChildren().clear();
@@ -95,6 +120,7 @@ public class AjouterReview {
             }
         }
     }
+
     private boolean isHeartOrFaceRelated(Emoji emoji) {
         String[] keywords = {"heart", "face"};
         for (String keyword : keywords) {
@@ -104,6 +130,7 @@ public class AjouterReview {
         }
         return false;
     }
+
     @FXML
     void hezni(ActionEvent event) {
         try {
@@ -115,5 +142,6 @@ public class AjouterReview {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        // You can implement navigation back to the recipe display window here
     }
 }

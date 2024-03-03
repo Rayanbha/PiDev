@@ -3,7 +3,6 @@ package org.example.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -26,8 +24,36 @@ public class AffichageRecipe {
 
     @FXML
     private ListView<recipe> recipeLV;
+
+    @FXML
+    void addReview() {
+        recipe selectedRecipe = recipeLV.getSelectionModel().getSelectedItem();
+        if (selectedRecipe != null) {
+            openAjouterReview(selectedRecipe);
+        } else {
+            // Handle case where no recipe is selected
+        }
+    }
+
+    private void openAjouterReview(recipe selectedRecipe) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterReview.fxml"));
+            Parent root = loader.load();
+            AjouterReview controller = loader.getController();
+            controller.initData(selectedRecipe); // Pass the selected recipe to AjouterReview controller
+            Stage stage = new Stage();
+            stage.setTitle("Add Review");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @FXML
     private TextField searchField;
+
     private final recipeService rc = new recipeService();
     private ObservableList<recipe> recipesObservableList;
 
@@ -87,6 +113,20 @@ public class AffichageRecipe {
         }
     }
 
+    @FXML
+    void AddReview(ActionEvent event) {
+        recipe selectedRecipe = recipeLV.getSelectionModel().getSelectedItem();
+        if (selectedRecipe != null) {
+            showAddReviewUI(selectedRecipe);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Aucune sélection");
+            alert.setHeaderText("Aucune recette sélectionnée");
+            alert.setContentText("Veuillez sélectionner une recette pour ajouter une critique.");
+            alert.showAndWait();
+        }
+    }
+
     private void showUpdateRecipeUI(recipe selectedRecipe) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateRecipe.fxml"));
@@ -102,37 +142,43 @@ public class AffichageRecipe {
         }
     }
 
+    private void showAddReviewUI(recipe selectedRecipe) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterReview.fxml"));
+            Parent root = loader.load();
+            AjouterReview controller = loader.getController();
+            controller.initData(selectedRecipe);
+            Stage stage = new Stage();
+            stage.setTitle("Ajouter un avis");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     void refreshDisplay() {
         try {
             List<recipe> recipeList = rc.fetch();
             recipesObservableList = FXCollections.observableArrayList(recipeList);
             recipeLV.setItems(recipesObservableList);
-            recipeLV.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    System.out.println("clicked on " + recipeLV.getSelectionModel().getSelectedItem());
-                    recipe selectedItem = recipeLV.getSelectionModel().getSelectedItem();
+            recipeLV.setOnMouseClicked(event -> {
+                recipe selectedItem = recipeLV.getSelectionModel().getSelectedItem();
+                if (selectedItem != null && selectedItem.getImageUrl() != null) {
+                    Image image = new Image(selectedItem.getImageUrl());
+                    ImageView imageView = new ImageView(image);
+                    imageView.setPreserveRatio(true);
+                    imageView.isResizable();
 
-                    if (selectedItem.getImageUrl() != null) {
-                        Image image = new Image(selectedItem.getImageUrl());
-                        ImageView imageView = new ImageView(image);
-
-                        imageView.setPreserveRatio(true);
-                        imageView.isResizable();
-
-
-                        final Stage dialog = new Stage();
-                        dialog.initModality(Modality.APPLICATION_MODAL);
-                        VBox dialogVbox = new VBox(20);
-                        dialogVbox.getChildren().add(imageView);
-                        imageView.fitWidthProperty().bind(dialogVbox.widthProperty());
-                        imageView.fitHeightProperty().bind(dialogVbox.heightProperty());
-                        Scene dialogScene = new Scene(dialogVbox, 400, 300);
-                        dialog.setScene(dialogScene);
-                        dialog.showAndWait();
-
-                    }
-
+                    final Stage dialog = new Stage();
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    VBox dialogVbox = new VBox(20);
+                    dialogVbox.getChildren().add(imageView);
+                    imageView.fitWidthProperty().bind(dialogVbox.widthProperty());
+                    imageView.fitHeightProperty().bind(dialogVbox.heightProperty());
+                    Scene dialogScene = new Scene(dialogVbox, 400, 300);
+                    dialog.setScene(dialogScene);
+                    dialog.showAndWait();
                 }
             });
             recipeLV.setCellFactory(param -> new ListCell<recipe>() {
