@@ -21,7 +21,7 @@
                         <Font name="MS UI Gothic" size="46.0" />
                      </font>
                   </Label>
-                  <Button fx:id="actionButton" mnemonicParsing="false" onAction="#save" text="action">
+                  <Button fx:id="actionButton" mnemonicParsing="false" onAction="#save" style="-fx-background-color: #b79d70;" text="action" textFill="#716767">
                      <HBox.margin>
                         <Insets left="57.0" top="15.0" />
                      </HBox.margin>

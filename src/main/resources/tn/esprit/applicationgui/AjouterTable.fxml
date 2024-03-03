@@ -18,7 +18,7 @@
                   <Font name="System Bold" size="38.0" />
                </font>
             </Label>
-            <Button fx:id="ajouter" layoutX="418.0" layoutY="334.0" mnemonicParsing="false" onAction="#ajouterTable" style="-fx-background-color: #FFDE59;" text="Ajouter" />
+            <Button fx:id="ajouter" layoutX="418.0" layoutY="334.0" mnemonicParsing="false" onAction="#ajouterTable" style="-fx-background-color: #FFDE59;" text="Ajouter" textFill="#d9adad" />
             <ButtonBar layoutX="246.0" layoutY="151.0" prefHeight="40.0" prefWidth="200.0" />
             <TextField fx:id="Type_tableTF" layoutX="163.0" layoutY="227.0" promptText="Type table" style="-fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent; -fx-border-color: FFDE59;" />
             <AnchorPane prefHeight="62.0" prefWidth="530.0" style="-fx-background-color: #FFDE59;" />
