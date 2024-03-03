@@ -80,13 +80,13 @@ public class AjouterReview {
         }
         if (commentaireValide) {
             review r = new review();
-            r.setCom(commentaire);
-            r.setRating(String.valueOf(ratingValue));
-            r.setImageUrl(image);
+            r.setCom(com.getText().toLowerCase());
+            r.setImageUrl(affichei.getText());
+            r.setRating(String.valueOf(rate.getRating()));
 
             // Associate the review with the selected recipe
             if (selectedRecipe != null) {
-                selectedRecipe.getReviews().add(r);
+                r.setRecipeName(selectedRecipe.getName()); // Set the recipe name for the review
                 boolean ajoutReussi = rs.ajouter(r);
                 if (ajoutReussi) {
                     com.clear();

@@ -114,7 +114,9 @@ public class AffichageReview {
                 }
             });
             reviewListView.setCellFactory(param -> new ListCell<review>() {
+
                 @Override
+
                 protected void updateItem(review item, boolean empty) {
                     super.updateItem(item, empty);
                     if (empty || item == null) {
@@ -129,7 +131,7 @@ public class AffichageReview {
 
 
                         }
-                        setText(" - " + item.getRating() + " - " + item.getCom());
+                        setText(item.getRecipeName() + " - " + item.getRating() + " - " + item.getCom());
                         double rating = Double.parseDouble(item.getRating());
                         if (rating == 5.0) {
                             setStyle("-fx-background-color: #00FF00;");

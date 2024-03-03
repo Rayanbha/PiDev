@@ -9,11 +9,12 @@ public  class reviewService implements IService<review> {
     @Override
     public boolean ajouter(review r) {
         try {
-            String req = "INSERT INTO review (rating, com, photo) VALUES (?, ?, ?)";
+            String req = "INSERT INTO review (rating, com, photo, recipe_name) VALUES (?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setString(1, r.getRating());
             ps.setString(2, r.getCom());
             ps.setString(3, r.getImageUrl());
+            ps.setString(4, r.getRecipeName()); // Set the recipe name
             ps.executeUpdate();
             System.out.println("Review Added successfully!");
             return true;
@@ -61,12 +62,9 @@ public  class reviewService implements IService<review> {
     }
 
     @Override
-    public List<review> fetch()
-    {
-
+    public List<review> fetch() {
         List<review> reviews = new ArrayList<>();
         try {
-
             String req = "SELECT * FROM review";
             Statement st = this.connection.createStatement();
             ResultSet rs = st.executeQuery(req);
@@ -77,17 +75,13 @@ public  class reviewService implements IService<review> {
                 r.setRating(rs.getString(2));
                 r.setCom(rs.getString(3));
                 r.setImageUrl(rs.getString(4));
-
-
+                r.setRecipeName(rs.getString(5)); // Set the recipe name
                 reviews.add(r);
             }
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         return reviews;
-
     }
     public List<review> recherchereview(int Idrevw) {
         List<review> reviews = new ArrayList<>();

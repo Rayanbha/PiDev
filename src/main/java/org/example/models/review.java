@@ -6,6 +6,8 @@ public class review {
     private String com;
     private String imageUrl;
 
+    private String recipeName;
+
     public review(){
     }
 
@@ -19,6 +21,8 @@ public class review {
         this.rating = rating;
         this.com = com;
     }
+
+
 
     public int getIdrevw() {
         return idrevw;
@@ -44,6 +48,12 @@ public class review {
         this.com = com;
     }
 
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
+    }
+    public String getRecipeName() {
+        return recipeName;
+    }
     public String getImageUrl() {
         return imageUrl;
     }
