@@ -93,6 +93,33 @@ public class TableService implements IService<Table> {
         }
         return  null;
     }
+    public List<Table> recuperer(String search)  {
+
+        List<Table> tables = new ArrayList<>();
+        String req = "SELECT * FROM `table` where Type_table like ? or Emplacement like ? order by id_table ";
+        try {
+            PreparedStatement st = connection.prepareStatement(req);
+            st.setString(1,"%"+search+"%");
+            st.setString(2,"%"+search+"%");
+
+            ResultSet rs = st.executeQuery();//recupere des lignes  de la base donner
+            while (rs.next()) {
+                Table table = new Table();
+                table.setID_table(rs.getInt("id_table"));
+                table.setType_table(rs.getString("Type_table"));
+                table.setEmplacement(rs.getString("Emplacement"));
+                table.setEtat_table(rs.getString("Etat_table"));
+                table.setDescription(rs.getString("Description"));
+                table.setID_restaurant(rs.getInt("ID_restaurant"));
+                table.setisReserver(rs.getBoolean("isReserver"));
+                tables.add(table);
+            }
+            return tables;
+        }catch ( SQLException exp){
+            System.out.println(exp);
+        }
+        return  null;
+    }
 
     ///READ BY ID////////////////////////////////////////////////////////////////////////
 

@@ -3,12 +3,15 @@ package tn.esprit.applicationgui.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import tn.esprit.applicationgui.controllers.ModifierTable;
 import tn.esprit.applicationgui.models.Table;
 import tn.esprit.applicationgui.services.TableService;
 
@@ -17,16 +20,21 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class GestionTable {
+
     private final TableService tableService = new TableService();
 
     private Table selectedTable;
+
     @FXML
     private Button modifierButton_TF;
-    @FXML
-    private Button supprimerbuttton_TF;
-    @FXML
-    private ListView<Table> listviewTables;
 
+    @FXML
+    private Button supprimerbutton_TF;
+
+    @FXML
+    private TextField searchField;
+    @FXML
+    private ListView <Table> listView;
 
     @FXML
     void initialize() {
@@ -34,23 +42,6 @@ public class GestionTable {
             refreshTableList();
         } catch (SQLException e) {
             showErrorAlert("Error", e.getMessage());
-        }
-    }
-    @FXML
-    void navigateToModifyTable(ActionEvent event) {
-        if (selectedTable != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicationgui/ModifierTable.fxml"));
-            Parent root = null;
-            try {
-                root = loader.load();
-                ModifierTable controller=loader.getController();
-                controller.setTable(selectedTable);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            listviewTables.getScene().setRoot(root);
-        } else {
-            showErrorAlert("Error", "No item selected");
         }
     }
 
@@ -69,27 +60,22 @@ public class GestionTable {
     }
 
 
+
+
+
+
+
     private void refreshTableList() throws SQLException {
         List<Table> tables = tableService.recuperer();
         ObservableList<Table> observableList = FXCollections.observableList(tables);
-        listviewTables.setItems(observableList);
-        listviewTables.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        listView.setItems(observableList);
+        listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 selectedTable = newValue;
-                supprimerbuttton_TF.setDisable(false);
+                supprimerbutton_TF.setDisable(false);
                 modifierButton_TF.setDisable(false);
             }
         });
-    }
-
-    private void loadFXML(String fxmlPath) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent root = loader.load();
-            listviewTables.getScene().setRoot(root);
-        } catch (IOException e) {
-            showErrorAlert("Error", e.getMessage());
-        }
     }
 
     private void showErrorAlert(String title, String message) {
@@ -99,5 +85,38 @@ public class GestionTable {
         alert.showAndWait();
     }
 
+    @FXML
+    public void navigateToModiftTable(ActionEvent actionEvent) {
+        if (selectedTable != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicationgui/ModifierTable.fxml"));
+            Parent root = null;
+            try {
+                root = loader.load();
+                ModifierTable controller=loader.getController();
+                controller.setTable(selectedTable);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            listView.getScene().setRoot(root);
+        } else {
+            showErrorAlert("Error", "No item selected");
+        }
+    }
 
+
+    @FXML
+    public void searchAction(Event event) {
+        String searchText = searchField.getText().trim();
+        if (!searchText.isEmpty()) {
+            List<Table> searchResults = tableService.recuperer(searchText);
+            ObservableList<Table> observableList = FXCollections.observableArrayList(searchResults);
+            listView.setItems(observableList);
+
+        }else{
+            List<Table> searchResults = tableService.recuperer();
+            ObservableList<Table> observableList = FXCollections.observableArrayList(searchResults);
+            listView.setItems(observableList);
+
+        }
+    }
 }

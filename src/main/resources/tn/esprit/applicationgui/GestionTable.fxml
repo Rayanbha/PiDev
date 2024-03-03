@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicationgui.controllers.GestionTable">
    <children>
-      <TabPane layoutY="-4.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFF5EC;" tabClosingPolicy="UNAVAILABLE">
-         <tabs>
-            <Tab text="Gestion Table">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="supprimerbuttton_TF" layoutX="118.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteTable" style="-fx-background-color: FFDE59;" text="Supprimer" textFill="WHITE" />
-                        <ListView fx:id="listviewTables" layoutX="22.0" layoutY="67.0" prefHeight="258.0" prefWidth="531.0" />
-                        <Button fx:id="modifierButton_TF" layoutX="207.0" layoutY="14.0" mnemonicParsing="false" onAction="#navigateToModifyTable" style="-fx-background-color: FFDE59;" text="Modifier" textFill="WHITE" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-         </tabs>
-      </TabPane>
+      <AnchorPane layoutX="2.0" layoutY="2.0" onKeyReleased="#searchAction" prefHeight="470.0" prefWidth="759.0" style="-fx-background-color: FFF5EC;">
+         <children>
+            <Label layoutX="219.0" layoutY="26.0" prefHeight="59.0" prefWidth="321.0" text="Gestion des tables">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listView" layoutX="13.0" layoutY="99.0" prefHeight="266.0" prefWidth="733.0" style="-fx-background-color: FF5EC;" styleClass="text-field" />
+            <Button fx:id="supprimerbutton_TF" layoutX="190.0" layoutY="379.0" mnemonicParsing="false" onAction="#deleteTable" style="-fx-background-color: FFDE59;" styleClass="label2" text="Supprimer" textFill="WHITE" />
+            <TextField fx:id="searchField" layoutX="13.0" layoutY="379.0" promptText="Search..." style="-fx-background-color: FEFEC1;" />
+            <Button fx:id="modifierButton_TF" layoutX="291.0" layoutY="379.0" mnemonicParsing="false" onAction="#navigateToModiftTable" style="-fx-background-color: FFDE59;" text="Modifier" textFill="WHITE" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -21,7 +21,7 @@ public class ReservationService implements IService<Reservation> {
     ///////////////////Ajouter////////////////////////////////////////////////////////////
 
     public void ajouter(Reservation reservation) throws SQLException {
-        String req = "INSERT INTO `reservation` (ID_user, Date_reservation, Nombre_personnes, Etat_reservation, ID_table, ID_restaurant, Heure_reservation) VALUES ("
+        String req = "INSERT INTO `reservation` (ID_user, Date_reservation, Nombre_personnes, ID_table, ID_restaurant, Heure_reservation) VALUES ("
                 + reservation.getID_user() + ", '"
                 + reservation.getDate_reservation() + "', '"
                 + reservation.getNombre_personnes() + "', '"
@@ -78,7 +78,27 @@ public class ReservationService implements IService<Reservation> {
         }
         return reservations;
     }
+    public List<Reservation> recuperer(int search) throws SQLException {
+        List<Reservation> reservations = new ArrayList<>();
+        String req = "SELECT * FROM `reservation` where ID_table=? ORDER BY  Date_reservation";
 
+        PreparedStatement st = connection.prepareStatement(req);
+        st.setInt(1,search);
+        ResultSet rs = st.executeQuery();//recupere des lignes  de la base donner
+        while (rs.next()) {
+            Reservation reservation = new Reservation();
+            reservation.setID_reservation(rs.getInt("ID_reservation"));
+            reservation.setID_user(rs.getInt("ID_user"));
+            reservation.setDate_reservation(rs.getDate("Date_reservation"));
+            reservation.setNombre_personnes(rs.getInt("Nombre_personnes"));
+            reservation.setID_table(rs.getInt("ID_table"));
+            reservation.setID_restaurant(rs.getInt("ID_restaurant"));
+            reservation.setHeure_reservation(rs.getString("Heure_reservation"));
+
+            reservations.add(reservation);
+        }
+        return reservations;
+    }
     ///READ BY ID////////////////////////////////////////////////////////////////////////
     public Reservation ReadById(int ID_reservation) {
         Reservation reservation = null;
@@ -92,11 +112,10 @@ public class ReservationService implements IService<Reservation> {
                 int ID_user = resultSet.getInt("ID_user");
                 Date Date_reservation = resultSet.getDate("Date_reservation");
                 int Nombre_personnes = resultSet.getInt("Nombre_personnes");
-                String Etat_reservation = resultSet.getString("Etat_reservation");
                 int ID_table = resultSet.getInt("ID_table");
                 int ID_restaurant = resultSet.getInt("ID_restaurant");
                 String Heure_reservation = resultSet.getString("Heure_reservation");
-                reservation = new Reservation(ID_reservation, ID_user, Date_reservation, Nombre_personnes, Etat_reservation, ID_table, ID_restaurant, Heure_reservation);
+                reservation = new Reservation(ID_reservation, ID_user, Date_reservation, Nombre_personnes,ID_table, ID_restaurant, Heure_reservation);
             }
         } catch (SQLException var11) {
             System.err.println(var11);

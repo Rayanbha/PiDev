@@ -33,7 +33,7 @@ public class Main {
             java.util.Date utilDate = dateFormat.parse("2000-05-25");
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
             // Ajouter une nouvelle réservation
-            Reservation r=(new Reservation(7, 123, sqlDate, 5, "ll", 4, 99, "11:00"));
+            Reservation r=(new Reservation(7, 123, sqlDate, 5, 4, 99, "11:00"));
             // res.ajouter(r);
             // Modifier une réservation existante
             //res.modifier(r);

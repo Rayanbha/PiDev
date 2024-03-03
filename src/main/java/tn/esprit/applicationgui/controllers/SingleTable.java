@@ -7,44 +7,46 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import tn.esprit.applicationgui.models.Table;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.paint.Color;
 import tn.esprit.applicationgui.services.TableService;
 import tn.esprit.applicationgui.test.HelloApplication;
 
 
-public class SingleTable implements Initializable {
+public class SingleTable {
     @javafx.fxml.FXML
     private Label NumTableLabe;
-    @javafx.fxml.FXML
-    private Rectangle bgTable;
     private Table table;
     @javafx.fxml.FXML
     private Button actionButton;
     private TableService ts=new TableService();
+    @javafx.fxml.FXML
+    private ImageView bgTable;
 
     public void SetTable(Table table){
         this.table=table;
         NumTableLabe.setText(String.valueOf(table.getID_table()));
+        String imageType="";
         if(table.getisReserver()){
-            bgTable.setFill(Color.web("#F70000"));
+            imageType="/images/redTable.jpg";
             actionButton.setText("Fin Reservation");
-
         }else{
-            bgTable.setFill(Color.web("#0cc465"));
+            imageType="/images/greenTable.jpg";
             actionButton.setText("Reservation");
-
         }
-    }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+        String imageUrl = SingleTable.class.getResource(imageType).toExternalForm();
 
+        Image image = new Image(imageUrl);
+
+        bgTable.setImage(image);
     }
+
 
     @javafx.fxml.FXML
     public void save(ActionEvent actionEvent) {

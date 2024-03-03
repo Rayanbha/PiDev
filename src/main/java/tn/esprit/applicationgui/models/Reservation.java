@@ -4,27 +4,24 @@ import java.sql.Date;
 import java.sql.Timestamp;
 public class Reservation {
     private int ID_reservation,ID_user,Nombre_personnes,ID_table,ID_restaurant;
-    private String Etat_reservation;
     private Date Date_reservation;
     private String Heure_reservation;
 
-    public Reservation(int ID_reservation, int ID_user, Date date_reservation, int nombre_personnes, String etat_reservation, int ID_table, int ID_restaurant,String Heure_reservation) {
+    public Reservation(int ID_reservation, int ID_user, Date date_reservation, int nombre_personnes, int ID_table, int ID_restaurant,String Heure_reservation) {
         this.ID_reservation = ID_reservation;
         this.ID_user = ID_user;
         this.Date_reservation = date_reservation;
         this.Nombre_personnes = nombre_personnes;
-        this.Etat_reservation = etat_reservation;
         this.ID_table = ID_table;
         this.ID_restaurant = ID_restaurant;
         this.Heure_reservation = Heure_reservation;
     }
-    public Reservation(int ID_user, Date date_reservation, int nombre_personnes, String etat_reservation, int ID_table, int ID_restaurant,String Heure_reservation) {
+    public Reservation(int ID_user, Date date_reservation, int nombre_personnes, int ID_table, int ID_restaurant,String Heure_reservation) {
         this.ID_user = ID_user;
         this.Date_reservation = date_reservation;
         this.Nombre_personnes = nombre_personnes;
         this.ID_table = ID_table;
         this.ID_restaurant = ID_restaurant;
-        this.Etat_reservation = etat_reservation;
         this.Heure_reservation = Heure_reservation;
     }
 
