@@ -16,6 +16,11 @@
     -fx-background-color: #121748; /* Couleur de fond bleu foncé pour les boutons */
     -fx-text-fill: #ffffff; /* Couleur du texte jaune */
 }
+/* Style pour le label "like" */
+.label-like {
+    -fx-text-fill: #121748; /* Changer la couleur du texte en bleu */
+}
+
 
 /* Style pour le bouton au survol */
 .button:hover {

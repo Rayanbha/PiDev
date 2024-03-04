@@ -1,5 +1,9 @@
 package com.example.pidevv.controllers;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.text.Font;
+
 import com.example.pidevv.models.forumpost;
 import com.example.pidevv.services.CommentService;
 import com.example.pidevv.services.ForumpostService;
@@ -14,9 +18,12 @@ import javafx.scene.layout.VBox;
 import com.example.pidevv.models.comment;
 import javafx.scene.text.Text;
 
+import java.awt.*;
 import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -38,8 +45,16 @@ public class InterfaceComplete extends CommentService implements Initializable {
     }
 
     @FXML
-    @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        List<forumpost> posts = forumpostService.recuperer();
+
+        // Trier les posts par le nombre total de likes sur les commentaires (ordre décroissant)
+        Collections.sort(posts, (p1, p2) -> Integer.compare(getTotalLikes(p2), getTotalLikes(p1)));
+
+        // Afficher les posts triés
+        listView.setItems(FXCollections.observableArrayList(posts));
+
         listView.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(forumpost post, boolean empty) {
@@ -80,9 +95,27 @@ public class InterfaceComplete extends CommentService implements Initializable {
                         alert.showAndWait();
                     }
 
+                    // Tri des commentaires par le nombre de likes (ordre décroissant)
+                    post.getComments().sort(Comparator.comparingInt(comment::getLikes).reversed());
+
                     for (comment comment : post.getComments()) {
                         Text commentText = new Text("Commentaire : " + comment.getCommentContent());
                         vBox.getChildren().add(commentText);
+
+                        // Créer un label pour représenter le "like" avec le symbole "thumbs up"
+                        Label likeLabel = new Label("👍 " + comment.getLikes()); // Symbole "thumbs up" avec le nombre de likes
+                        likeLabel.setStyle("-fx-text-fill: #121748;");
+                        likeLabel.setFont(Font.font("Segoe UI Symbol", 16));// Définir la police et la taille
+
+                        vBox.getChildren().add(likeLabel);
+                        likeLabel.setOnMouseClicked(e -> {
+                            // Incrémenter le nombre de likes
+                            comment.setLikes(comment.getLikes() + 1);
+                            // Mettre à jour le texte du label avec le nouveau nombre de likes
+                            likeLabel.setText("👍 " + comment.getLikes());
+                            // Vous pouvez également mettre à jour les likes dans la base de données ou toute autre source de données
+                        });
+
                     }
 
                     setGraphic(vBox);
@@ -110,6 +143,18 @@ public class InterfaceComplete extends CommentService implements Initializable {
             alert.showAndWait();
         }
     }
+    private int getTotalLikes(forumpost post) {
+        int totalLikes = 0;
+        List<comment> comments = post.getComments();
+        if (comments != null) {
+            for (comment comment : comments) {
+                totalLikes += comment.getLikes();
+            }
+        }
+        return totalLikes;
+    }
+
+
 
     private void deleteItem(ActionEvent event) {
         forumpost selectedPost = listView.getSelectionModel().getSelectedItem();

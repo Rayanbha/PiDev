@@ -1,9 +1,6 @@
 package com.example.pidevv.controllers;
 
-
-
 import com.example.pidevv.models.comment;
-import com.example.pidevv.models.forumpost;
 import com.example.pidevv.services.CommentService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,12 +30,14 @@ public class AfficherDetails extends comment {
 
     @FXML
     private Label selectedItemLabel;
-@FXML
+
+    @FXML
     private TextArea com;
 
     @FXML
     private ImageView imv;
     private comment selectedPost;
+
     @FXML
     private TextArea commentTextArea;
 
@@ -50,46 +49,42 @@ public class AfficherDetails extends comment {
     @FXML
     private HBox emojiContainer;
 
-
     @FXML
     public void initData(String selectedItem, Image image, int postId) {
-
         selectedItemLabel.setText(selectedItem);
-
-        // Afficher l'image dans l'ImageView
         imv.setImage(image);
-
         selectedPostId = postId;
         selectedPost = new comment(selectedPostId);
-
-
     }
-
-
-
 
     @FXML
     public void saveComment(javafx.event.ActionEvent event) throws SQLException {
-
         String comment = commentTextArea.getText();
         selectedPost.setCommentContent(comment);
-        // Enregistrer le commentaire dans votre service de commentaires
+
+        // Vérification du commentaire avant de l'ajouter
+        if (verif(comment)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setContentText("Merci de ne pas utiliser de gros mots dans votre commentaire.");
+            alert.showAndWait();
+            return; // Arrêter l'exécution de la méthode si le commentaire contient des gros mots
+        }
+
+        // Ajouter le commentaire si aucun gros mot n'est détecté
         CommentService commentService = new CommentService();
         commentService.ajouter(selectedPost);
 
         Label newCommentLabel = new Label(getCommentContent());
         commentsContainer.getChildren().add(newCommentLabel);
 
-        // Vous pouvez également rafraîchir l'affichage ou afficher un message de confirmation
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Merci !");
         alert.setHeaderText(null);
         alert.setContentText("Merci pour votre commentaire !");
-
         alert.showAndWait();
 
-        // Rediriger vers l'interface InterfaceComplete
+        // Redirection vers l'interface InterfaceComplete
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceComplete.fxml"));
         Parent root;
         try {
@@ -101,9 +96,24 @@ public class AfficherDetails extends comment {
             e.printStackTrace();
         }
     }
-@FXML
-    public void handleEmojiButton(javafx.event.ActionEvent event) {
+    @FXML
+    public void sendMessage(javafx.event.ActionEvent event) {
+        String userMessage = commentTextArea.getText();
 
+        // Obtenir la réponse du modèle GPT
+        String response = ChatGPT.getResponse(userMessage);
+
+        // Afficher la réponse dans la zone de commentaire
+        Label responseLabel = new Label("ChatGPT: " + response);
+        commentsContainer.getChildren().add(responseLabel);
+
+        // Effacer le champ de saisie après avoir envoyé le message
+        commentTextArea.clear();
+    }
+
+
+    @FXML
+    public void handleEmojiButton(javafx.event.ActionEvent event) {
         emojiContainer.getChildren().clear();
 
         List<Emoji> emojis = (List<Emoji>) EmojiManager.getAll();
@@ -118,18 +128,28 @@ public class AfficherDetails extends comment {
         }
     }
 
-
     private boolean isHeartOrFaceRelated(Emoji emoji) {
-        // Définir un motif de recherche contenant les mots-clés "heart" ou "face"
         Pattern pattern = Pattern.compile("(heart|face)", Pattern.CASE_INSENSITIVE);
-
-        // Vérifier si la description de l'emoji correspond au motif
         return pattern.matcher(emoji.getDescription()).find();
     }
 
+    public boolean verif(String message) {
+        List<String> badWords = List.of("Connard", "Va te faire foutre", "Ferme ta gueule", "Bâtard",
+                "Sac à merde", "Casse-couilles", "Enfoiré", "Tête de bite",
+                "Fini à la pisse", "Pétasse", "Abruti", "Pas la lumière à tous les étages", "Cn", "Sale merde",
+                "Tocard", "Sous-merde", "Mange-merde", "Pouffiasse", "Va te faire cuire le cul","Enfoiré de chef", "Sac à merde de cuisinier", "Pétasse de serveuse", "Cul de sac à vin", "Branleur de barman", "Va te faire cuire le cul de cuisinier" ,
+                "Sale cuisine", "Service déplorable", "Repas infecte", "Plat immangeable", "Hygiène douteuse",
+
+
+                "Bercé un peu trop près du mur", "Petite bite", "Bouffon", "Branleur","bonjour", "Bonjour" , "Grognasse", "Couille molle",
+                "Branquignole", "Fils de chien", "Salaud", "cul", "fuck", "pute", "ass", "bite", "cnne");
+
+        for (String badWord : badWords) {
+            if (message.toLowerCase().contains(badWord.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
-
-
-
-
-

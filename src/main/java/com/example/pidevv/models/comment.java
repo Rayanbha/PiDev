@@ -10,6 +10,8 @@ public class comment {
 
     private int postId;
 
+    private int likes;
+
     public comment() {
     };
 
@@ -17,6 +19,20 @@ public class comment {
         this.commentId = commentId;
         this.postId = postId;
         this.commentContent = commentContent;
+    }
+
+    public comment(int commentId, String commentContent, int likes) {
+        this.commentId = commentId;
+        this.commentContent = commentContent;
+        this.likes = likes;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
     public comment(String commentContent) {
