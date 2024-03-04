@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="432.0" prefWidth="699.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomePage">
+   <children>
+      <Pane layoutX="-5.0" prefHeight="468.0" prefWidth="186.0" style="-fx-background-color: FFDE59;">
+         <children>
+            <Label layoutX="49.0" layoutY="164.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="wallet" layoutX="48.0" layoutY="203.0" onMouseClicked="#wallet" text="Wallet" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Pane layoutY="100.0" prefHeight="43.0" prefWidth="180.0" style="-fx-background-color: white; -fx-border-radius: 10;" />
+            <Label fx:id="acceuil" layoutX="49.0" layoutY="105.0" onMouseClicked="#acceuil" prefHeight="32.0" prefWidth="82.0" text="Acceuil">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="291.0" fitWidth="193.0" layoutX="23.0" layoutY="-101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/422538747_1530196224445183_7394585416044135593_n.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="restaurant" layoutX="49.0" layoutY="245.0" onMouseClicked="#restaurant" prefHeight="32.0" prefWidth="107.0" text="Restaurant" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="booking" layoutX="53.0" layoutY="291.0" onMouseClicked="#booking" prefHeight="32.0" prefWidth="107.0" text="Booking" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="recette" layoutX="55.0" layoutY="341.0" onMouseClicked="#recette" prefHeight="32.0" prefWidth="107.0" text="Recette" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="forum" layoutX="54.0" layoutY="386.0" onMouseClicked="#forum" prefHeight="32.0" prefWidth="107.0" text="Forum" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="compte" layoutX="46.0" layoutY="158.0" onMouseClicked="#compte" text="Compte" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="compteB" layoutX="224.0" layoutY="74.0" onMouseClicked="#CompteB" prefHeight="116.0" prefWidth="126.0" style="-fx-background-color: lightgrey; -fx-background-radius: 20;">
+         <children>
+            <ImageView fitHeight="57.0" fitWidth="55.0" layoutX="36.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/user.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="28.0" layoutY="14.0" text="Compte">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="ForumB" layoutX="390.0" layoutY="74.0" onMouseClicked="#ForumB" prefHeight="116.0" prefWidth="126.0" style="-fx-background-color: lightgrey; -fx-background-radius: 20;">
+         <children>
+            <ImageView fitHeight="62.0" fitWidth="61.0" layoutX="34.0" layoutY="51.0" onMousePressed="#ForumB" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/discussion.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="32.0" layoutY="13.0" text="Forum">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="RecetteB" layoutX="547.0" layoutY="74.0" onMouseClicked="#RecetteB" prefHeight="116.0" prefWidth="126.0" style="-fx-background-color: lightgrey; -fx-background-radius: 20;">
+         <children>
+            <ImageView fitHeight="61.0" fitWidth="70.0" layoutX="33.0" layoutY="50.0" onMousePressed="#RecetteB" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/recipe-book.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="26.0" layoutY="9.0" text="Recette">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="restoB" layoutX="224.0" layoutY="261.0" onMouseClicked="#RestoB" prefHeight="116.0" prefWidth="126.0" style="-fx-background-color: lightgrey; -fx-background-radius: 20;">
+         <children>
+            <ImageView fitHeight="67.0" fitWidth="70.0" layoutX="32.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/restaurant%20(1).png" />
+               </image>
+            </ImageView>
+            <Label layoutX="17.0" layoutY="5.0" text="Restaurant">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="bookingB" layoutX="390.0" layoutY="261.0" onMouseClicked="#bookingB" prefHeight="116.0" prefWidth="126.0" style="-fx-background-color: lightgrey; -fx-background-radius: 20;">
+         <children>
+            <ImageView fitHeight="75.0" fitWidth="70.0" layoutX="29.0" layoutY="45.0" onMousePressed="#BookingB" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/booking%20(1).png" />
+               </image>
+            </ImageView>
+            <Label layoutX="22.0" layoutY="7.0" text="Booking">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="EventB" layoutX="547.0" layoutY="261.0" onMouseClicked="#EventB" prefHeight="116.0" prefWidth="126.0" style="-fx-background-color: lightgrey; -fx-background-radius: 20;">
+         <children>
+            <ImageView fitHeight="61.0" fitWidth="67.0" layoutX="33.0" layoutY="38.0" onMouseClicked="#EventB" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/calendar-star.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="17.0" layoutY="8.0" text="Evenement">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

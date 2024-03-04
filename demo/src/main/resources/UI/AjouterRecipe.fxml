@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="464.0" prefWidth="677.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Reviews.AjouterRecipe">
+   <children>
+      <AnchorPane prefHeight="74.0" prefWidth="573.0" style="-fx-background-color: #FFDE59;" />
+      <Label layoutX="159.0" layoutY="101.0" prefHeight="52.0" prefWidth="358.0" text="        Ajout Recette" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Nova Cond Bold" size="41.0" />
+         </font>
+      </Label>
+
+      <TextField fx:id="txtin" layoutX="46.0" layoutY="192.0" promptText="Exp : Lablebi" />
+      <TextField fx:id="txting" layoutX="45.0" layoutY="315.0" promptText="Exp : 100gr Farine / 50gr Fromage" />
+      <TextField fx:id="txtrect" alignment="TOP_LEFT" layoutX="271.0" layoutY="206.0" prefHeight="124.0" prefWidth="322.0" promptText="Chauffer le four à 150C" />
+      <Label layoutX="84.0" layoutY="168.0" text="NOM RECETTE" />
+      <Label layoutX="85.0" layoutY="290.0" text="INGRÉDIENTS" />
+      <Label layoutX="421.0" layoutY="168.0" text="INSTRUCTIONS" />
+      <Button layoutX="289.0" layoutY="399.0" mnemonicParsing="false" onAction="#boutouna" prefHeight="38.0" prefWidth="99.0" style="-fx-background-color: #FFDE59;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="241.0" fitWidth="107.0" layoutX="570.0" layoutY="-79.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/ben turkia/Downloads/logojava.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="imagemt" layoutX="45.0" layoutY="255.0" />
+      <Label layoutX="101.0" layoutY="232.0" text="IMAGE" />
+      <Button fx:id="imagem" layoutX="204.0" layoutY="255.0" mnemonicParsing="false" onAction="#Browse" text="Image">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="listet" layoutX="554.0" layoutY="399.0" mnemonicParsing="false" onAction="#naviguer" prefHeight="38.0" prefWidth="99.0" style="-fx-background-color: #FFDE59;" text="Liste" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

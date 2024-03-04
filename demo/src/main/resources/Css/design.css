@@ -1,0 +1,8 @@
+.label:hover {
+    -fx-text-fill: blue;
+    -fx-underline: true; /* Underline when hovered */
+
+}
+.label {
+    -fx-text-fill: #ffde59; /* Default text color */
+}

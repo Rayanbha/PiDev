@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="150" prefWidth="200" style="-fx-background-color: FFF5EC;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Restaurant.RestaurantCardController">
+    <ImageView fx:id="restaurantImageView" fitHeight="100" fitWidth="100" layoutX="14.0" layoutY="25.0" preserveRatio="true">
+    </ImageView>
+    <Label fx:id="restaurantNameLabel" layoutX="120.0" layoutY="34.0" text="Restaurant Name" />
+    <Label fx:id="restaurantLocationLabel" layoutX="120.0" layoutY="62.0" text="Location" />
+    <Label fx:id="restaurantCategoryLabel" layoutX="120.0" layoutY="90.0" text="Category" />
+</AnchorPane>

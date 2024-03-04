@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="600.0" prefWidth="751.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Reviews.AffichageRecipe">
+    <children>
+        <ListView fx:id="recipeLV" layoutX="75.0" layoutY="144.0" prefHeight="311.0" prefWidth="765.0" />
+        <Label layoutX="428.0" layoutY="106.0" text="Recipes">
+            <font>
+                <Font name="System Bold Italic" size="17.0" />
+            </font>
+        </Label>
+        <Button fx:id="Delete" layoutX="605.0" layoutY="491.0" mnemonicParsing="false" onAction="#Delete" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #FFDE59;" text="Delete" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Button>
+        <Button fx:id="Update" layoutX="200.0" layoutY="491.0" mnemonicParsing="false" onAction="#Update" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #FFDE59;" text="Update" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Button>
+        <AnchorPane prefHeight="82.0" prefWidth="806.0" style="-fx-background-color: #FFDE59;" />
+        <ImageView fitHeight="237.0" fitWidth="111.0" layoutX="806.0" layoutY="-77.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="C:\Users\Rayane\Downloads\422538747_1530196224445183_7394585416044135593_n.png" />            </image>
+        </ImageView>
+        <TextField fx:id="searchField" layoutX="75.0" layoutY="106.0" prefHeight="25.0" prefWidth="200.0" onKeyReleased="#handleSearch" promptText="Search Recipe" />
+
+    </children>
+</AnchorPane>

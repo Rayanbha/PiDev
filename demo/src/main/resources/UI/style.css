@@ -1,0 +1,29 @@
+.label {
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+}
+
+.text-field {
+    -fx-prompt-text-fill: black;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+.combo-box {
+    -fx-prompt-text-fill: black;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: black;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+.button:pressed {
+    -fx-background-color: #0d5f0d;
+}

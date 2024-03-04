@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.Confirmation">
+   <children>
+      <Label layoutX="113.0" layoutY="81.0" text="Saisie Le Code De Confirmation" textFill="#ffde59">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <TextField fx:id="code" alignment="CENTER" layoutX="206.0" layoutY="160.0" prefHeight="27.0" prefWidth="188.0" promptText="Code " style="-fx-background-color: transparent; -fx-border-color: ffde59; -fx-border-width: 0px 0px 2px 0px;" />
+      <Button fx:id="Confirmation" layoutX="257.0" layoutY="216.0" mnemonicParsing="false" onAction="#Confirmation" style="-fx-background-color: ffde59;" text="Confirmation" textFill="WHITE" />
+   </children>
+</AnchorPane>
