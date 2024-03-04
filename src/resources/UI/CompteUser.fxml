@@ -11,35 +11,10 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="in" prefHeight="498.0" prefWidth="752.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CompteUser">
+<AnchorPane fx:id="in" prefHeight="498.0" prefWidth="752.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.CompteUser">
     <children>
         <Group layoutX="191.0" layoutY="33.0" />
-        <ImageView fitHeight="323.0" fitWidth="136.0" layoutX="602.0" layoutY="-100.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../../../Downloads/422538747_1530196224445183_7394585416044135593_n.png" />
-            </image>
-        </ImageView>
-        <Pane layoutX="-9.0" prefHeight="498.0" prefWidth="180.0" style="-fx-background-color: FFDE59;">
-            <children>
-                <Label layoutX="49.0" layoutY="164.0">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Label>
-                <Label fx:id="wallet" layoutX="53.0" layoutY="156.0" onMouseClicked="#wallet" text="Wallet" textFill="WHITE">
-                    <font>
-                        <Font size="22.0" />
-                    </font>
-                </Label>
-                <Pane layoutY="100.0" prefHeight="43.0" prefWidth="180.0" style="-fx-background-color: white; -fx-border-radius: 10;" />
-                <Label fx:id="Compte" layoutX="49.0" layoutY="105.0" prefHeight="32.0" prefWidth="82.0" text="Compte">
-                    <font>
-                        <Font size="22.0" />
-                    </font>
-                </Label>
-            </children>
-        </Pane>
-        <Pane layoutX="212.0" layoutY="90.0" prefHeight="391.0" prefWidth="352.0" style="-fx-background-color: #F0F8FF;">
+        <Pane layoutX="247.0" layoutY="83.0" prefHeight="391.0" prefWidth="352.0" style="-fx-background-color: #F0F8FF;">
             <children>
                 <TextField fx:id="PrenomTF" alignment="CENTER" disable="true" layoutX="168.0" layoutY="71.0" prefHeight="32.0" prefWidth="149.0" promptText="Prenom" style="-fx-background-color: transparent; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
                 <TextField fx:id="NomTF" alignment="CENTER" disable="true" layoutX="168.0" layoutY="139.0" prefHeight="32.0" prefWidth="149.0" promptText="Nom" style="-fx-background-color: transparent; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
@@ -73,7 +48,7 @@
             </Label>
             </children>
         </Pane>
-        <Circle fx:id="circle" fill="#bfbfbf" layoutX="388.0" layoutY="78.0" radius="49.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
+        <Circle fx:id="circle" fill="#bfbfbf" layoutX="423.0" layoutY="71.0" radius="49.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
         <Label contentDisplay="TOP" layoutX="197.0" layoutY="29.0" text="Profile" textAlignment="CENTER" textOverrun="CLIP">
             <font>
                 <Font name="Arial Black" size="24.0" />
@@ -84,5 +59,55 @@
                 <Font size="14.0" />
             </font>
         </Button>
+      <Pane layoutX="-13.0" layoutY="-5.0" prefHeight="514.0" prefWidth="204.0" style="-fx-background-color: FFDE59;">
+         <children>
+            <Label layoutX="49.0" layoutY="164.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="wallet" layoutX="48.0" layoutY="203.0" onMouseClicked="#wallet" text="Wallet" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Pane layoutY="158.0" prefHeight="43.0" prefWidth="180.0" style="-fx-background-color: white; -fx-border-radius: 10;" />
+            <Label fx:id="acceuil" layoutX="49.0" layoutY="105.0" onMouseClicked="#acceuil" prefHeight="32.0" prefWidth="82.0" text="Acceuil" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="291.0" fitWidth="193.0" layoutX="33.0" layoutY="-100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/422538747_1530196224445183_7394585416044135593_n.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="restaurant" layoutX="49.0" layoutY="245.0" onMouseClicked="#restaurant" prefHeight="32.0" prefWidth="107.0" text="Restaurant" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="recette" layoutX="50.0" layoutY="297.0" onMouseClicked="#recette" prefHeight="32.0" prefWidth="107.0" text="Recette" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="forum" layoutX="49.0" layoutY="342.0" onMouseClicked="#forum" prefHeight="32.0" prefWidth="107.0" text="Forum" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="compte" layoutX="47.0" layoutY="163.0" onMouseClicked="#compte" text="Compte">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="event" layoutX="50.0" layoutY="379.0" onMouseClicked="#event" prefHeight="32.0" prefWidth="107.0" text="Event" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
     </children>
 </AnchorPane>

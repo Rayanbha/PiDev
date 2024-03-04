@@ -15,7 +15,7 @@ public class UserService implements CRUD<user> {
     @Override
     public void add(user user ) {
 
-        String req="INSERT INTO `user`(`role`,`prenom`, `nom`, `email`, `cin`, `pwd`,`hashedpwd`,`salt`) VALUES ('"+user.getRole() +"','"+user.getPrenom()+"','"+user.getNom()+"','"+user.getEmail()+"','"+user.getCin()+"','"+user.getPwd()+"','"+user.getHashedpwd()+"','"+user.getSalt()+"')";
+        String req="INSERT INTO `user`(`role`,`prenom`, `nom`, `email`, `cin`, `pwd`,`hashedpwd`,`salt`,`status`) VALUES ('"+user.getRole() +"','"+user.getPrenom()+"','"+user.getNom()+"','"+user.getEmail()+"','"+user.getCin()+"','"+user.getPwd()+"','"+user.getHashedpwd()+"','"+user.getSalt()+"','"+user.isStatus()+"')";
         try {
             Statement st=cnx.createStatement();
             st.executeUpdate(req);
@@ -59,6 +59,7 @@ public class UserService implements CRUD<user> {
                 s.setPwd(res.getString("pwd"));
                 s.setHashedpwd(res.getString("hashedpwd"));
                 s.setSalt(res.getString("salt"));
+                s.setStatus(res.getInt("status"));
 
 
                 users.add(s);
@@ -73,7 +74,7 @@ public class UserService implements CRUD<user> {
     public boolean update(user user)
     {
         try {
-            String req="UPDATE `user` SET `prenom`='"+user.getPrenom()+"',`nom`='"+user.getNom()+"',`email`='"+user.getEmail()+"',`cin`='"+user.getCin()+"',`pwd`='"+user.getPwd()+"',`hashedpwd` ='"+user.getHashedpwd()+"',`salt`='"+user.getSalt()+"' WHERE `cin`='"+user.getCin()+"'";
+            String req="UPDATE `user` SET `prenom`='"+user.getPrenom()+"',`nom`='"+user.getNom()+"',`email`='"+user.getEmail()+"',`cin`='"+user.getCin()+"',`pwd`='"+user.getPwd()+"',`hashedpwd` ='"+user.getHashedpwd()+"',`salt`='"+user.getSalt()+"',`status`='"+user.isStatus()+"' WHERE `cin`='"+user.getCin()+"'";
           /*  Statement state=cnx.createStatement();
             state.executeUpdate(req);*/
             PreparedStatement ps=cnx.prepareStatement(req);
@@ -104,6 +105,8 @@ public class UserService implements CRUD<user> {
                 s.setPwd(res.getString("pwd"));
                 s.setHashedpwd(res.getString("hashedpwd"));
                 s.setSalt(res.getString("salt"));
+                s.setStatus(res.getInt("status"));
+
 
 
                 System.out.println("Found");
@@ -134,6 +137,8 @@ public class UserService implements CRUD<user> {
                 s.setPwd(res.getString("pwd"));
                 s.setHashedpwd(res.getString("hashedpwd"));
                 s.setSalt(res.getString("salt"));
+                s.setStatus(res.getInt("status"));
+
 
 
                 System.out.println("Found");
@@ -143,6 +148,37 @@ public class UserService implements CRUD<user> {
         }
 
         return s;
+    }
+
+    public boolean banuser(user user)
+    {
+
+        try {
+            String req="UPDATE `user` SET `status`='"+0+"' WHERE `cin`='"+user.getCin()+"'";
+          /*  Statement state=cnx.createStatement();
+            state.executeUpdate(req);*/
+            PreparedStatement ps=cnx.prepareStatement(req);
+            ps.executeUpdate();
+            System.out.println("banned");
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean unbanuser(user user)
+    {
+
+        try {
+            String req="UPDATE `user` SET `status`='"+1+"' WHERE `cin`='"+user.getCin()+"'";
+          /*  Statement state=cnx.createStatement();
+            state.executeUpdate(req);*/
+            PreparedStatement ps=cnx.prepareStatement(req);
+            ps.executeUpdate();
+            System.out.println("unbanned");
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

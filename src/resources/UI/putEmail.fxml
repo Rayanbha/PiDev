@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PutEmail">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.PutEmail">
    <children>
       <Label layoutX="216.0" layoutY="176.0" text="Saisie Votre Email">
          <font>

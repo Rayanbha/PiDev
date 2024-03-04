@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="351.0" prefWidth="616.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Restaurant.ListeProduit">
+    <ImageView fitHeight="406.0" fitWidth="616.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+        </image>
+    </ImageView>
+    <ListView fx:id="productListView" layoutX="31.0" layoutY="74.0" prefHeight="257.0" prefWidth="558.0" />
+
+    <Button layoutX="207.0" layoutY="14.0" onAction="#refreshList" text="Refresh" />
+    <Button layoutX="138.0" layoutY="14.0" onAction="#goToAddPage" prefHeight="25.0" prefWidth="56.0" text="Add" />
+    <Button layoutX="50.0" layoutY="14.0" onAction="#GoToRestaurant" text="Restaurant" />
+    <Button layoutX="272.0" layoutY="14.0" onAction="#OnExport" prefHeight="25.0" prefWidth="79.0" text="Export" />
+    <Button layoutX="357.0" layoutY="14.0" onAction="#OnSort" prefHeight="25.0" prefWidth="79.0" text="Sort" />
+    <Button layoutX="442.0" layoutY="14.0" onAction="#OnStats" prefHeight="25.0" prefWidth="79.0" text="Stats" />
+</AnchorPane>

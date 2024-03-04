@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="152.0" prefWidth="165.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Reservation.SingleTable">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="255.0">
+         <children>
+            <ImageView fx:id="bgTable" fitHeight="121.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="NumTableLabe" text="ok4" textFill="#716767">
+                     <font>
+                        <Font name="MS UI Gothic" size="46.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="actionButton" mnemonicParsing="false" onAction="#save" style="-fx-background-color: #b79d70;" text="action" textFill="#716767">
+                     <HBox.margin>
+                        <Insets left="57.0" top="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

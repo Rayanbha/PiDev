@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="524.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Reservation.AjouterReservation">
+   <children>
+      <Label layoutX="115.0" layoutY="81.0" prefHeight="55.0" prefWidth="408.0" text="Ajouter  Reservation">
+         <font>
+            <Font name="System Bold" size="38.0" />
+         </font>
+      </Label>
+      <Button fx:id="ajout" layoutX="418.0" layoutY="334.0" mnemonicParsing="false" onAction="#ajouterReservation" style="-fx-background-color: #FFDE59;" text="Ajouter" />
+      <TextField fx:id="Nombre_personnesTF" layoutX="31.0" layoutY="206.0" promptText="Nombre de personnes" style="-fx-background-color: transparent; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
+      <TextField fx:id="heure_reservationTF" layoutX="296.0" layoutY="206.0" promptText="Heure de reservation" style="-fx-background-color: transparent; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
+      <DatePicker fx:id="date_reservationTF" layoutX="27.0" layoutY="259.0" promptText="Date de reservation" style="-fx-background-color: transparent; -fx-background-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
+      <AnchorPane layoutX="-4.0" prefHeight="62.0" prefWidth="618.0" style="-fx-background-color: #FFDE59;" />
+      <ImageView fitHeight="201.0" fitWidth="89.0" layoutX="523.0" layoutY="-71.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/DELL/Downloads/logo.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="ID_tableTF" focusTraversable="false" layoutX="31.0" layoutY="157.0" promptText="Num table" style="-fx-background-color: TRANSPARENT; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
+
+   </children>
+</AnchorPane>

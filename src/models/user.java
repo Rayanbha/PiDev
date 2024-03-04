@@ -11,11 +11,12 @@ public class user {
     private String pwd;
     private String hashedpwd;
     private String salt;
+    private int status;
 
     public user() {
     }
 
-    public user(int id,String role, String prenom, String nom, String email, int cin, String pwd,String hashedpwd,String salt) {
+    public user(int id,String role, String prenom, String nom, String email, int cin, String pwd,String hashedpwd,String salt,int status) {
         this.id = id;
         this.role=role;
         Prenom = prenom;
@@ -25,9 +26,10 @@ public class user {
         this.pwd = pwd;
         this.hashedpwd=hashedpwd;
         this.salt=salt;
+        this.status=status;
     }
 
-    public user(String role,String prenom, String nom, String email, int cin, String pwd,String hashedpwd,String salt) {
+    public user(String role,String prenom, String nom, String email, int cin, String pwd,String hashedpwd,String salt,int status) {
         this.role=role;
         Prenom = prenom;
         this.nom = nom;
@@ -36,8 +38,9 @@ public class user {
         this.pwd = pwd;
         this.hashedpwd=hashedpwd;
         this.salt=salt;
+        this.status=status;
     }
-    public user(int id,String role, String prenom, String nom, String email, int cin, String pwd) {
+    public user(int id,String role, String prenom, String nom, String email, int cin, String pwd,int status) {
         this.id = id;
         this.role=role;
         Prenom = prenom;
@@ -45,9 +48,10 @@ public class user {
         this.email = email;
         this.cin = cin;
         this.pwd = pwd;
+        this.status=status;
     }
 
-    public user(String role,String prenom, String nom, String email, int cin, String pwd) {
+    public user(String role,String prenom, String nom, String email, int cin, String pwd,int status) {
         this.role=role;
         Prenom = prenom;
         this.nom = nom;
@@ -55,6 +59,15 @@ public class user {
         this.cin = cin;
         this.pwd = pwd;
         this.hashedpwd=hashedpwd;
+        this.status=status;
+    }
+
+    public int isStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getId() {

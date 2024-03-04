@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="508.0" prefWidth="715.0" style="-fx-background-color: FFF5EC;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Restaurant.ListeRestaurant">
+    <ListView fx:id="restaurantListView" layoutX="23.0" layoutY="61.0" prefHeight="439.0" prefWidth="669.0" style="-fx-background-color: FF5EC;">
+    </ListView>
+    <Button layoutX="645.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClick" style="-fx-background-color: FFDE59;" text="Refresh " textFill="WHITE" />
+    <Button layoutX="84.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAjouter" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: FFDE59;" text="Ajouter" />
+    <Button layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToProduit" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: FFDE59;" text="Produits" />
+    <TextField fx:id="searchField" layoutX="477.0" layoutY="14.0" promptText="Search..." style="-fx-background-color: FEFEC1;" />
+    <Button layoutX="155.0" layoutY="14.0" mnemonicParsing="false" onAction="#onSort" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: FFDE59;" text="Sort" />
+    <Button layoutX="226.0" layoutY="14.0" mnemonicParsing="false" onAction="#onStats" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: FFDE59;" text="Stats" textFill="WHITE" />
+   <Button layoutX="378.0" layoutY="14.0" mnemonicParsing="false" onAction="#onRecherche" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: FFDE59;" text="Recherche" textFill="WHITE" />
+   <Button layoutX="301.0" layoutY="14.0" mnemonicParsing="false" onAction="#PrintPdf" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: FFDE59;" text="Print" textFill="WHITE" />
+</AnchorPane>

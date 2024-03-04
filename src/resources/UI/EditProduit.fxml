@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="297.0" prefWidth="396.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Restaurant.EditProduit">
+   <ImageView fitHeight="326.0" fitWidth="532.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="/Images/Produit_BG.jpg" />
+      </image>
+   </ImageView>
+
+    <Label layoutX="64.0" layoutY="14.0" prefHeight="27.0" prefWidth="149.0" text="Edit Product">
+      <font>
+         <Font name="Arial Narrow Bold" size="36.0" />
+      </font></Label>
+    <TextField fx:id="nameField" layoutX="113.0" layoutY="68.0" promptText="Name" />
+    <TextField fx:id="priceField" layoutX="113.0" layoutY="112.0" promptText="Price" />
+    <TextField fx:id="categoryField" layoutX="113.0" layoutY="157.0" promptText="Category" />
+    <ComboBox fx:id="restaurantComboBox" layoutX="113.0" layoutY="201.0" prefHeight="25.0" prefWidth="149.0" promptText="Select Restaurant" />
+    <Button fx:id="saveButton" layoutX="225.0" layoutY="239.0" mnemonicParsing="false" onAction="#onSave" text="Save" />
+    <Button fx:id="cancelButton" layoutX="314.0" layoutY="239.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+
+</AnchorPane>

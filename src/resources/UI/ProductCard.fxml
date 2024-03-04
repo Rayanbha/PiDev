@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="150" prefWidth="200" style="-fx-background-color: FFDE59; -fx-background-radius: 10; -fx-border-color: #ddd; -fx-border-radius: 10; -fx-border-width: 1px;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Restaurant.ProductCardController">
+
+    <!-- Product Name -->
+    <Label layoutX="14.0" layoutY="14.0" style="-fx-font-weight: bold;" text="Product Name" />
+    <Label fx:id="productNameLabel" layoutX="14.0" layoutY="30.0" style="-fx-font-weight: normal;" text="" />
+
+    <!-- Price -->
+    <Label layoutX="14.0" layoutY="50.0" style="-fx-font-weight: bold;" text="Price:" />
+    <Label fx:id="productPriceLabel" layoutX="14.0" layoutY="66.0" style="-fx-font-weight: normal;" text="" />
+
+    <!-- Category -->
+    <Label layoutX="14.0" layoutY="86.0" style="-fx-font-weight: bold;" text="Category:" />
+    <Label fx:id="productCategoryLabel" layoutX="14.0" layoutY="102.0" style="-fx-font-weight: normal;" text="" />
+</AnchorPane>

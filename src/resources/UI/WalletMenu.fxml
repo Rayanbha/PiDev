@@ -5,44 +5,76 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="455.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WalletMenu">
+<AnchorPane prefHeight="455.0" prefWidth="600.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.WalletMenu">
     <children>
-        <Label layoutX="214.0" layoutY="36.0" prefHeight="62.0" prefWidth="133.0" text="Wallet">
+        <Label layoutX="234.0" layoutY="61.0" prefHeight="62.0" prefWidth="133.0" text="Wallet">
             <font>
                 <Font size="42.0" />
             </font>
         </Label>
-        <TextField fx:id="balanceTF" alignment="CENTER" editable="false" layoutX="234.0" layoutY="151.0" prefHeight="25.0" prefWidth="133.0" promptText="Balance" />
-        <Label layoutX="234.0" layoutY="124.0" prefHeight="17.0" prefWidth="57.0" text="Balance" />
+        <TextField fx:id="balanceTF" alignment="CENTER" editable="false" layoutX="234.0" layoutY="150.0" prefHeight="25.0" prefWidth="133.0" promptText="Balance" style="-fx-background-color: transparent; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
         <ListView fx:id="transactionLV" layoutX="200.0" layoutY="224.0" prefHeight="200.0" prefWidth="388.0" />
-      <Button fx:id="AddWallet" layoutX="453.0" layoutY="67.0" mnemonicParsing="false" onAction="#AddWallet" prefHeight="25.0" prefWidth="116.0" text="Ajouter Wallet" />
-      <ChoiceBox fx:id="Walletnumber" layoutX="419.0" layoutY="151.0" prefWidth="150.0" />
-      <Button fx:id="ChangeBal" layoutX="419.0" layoutY="189.0" mnemonicParsing="false" onAction="#ChangeBal" prefHeight="25.0" prefWidth="150.0" text="Changer Balance" />
-      <TextField fx:id="newBalTF" alignment="CENTER" layoutX="234.0" layoutY="189.0" prefHeight="25.0" prefWidth="133.0" promptText="Montant a Ajouter" />
-      <Button fx:id="DeleteWallet" layoutX="453.0" layoutY="112.0" mnemonicParsing="false" onAction="#DeleteWallet" prefHeight="25.0" prefWidth="116.0" text="Supprimer Wallet" />
-      <Pane layoutX="-8.0" prefHeight="508.0" prefWidth="180.0" style="-fx-background-color: FFDE59;">
+      <Button fx:id="AddWallet" layoutX="453.0" layoutY="67.0" mnemonicParsing="false" onAction="#AddWallet" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: FFDE59;" text="Ajouter Wallet" textFill="WHITE" />
+      <ChoiceBox fx:id="Walletnumber" layoutX="419.0" layoutY="151.0" prefWidth="150.0" style="-fx-background-color: FFDE59;" />
+      <Button fx:id="ChangeBal" layoutX="419.0" layoutY="189.0" mnemonicParsing="false" onAction="#ChangeBal" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: FFDE59;" text="Changer Balance" textFill="WHITE" />
+      <TextField fx:id="newBalTF" alignment="CENTER" layoutX="234.0" layoutY="189.0" prefHeight="25.0" prefWidth="133.0" promptText="Montant a Ajouter" style="-fx-background-color: transparent; -fx-border-color: FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
+      <Button fx:id="DeleteWallet" layoutX="453.0" layoutY="112.0" mnemonicParsing="false" onAction="#DeleteWallet" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: FFDE59;" text="Supprimer Wallet" textFill="WHITE" />
+      <Button fx:id="transaction" layoutX="497.0" layoutY="434.0" mnemonicParsing="false" onAction="#transaction" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: FFDE59;" text="Transaction" textFill="WHITE" />
+      <Pane layoutX="-3.0" prefHeight="478.0" prefWidth="194.0" style="-fx-background-color: FFDE59;">
          <children>
-            <Label fx:id="Compte" layoutX="55.0" layoutY="71.0" onMouseClicked="#Compte" prefHeight="32.0" prefWidth="82.0" text="Compte" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
             <Label layoutX="49.0" layoutY="164.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="wallet" layoutX="59.0" layoutY="122.0" onMouseClicked="#wallet" text="Wallet" textFill="WHITE">
+            <Pane layoutX="1.0" layoutY="198.0" prefHeight="43.0" prefWidth="186.0" style="-fx-background-color: white; -fx-border-radius: 10;" />
+            <Label fx:id="acceuil" layoutX="49.0" layoutY="105.0" onMouseClicked="#acceuil" prefHeight="32.0" prefWidth="82.0" text="Acceuil" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="291.0" fitWidth="193.0" layoutX="23.0" layoutY="-101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/422538747_1530196224445183_7394585416044135593_n.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="restaurant" layoutX="49.0" layoutY="245.0" onMouseClicked="#restaurant" prefHeight="32.0" prefWidth="107.0" text="Restaurant" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="recette" layoutX="50.0" layoutY="297.0" onMouseClicked="#recette" prefHeight="32.0" prefWidth="107.0" text="Recette" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="forum" layoutX="49.0" layoutY="342.0" onMouseClicked="#forum" prefHeight="32.0" prefWidth="107.0" text="Forum" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="wallet" layoutX="48.0" layoutY="203.0" onMouseClicked="#wallet" text="Wallet">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="compte" layoutX="46.0" layoutY="153.0" onMouseClicked="#compte" text="Compte" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="event" layoutX="50.0" layoutY="382.0" onMouseClicked="#event" prefHeight="32.0" prefWidth="107.0" text="Event" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Button fx:id="transaction" layoutX="497.0" layoutY="434.0" mnemonicParsing="false" onAction="#transaction" prefHeight="25.0" prefWidth="92.0" text="Transaction" />
     </children>
 </AnchorPane>

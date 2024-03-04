@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Confirmation">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFF5EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.Confirmation">
    <children>
       <Label layoutX="113.0" layoutY="81.0" text="Saisie Le Code De Confirmation" textFill="#ffde59">
          <font>

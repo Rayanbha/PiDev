@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Connectez">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.Connectez">
     <right>
         <AnchorPane prefHeight="500.0" prefWidth="365.0" style="-fx-background-color: FFF5EC;" BorderPane.alignment="CENTER">
             <children>
@@ -26,22 +26,23 @@
             <FontAwesomeIconView fill="#ffde59" glyphName="USER" layoutX="146.0" layoutY="128.0" size="100" text="" />
             <PasswordField fx:id="pwdTF" alignment="CENTER" layoutX="103.0" layoutY="279.0" prefHeight="27.0" prefWidth="158.0" promptText="Mot De Passe" style="-fx-background-color: transparent; -fx-border-color: #FFDE59; -fx-border-width: 0px 0px 2px 0px;" />
             <Label fx:id="forgetz" layoutX="128.0" layoutY="432.0" onMouseClicked="#forgetpwd" onMouseEntered="#hover" onMouseExited="#hovere" stylesheets="@../Css/design.css" text="Mot De passe oublié?" textFill="#ffde59" />
+            <Label fx:id="inscrire" layoutX="158.0" layoutY="173.0" onMouseClicked="#inscrire" onMouseEntered="#hoverInscrire" onMouseExited="#hovereInscrire" stylesheets="@../Css/design.css" text="S'inscrire" textFill="#ffde59" />
             </children>
         </AnchorPane>
     </right>
     <center>
         <AnchorPane prefHeight="500.0" prefWidth="316.0" style="-fx-background-color: FFDE59;" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fitHeight="218.0" fitWidth="207.0" layoutX="64.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../../../Downloads/1.png" />
-                    </image>
-                </ImageView>
-                <Text layoutX="123.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kool Art">
+                <Text fill="WHITE" layoutX="60.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kool Art" wrappingWidth="233.990234375">
                     <font>
-                        <Font size="25.0" />
+                        <Font name="Monospaced Regular" size="46.0" />
                     </font>
                 </Text>
+            <ImageView fitHeight="322.0" fitWidth="294.0" layoutX="21.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/426229790_1432648787336716_4079542472693385367_n.png" />
+               </image>
+            </ImageView>
             </children>
         </AnchorPane>
     </center>
