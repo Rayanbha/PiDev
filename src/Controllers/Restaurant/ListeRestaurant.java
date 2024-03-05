@@ -1,5 +1,8 @@
 package Controllers.Restaurant;
 
+import Controllers.Reservation.AfficherReservation;
+import Controllers.Reservation.AfficherTable;
+import Controllers.Reservation.AjouterTable;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -234,5 +237,41 @@ public class ListeRestaurant {
             chart.append("*");
         }
         return chart.toString();
+    }
+
+    @FXML
+    void reservation(ActionEvent event) {
+        Restaurant selectedresto = restaurantListView.getSelectionModel().getSelectedItem();
+        if(selectedresto != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/AfficherReservation.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+                System.out.println("Opened");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+    @FXML
+    void ajoutertable(ActionEvent event) {
+        Restaurant selectedresto = restaurantListView.getSelectionModel().getSelectedItem();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/AjouterTable.fxml"));
+            Parent root = loader.load();
+            AjouterTable controller = loader.getController();
+            controller.InitTable(selectedresto);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

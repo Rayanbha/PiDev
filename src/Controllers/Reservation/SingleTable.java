@@ -39,10 +39,10 @@ public class SingleTable {
         NumTableLabe.setText(String.valueOf(table.getID_table()));
         String imageType="";
         if(table.getisReserver()){
-            imageType="/Images/redTable.jpg";
-
-                actionButton.setText("Fin Reservation");
-            imageType="/Images/greenTable.jpg";
+            imageType="/images/redTable.jpg";
+            actionButton.setText("Fin Reservation");
+        }else{
+            imageType="/images/greenTable.jpg";
             actionButton.setText("Reservation");
         }
         String imageUrl = SingleTable.class.getResource(imageType).toExternalForm();
@@ -51,7 +51,6 @@ public class SingleTable {
 
         bgTable.setImage(image);
     }
-
 
     @javafx.fxml.FXML
     public void save(ActionEvent actionEvent) {

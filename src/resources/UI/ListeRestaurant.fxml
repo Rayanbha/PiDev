@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="508.0" prefWidth="715.0" style="-fx-background-color: FFF5EC;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Restaurant.ListeRestaurant">
-    <ListView fx:id="restaurantListView" layoutX="23.0" layoutY="61.0" prefHeight="439.0" prefWidth="669.0" style="-fx-background-color: FF5EC;">
+    <ListView fx:id="restaurantListView" layoutX="23.0" layoutY="48.0" prefHeight="421.0" prefWidth="669.0" style="-fx-background-color: FF5EC;">
     </ListView>
     <Button layoutX="645.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClick" style="-fx-background-color: FFDE59;" text="Refresh " textFill="WHITE" />
     <Button layoutX="84.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAjouter" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: FFDE59;" text="Ajouter" />
@@ -16,4 +16,6 @@
     <Button layoutX="226.0" layoutY="14.0" mnemonicParsing="false" onAction="#onStats" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: FFDE59;" text="Stats" textFill="WHITE" />
    <Button layoutX="378.0" layoutY="14.0" mnemonicParsing="false" onAction="#onRecherche" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: FFDE59;" text="Recherche" textFill="WHITE" />
    <Button layoutX="301.0" layoutY="14.0" mnemonicParsing="false" onAction="#PrintPdf" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: FFDE59;" text="Print" textFill="WHITE" />
+   <Button layoutX="599.0" layoutY="469.0" mnemonicParsing="false" onAction="#reservation" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: FFDE59;" text="Reservation" />
+   <Button layoutX="492.0" layoutY="469.0" mnemonicParsing="false" onAction="#ajoutertable" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: FFDE59;" text="Table" />
 </AnchorPane>
