@@ -1,4 +1,4 @@
 FROM openjdk:8
 EXPOSE 8080
-ADD target/stage.jar stage.jar
-ENTRYPOINT ["java","-jar","/stage.jar"]
+ADD target/Stage.jar Stage.jar
+ENTRYPOINT ["java","-jar","/Stage.jar"]
